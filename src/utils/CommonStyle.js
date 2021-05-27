@@ -42,6 +42,16 @@ const styles = StyleSheet.create({
     opacity: 0.5,
     marginHorizontal: 30,
   },
+  shadowStyle:{
+    shadowColor: '#000000',
+                shadowOffset: {
+                  width: 0,
+                  height: 3,
+                },
+                shadowOpacity: 0.25,
+                shadowRadius: 3.75,
+                elevation: 5,
+  }
 });
 
 export default styles;

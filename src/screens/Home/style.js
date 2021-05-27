@@ -3,7 +3,7 @@ import Color from '../../utils/Color'
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 10,
+    backgroundColor:Color.WHITE_SMOKE,
   },
   listStyle:{
     width: '100%',

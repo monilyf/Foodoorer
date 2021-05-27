@@ -24,7 +24,7 @@ const Color = {
   
   BOTTLE_GREEN: '#0c4427',
   DARK_CYAN: '#01a66e',
-  WHITE_SMOKE: '#F5F4F2',
+  WHITE_SMOKE: '#F8F6F6',
 
   // OnBoarding Text Color
   ONBOARDING_TEXT: '#325f95',// DARK_MODERATE BLUE

@@ -16,6 +16,7 @@ import ContentHeader from './ui/ContentHeader';
 import CategoryCard from './ui/CategoryCard';
 import ItemCard from './ui/ItemCard';
 import RestaurantCard from './ui/RestaurantCard'
+import Search from './ui/Search';
 
 export {
   InputContainer,
@@ -36,5 +37,5 @@ export {
   CategoryCard,
   ItemCard,
   RestaurantCard,
-  
+  Search,
 };

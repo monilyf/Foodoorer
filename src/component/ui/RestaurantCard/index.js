@@ -1,34 +1,22 @@
 import React from 'react';
 import { View, Image } from 'react-native';
 import Color from '../../../utils/Color';
-import ThemeUtils from '../../../utils/ThemeUtils';
-import styles from '../InputContainer/style';
-import Label from '../Label'
+import Label from '../Label';
+import styles from './style';
 
 const RestaurantCard = (props) => {
     return (
         <View
-        style={{
-          backgroundColor: Color.BOX_BG,
-          flexDirection: 'column',
-          padding: 10,
-          borderRadius: 6,
-          marginHorizontal: 5,
-        }}>
+        style={styles.container}>
         <Image
-          style={{
-            borderRadius: 6,
-            height: ThemeUtils.relativeHeight(12),
-            width: ThemeUtils.relativeHeight(25),
-          }}
+          style={styles.imageContainer}
           source={props.image}
         />
+        <View style={styles.discount}>
+          <Label color={Color.WHITE} ph={8} xsmall>{props.discount}</Label>
+        </View>
         <View
-          style={{
-            flexDirection: 'column',
-            alignSelf: 'flex-start',
-            marginVertical:5
-          }}>
+          style={styles.detailsContaier}>
           <Label color={Color.PRIMARY_DARK} bolder>
             {props.title}
           </Label>
@@ -36,7 +24,7 @@ const RestaurantCard = (props) => {
             {props.description}
           </Label>
          
-         <View style={{flexDirection:'row',marginTop:8}}>
+         <View style={styles.prices}>
          <Label small bolder color={Color.DARK_GRAY}>
             {props.original_price}
           </Label>

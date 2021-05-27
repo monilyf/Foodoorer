@@ -1,28 +1,94 @@
 import React, {Component} from 'react';
 import {FlatList, SafeAreaView, View} from 'react-native';
-import {StatusBars,ContentHeader,CategoryCard,ItemCard,RestaurantCard} from '../../component';
+import {
+  StatusBars,
+  ContentHeader,
+  CategoryCard,
+  ItemCard,
+  RestaurantCard,
+  Search,
+} from '../../component';
 import Color from '../../utils/Color';
 import styles from './style';
-
+import Icon from 'react-native-vector-icons/Ionicons';
+import CommonStyle from '../../utils/CommonStyle';
 
 const category_Item = [
-  {id: 1, title: 'Burger', image: require('../../assets/images/home_screen/burger.jpg')},
-  {id: 2, title: 'Dosa', image: require('../../assets/images/home_screen/burger.jpg')},
-  {id: 3, title: 'Pizza', image: require('../../assets/images/home_screen/burger.jpg')},
-  {id: 4, title: 'Pasta', image: require('../../assets/images/home_screen/burger.jpg')},
-  {id: 5, title: 'Khaman', image: require('../../assets/images/home_screen/burger.jpg')},
-  {id: 6, title: 'Bhel', image: require('../../assets/images/home_screen/burger.jpg')},
-  {id: 7, title: 'Diet', image: require('../../assets/images/home_screen/diet.jpg')},
+  {
+    id: 1,
+    title: 'Burger',
+    image: require('../../assets/images/home_screen/burger.jpg'),
+  },
+  {
+    id: 2,
+    title: 'Dosa',
+    image: require('../../assets/images/home_screen/burger.jpg'),
+  },
+  {
+    id: 3,
+    title: 'Pizza',
+    image: require('../../assets/images/home_screen/burger.jpg'),
+  },
+  {
+    id: 4,
+    title: 'Pasta',
+    image: require('../../assets/images/home_screen/burger.jpg'),
+  },
+  {
+    id: 5,
+    title: 'Khaman',
+    image: require('../../assets/images/home_screen/burger.jpg'),
+  },
+  {
+    id: 6,
+    title: 'Bhel',
+    image: require('../../assets/images/home_screen/burger.jpg'),
+  },
+  {
+    id: 7,
+    title: 'Diet',
+    image: require('../../assets/images/home_screen/diet.jpg'),
+  },
 ];
 
 const nearby_deals = [
-  {id:1,title:"McDonald's",image:require('../../assets/images/home_screen/nachos.jpg'),description:'Mexican Creamy nachos',original_price:'₹ 15.20',discount:'10% OFF',new_price:'₹ 13.20'},
-  {id:2,title:"Domino's",image:require('../../assets/images/home_screen/pizza.jpg'),description:'Peppy Paneer pizza',original_price:'₹ 345.20',discount:'20% OFF', new_price:'₹ 275.16'},
-  {id:3,title:"McDonald's",image:require('../../assets/images/home_screen/nachos.jpg'),description:'Mexican Creamy nachos',original_price:'₹ 15.20',discount:'10% OFF',new_price:'₹ 13.20'},
-  {id:4,title:"Domino's",image:require('../../assets/images/home_screen/pizza.jpg'),description:'Peppy Paneer pizza',original_price:'₹ 345.20',discount:'20% OFF', new_price:'₹ 275.16'},
-
-]
-
+  {
+    id: 1,
+    title: "McDonald's",
+    image: require('../../assets/images/home_screen/nachos.jpg'),
+    description: 'Mexican Creamy nachos',
+    original_price: '₹ 15.20',
+    discount: '10% OFF',
+    new_price: '₹ 13.20',
+  },
+  {
+    id: 2,
+    title: "Domino's",
+    image: require('../../assets/images/home_screen/pizza.jpg'),
+    description: 'Peppy Paneer pizza',
+    original_price: '₹ 345.20',
+    discount: '20% OFF',
+    new_price: '₹ 275.16',
+  },
+  {
+    id: 3,
+    title: "McDonald's",
+    image: require('../../assets/images/home_screen/nachos.jpg'),
+    description: 'Mexican Creamy nachos',
+    original_price: '₹ 15.20',
+    discount: '10% OFF',
+    new_price: '₹ 13.20',
+  },
+  {
+    id: 4,
+    title: "Domino's",
+    image: require('../../assets/images/home_screen/pizza.jpg'),
+    description: 'Peppy Paneer pizza',
+    original_price: '₹ 345.20',
+    discount: '20% OFF',
+    new_price: '₹ 275.16',
+  },
+];
 
 const popular_Item = [
   {
@@ -80,22 +146,32 @@ export class Home extends Component {
   keyExtractor = (item, index) => item.id;
 
   renderTopCategories = item => {
-    return (
-      <CategoryCard title={item.title} image={item.image}/>
-    );
+    return <CategoryCard title={item.title} image={item.image} />;
   };
 
   renderPopularItems = item => {
     return (
-      <ItemCard title={item.title} image={item.image} by={item.by} price={item.price} />
+      <ItemCard
+        title={item.title}
+        image={item.image}
+        by={item.by}
+        price={item.price}
+      />
     );
   };
 
   renderNearbyDeals = item => {
     return (
-      <RestaurantCard image={item.image} title={item.title} description={item.description} original_price={item.original_price} new_price={item.new_price} discount={item.discount}/>
-    )
-  }
+      <RestaurantCard
+        image={item.image}
+        title={item.title}
+        description={item.description}
+        original_price={item.original_price}
+        new_price={item.new_price}
+        discount={item.discount}
+      />
+    );
+  };
 
   render() {
     return (
@@ -103,10 +179,37 @@ export class Home extends Component {
         <StatusBars
           hidden={false}
           barStyle="dark-content"
-          backgroundColor={Color.WHITE}
+          backgroundColor={Color.WHITE_SMOKE}
         />
         <View style={styles.container}>
-          <ContentHeader title="Top Categories" iconName='filter' text='Filter'/>
+          <View
+            style={{
+              marginHorizontal: 20,
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              paddingVertical: 15,
+            }}>
+            <View
+              style={[{
+                padding: 10,
+                backgroundColor: Color.WHITE,
+                borderRadius: 6,
+                
+              },CommonStyle.shadowStyle]}>
+              <Icon name="location-outline" size={25} />
+            </View>
+            
+                <Search style={CommonStyle.shadowStyle}/>
+              
+                
+           
+          </View>
+
+          <ContentHeader
+            title="Top Categories"
+            iconName="filter"
+            text="Filter"
+          />
           <View style={styles.listStyle}>
             <FlatList
               horizontal
@@ -117,9 +220,8 @@ export class Home extends Component {
             />
           </View>
 
-          <View
-            style={styles.divider}></View>
-          <ContentHeader title='Popular Items' text='View all'/>
+          <View style={styles.divider}></View>
+          <ContentHeader title="Popular Items" text="View all" />
 
           <View style={styles.listStyle}>
             <FlatList
@@ -131,7 +233,7 @@ export class Home extends Component {
             />
           </View>
           <View style={styles.divider}></View>
-          <ContentHeader title='Nearby Deals' text='View all'/>
+          <ContentHeader title="Nearby Deals" text="View all" />
 
           <View style={styles.listStyle}>
             <FlatList
