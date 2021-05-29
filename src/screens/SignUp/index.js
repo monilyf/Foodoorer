@@ -3,8 +3,7 @@ import {
   SafeAreaView,
   View,
   TouchableOpacity,
-  TouchableWithoutFeedback,
-  Keyboard,
+
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import Color from '../../utils/Color';
@@ -21,6 +20,10 @@ import Routes from '../../router/routes';
 import CommonStyle from '../../utils/CommonStyle';
 import * as Animatable from 'react-native-animatable';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import { bindActionCreators } from 'redux';
+import {createUser} from '../../redux/reducers/SignUp/action'
+import { connect } from 'react-redux';
+import {onBoardingDone} from '../../redux/reducers/OnBoarding/action'
 
 export class SignUp extends Component {
   constructor(props) {
@@ -91,11 +94,26 @@ export class SignUp extends Component {
         password: this.state.password,
       };
       AsyncStorage.setItem('register_data', JSON.stringify(register_data));
-      AsyncStorage.setItem('OnBoarding', 'true');
-      console.log('register_data:', register_data);
-      this.props.navigation.navigate(Routes.SignIn);
+
+      console.log('async storage register_data:', register_data);
+      // this.props.navigation.navigate(Routes.SignIn);
+      
+      this.signUpUserRequest(register_data);
     }
   };
+
+  signUpUserRequest = (register_data) => {
+    console.log('signUpUserRequest')
+    const {name,email,phone,password} = this.state;
+    console.log('store register_data',name,email,password,phone);
+    this.props.createUser(register_data);
+    let done='true'
+    this.props.onBoardingDone(done);
+    AsyncStorage.setItem('OnBoarding', {done:true});
+
+    this.props.navigation.navigate(Routes.SignIn);
+
+  }
 
   handlePasswordToggle = () => {
     this.state.isSecurePassword
@@ -121,7 +139,7 @@ export class SignUp extends Component {
           start={{x: 0, y: 1}}
           end={{x: 1, y: 0}}
           style={CommonStyle.linearGradient}>
-          <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+         
             <KeyboardAwareScrollView
               style={{flex: 1}}
               showsVerticalScrollIndicator={false}
@@ -259,11 +277,23 @@ export class SignUp extends Component {
                 </Animatable.View>
               </View>
             </KeyboardAwareScrollView>
-          </TouchableWithoutFeedback>
+     
         </LinearGradient>
       </SafeAreaView>
     );
   }
 }
 
-export default SignUp;
+
+
+const mapDispatchToProps = (dispatch) => 
+  bindActionCreators(
+    {
+      createUser,
+      onBoardingDone,
+    },
+    dispatch,
+  );
+
+
+export default connect(null,mapDispatchToProps)(SignUp);

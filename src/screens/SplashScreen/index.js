@@ -8,6 +8,7 @@ import {Label, StatusBars} from '../../component';
 import Color from '../../utils/Color';
 import logo from '../../assets/images/logo.png';
 import CommonStyle from '../../utils/CommonStyle';
+import { connect } from 'react-redux';
 
 class SplashScreen extends Component {
   // Navigate to authenticated route
@@ -54,4 +55,15 @@ class SplashScreen extends Component {
     );
   }
 }
-export default SplashScreen;
+
+
+const mapStateToProps = state =>{
+  console.log('splash screen state--',state)
+  console.log('splash screen state.signUpResponse--',state.signUpResponse)
+ 
+  return {
+    register_data:state
+  }
+}
+
+export default connect(mapStateToProps,null)(SplashScreen);

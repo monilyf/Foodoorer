@@ -1,6 +1,6 @@
 import React from 'react';
 import {TextInput, View} from 'react-native';
-import SearchBar from 'react-native-search-bar';
+// import SearchBar from 'react-native-search-bar';
 import Color from '../../../utils/Color';
 import Icon from 'react-native-vector-icons/Feather';
 

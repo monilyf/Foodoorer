@@ -60,10 +60,23 @@ class Profile extends Component {
     index: 0,
     routes: [{name: Routes.Splash}],
   });
+
+  async removeItemValue(key) {
+    try {
+        await AsyncStorage.removeItem(key);
+        return true;
+    }
+    catch(exception) {
+        return false;
+    }
+}
+
   removeAuthentication = async () => {
     try {
       console.log('logout');
-      await AsyncStorage.clear();
+      // await AsyncStorage.clear();
+      this.removeItemValue('register_data')
+      // this.removeItemValue('OnBoarding')
       this.props.navigation.dispatch(this.resetStack);
     } catch (e) {
       console.log(e);

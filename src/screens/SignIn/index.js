@@ -19,9 +19,11 @@ import {
   Logo,
   StatusBars,
 } from '../../component';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+
 import {CommonActions} from '@react-navigation/routers';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import { bindActionCreators } from 'redux';
 import {validation} from '../../utils/ValidationUtils';
 import Routes from '../../router/routes';
 import CommonStyle from '../../utils/CommonStyle';
@@ -109,17 +111,22 @@ export class SignIn extends Component {
           start={{x: 0, y: 1}}
           end={{x: 1, y: 0}}
           style={CommonStyle.linearGradient}>
-          <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-            <KeyboardAvoidingView
-              behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
-              keyboardVerticalOffset={Platform.OS == 'ios' ? 0 : 40}
-              enabled={Platform.OS === 'ios' ? true : false}>
-              <View style={{marginTop: -20}}>
+         <KeyboardAwareScrollView
+              style={{flex: 1}}
+              showsVerticalScrollIndicator={false}
+              resetScrollToCoords={{x: 0, y: 0}}
+              scrollEnabled={true}
+              enableResetScrollToCoords={false}
+              keyboardVerticalOffset={0}
+              enableOnAndroid={true}
+              keyboardShouldPersistTaps="always">
+              <View style={{marginTop: 50}}>
                 <Animatable.View animation="fadeInLeft" iterationDelay={400}>
                   <Logo />
-                  <Label align="center" color={Color.WHITE} bolder xxlarge>
+                  <Label  align="center" color={Color.WHITE} bolder xxlarge>
                     Welcome
                   </Label>
+                 
                 </Animatable.View>
                 <Animatable.View animation="fadeInUpBig" iterationDelay={400}>
                   <View style={CommonStyle.boxContainer}>
@@ -214,8 +221,7 @@ export class SignIn extends Component {
                   </View>
                 </Animatable.View>
               </View>
-            </KeyboardAvoidingView>
-          </TouchableWithoutFeedback>
+              </KeyboardAwareScrollView>
         </LinearGradient>
       </SafeAreaView>
     );
