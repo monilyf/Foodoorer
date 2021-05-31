@@ -171,7 +171,7 @@ class Profile extends Component {
               onRequestClose={() =>
                 this.setState({modalVisible: !this.state.modalVisible})
               }>
-              <View style={styles.editAccount}>
+              <View style={CommonStyle.modalStyle}>
                 <View
                   style={{
                     flexDirection: 'row',

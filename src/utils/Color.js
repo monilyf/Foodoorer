@@ -15,10 +15,12 @@ const Color = {
 
   HIGHLIGHT_COLOR: '#DDDDDD',
   ERROR: '#FF0000',
+  SUCCESS: '#008000',
+  STAR: '#FFA534',
+  OFFER_COLOR: '#1d52a8',
 
   ALICE_BLUE: '#f2f4f5',
   DARK_GRAYISH_BLUE: '#6f6e92',
-  SUCCESS: '#00FF00',
   PURE_CYAN: '#00d2ff',
 
   

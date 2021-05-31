@@ -5,34 +5,54 @@ import ThemeUtils from '../../../utils/ThemeUtils';
 
 const styles = StyleSheet.create({
     container:{
-        backgroundColor: Color.BOX_BG,
+        backgroundColor: Color.WHITE,
         flexDirection: 'column',
-        padding: 10,
+        // padding: 10,
         borderRadius: 6,
-        marginHorizontal: 5,
+        marginHorizontal: 20,
+        marginVertical:10,
     },
     imageContainer:{
-        borderRadius: 6,
-        height: ThemeUtils.relativeHeight(12),
-        width: ThemeUtils.relativeHeight(25),
+        borderTopLeftRadius:6,
+        borderTopRightRadius:6,
+        
+        height: ThemeUtils.relativeHeight(18),
+        width: '100%',
     },
     discount:{
         backgroundColor:Color.ERROR,
         borderRadius:4,
-        alignSelf:'flex-end',
         position:'absolute',
-        top:14,
-        right:14
+        top:90,
+        paddingVertical:10
+    },
+    rating:{
+        backgroundColor:Color.SUCCESS,
+        borderRadius:4,
+        alignSelf:'center',
+        // position:'absolute',
+        
+        
     },
     detailsContaier:{
         flexDirection: 'column',
         alignSelf: 'flex-start',
-        marginVertical:5
+        marginVertical:5,
+        width:'100%',
+        padding: 10,
+      
     },
-    prices:{
+   
+    area_Price:{
+        // position:'absolute',
+        // top:40,
+        width:'100%',
         flexDirection:'row',
-        marginTop:8
-    },
+        marginTop:8,
+        justifyContent:'space-between',
+        
+
+    }
 
 });
 

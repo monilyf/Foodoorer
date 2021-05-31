@@ -1,12 +1,14 @@
 import React from 'react';
-import { View, Image } from 'react-native';
+import { View, Image, TouchableOpacity } from 'react-native';
 import Label from '../Label';
 import Color from '../../../utils/Color';
 import styles from './style';
+import CommonStyles from '../../../utils/CommonStyle'
 
 const ItemCard = (props) => {
     return (
-        <View
+       <TouchableOpacity onPress={props.onPress}>
+          <View
         style={styles.container}>
         <Image
           style={styles.imageContainer}
@@ -14,19 +16,31 @@ const ItemCard = (props) => {
         />
         <View
           style={styles.detailsContaier}>
-          <Label color={Color.PRIMARY_DARK} bolder>
+         <View style={[{flexDirection:'row',justifyContent:'space-between'}]}>
+         <Label color={Color.PRIMARY_DARK} bolder>
             {props.title}
           </Label>
+          {/* <View style={{alignSelf:'center',}}>
+          <Label color={props.foodMarkColor}  small >
+            {props.foodMark}
+          </Label>
+          </View> */}
+         <Image
+           style={CommonStyles.foodMark}
+          source={props.foodMark}
+         />
+         </View>
           <Label xsmall bolder color={Color.DARK_GRAY}>
             {props.by}
           </Label>
           <View
-            style={styles.divider}></View>
+            style={CommonStyles.divider}></View>
           <Label small bolder color={Color.PRIMARY_DARK}>
             {props.price}
           </Label>
         </View>
       </View>
+       </TouchableOpacity>
     )
 }
 

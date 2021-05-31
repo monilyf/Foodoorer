@@ -8,26 +8,28 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         padding: 10,
         borderRadius: 6,
-        marginHorizontal: 5,
+        marginRight:10,
+        marginVertical:5,
       },
       imageContainer:{
         borderRadius: 6,
         height: ThemeUtils.relativeHeight(12),
         width: ThemeUtils.relativeWidth(22),
       },
+      // foodMark:{
+      //   marginLeft:20,
+      //   height: ThemeUtils.relativeHeight(3),
+      //   width: ThemeUtils.relativeHeight(3),
+      //   // height:'30%',
+      //   // width:'100%',
+      // },
       detailsContaier:{
           
         flexDirection: 'column',
         alignSelf: 'flex-start',
         marginHorizontal: 16,
       },
-      divider:{
-        width: ThemeUtils.relativeWidth(12),
-        borderWidth: 1,
-        opacity: 0.3,
-        borderColor: Color.DARK_GRAY,
-        marginVertical: 10,
-      }
+     
       
 });
 

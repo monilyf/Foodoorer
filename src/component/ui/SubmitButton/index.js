@@ -10,7 +10,7 @@ const SubmitButton = props => {
     <TouchableOpacity onPress={props.onPress} style={{alignItems: 'center'}}>
       <LinearGradient
         colors={[Color.GRADIENT1, Color.GRADIENT2]}
-        style={styles.btnPrimary}
+        style={[styles.btnPrimary,props.style]}
         start={{x: 0, y: 0}}
         end={{x: 1, y: 0}}>
         <Label bolder color={Color.WHITE}>

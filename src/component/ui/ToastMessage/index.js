@@ -6,8 +6,7 @@ import Color from '../../../utils/Color';
 import Label from '../Label';
 import styles from './style';
 
-class ToastMessage extends Component {
-  render() {
+const ToastMessage = (props) => {
     return (
       <View>
         <View style={styles.container}>
@@ -17,15 +16,16 @@ class ToastMessage extends Component {
               <View style={styles.toastMsg}>
                 <Icon name="alert-circle" size={20} color={Color.PRIMARY_DARK} />
                 <Label color={Color.PRIMARY_DARK} ms={12}>
-                  {this.props.text}
+                  {props.text}
                 </Label>
+                {/* {props.children} */}
               </View>
             </View>
           </View>
         </View>
       </View>
     );
-  }
+  
 }
 
 export default ToastMessage;

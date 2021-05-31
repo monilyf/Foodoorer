@@ -15,8 +15,19 @@ import ProfileNavItem from './ui/ProfileNavItem';
 import ContentHeader from './ui/ContentHeader';
 import CategoryCard from './ui/CategoryCard';
 import ItemCard from './ui/ItemCard';
-import RestaurantCard from './ui/RestaurantCard'
+import DealsByRestaurant from './ui/DealsByRestaurant'
 import Search from './ui/Search';
+import RestaurantCard from './ui/RestaurantCard';
+import ImageSlider from './ui/ImageSlider';
+import IconSqure from './ui/IconSqure';
+import OfferTag from './ui/OfferTag';
+import HomeNavigator from './ui/HomeNavigator'
+import Back from './ui/Back';
+import RestaurantItem from './ui/RestaurantItem';
+import AddButton from './ui/AddButton';
+import ItemCountButton from './ui/ItemCountButton';
+import ModalView from './ui/ModalView';
+import CartItem from './ui/CartItem';
 
 export {
   InputContainer,
@@ -30,12 +41,23 @@ export {
   Header,
   ToastMessage,
   Logo,
+  Back,
   Error,
   StatusBars,
   ProfileNavItem,
   ContentHeader,
   CategoryCard,
   ItemCard,
-  RestaurantCard,
+  DealsByRestaurant,
   Search,
+  RestaurantCard,
+  ImageSlider,
+  IconSqure,
+  OfferTag,
+  HomeNavigator,
+  RestaurantItem,
+  AddButton,
+  ItemCountButton,
+  ModalView,
+  CartItem,
 };

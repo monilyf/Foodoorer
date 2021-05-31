@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
   listStyle:{
     width: '100%',
     flexDirection: 'row', 
-    marginLeft: 15
+    marginLeft: 20
   },
   divider:{
     width: '100%',

@@ -1,159 +1,51 @@
 import React, {Component} from 'react';
-import {FlatList, SafeAreaView, View} from 'react-native';
+import {FlatList, SafeAreaView, ScrollView, View} from 'react-native';
 import {
   StatusBars,
   ContentHeader,
   CategoryCard,
   ItemCard,
-  RestaurantCard,
-  Search,
+  DealsByRestaurant,
+  Header,
+  Search
 } from '../../component';
 import Color from '../../utils/Color';
 import styles from './style';
-import Icon from 'react-native-vector-icons/Ionicons';
 import CommonStyle from '../../utils/CommonStyle';
-
-const category_Item = [
-  {
-    id: 1,
-    title: 'Burger',
-    image: require('../../assets/images/home_screen/burger.jpg'),
-  },
-  {
-    id: 2,
-    title: 'Dosa',
-    image: require('../../assets/images/home_screen/burger.jpg'),
-  },
-  {
-    id: 3,
-    title: 'Pizza',
-    image: require('../../assets/images/home_screen/burger.jpg'),
-  },
-  {
-    id: 4,
-    title: 'Pasta',
-    image: require('../../assets/images/home_screen/burger.jpg'),
-  },
-  {
-    id: 5,
-    title: 'Khaman',
-    image: require('../../assets/images/home_screen/burger.jpg'),
-  },
-  {
-    id: 6,
-    title: 'Bhel',
-    image: require('../../assets/images/home_screen/burger.jpg'),
-  },
-  {
-    id: 7,
-    title: 'Diet',
-    image: require('../../assets/images/home_screen/diet.jpg'),
-  },
-];
-
-const nearby_deals = [
-  {
-    id: 1,
-    title: "McDonald's",
-    image: require('../../assets/images/home_screen/nachos.jpg'),
-    description: 'Mexican Creamy nachos',
-    original_price: '₹ 15.20',
-    discount: '10% OFF',
-    new_price: '₹ 13.20',
-  },
-  {
-    id: 2,
-    title: "Domino's",
-    image: require('../../assets/images/home_screen/pizza.jpg'),
-    description: 'Peppy Paneer pizza',
-    original_price: '₹ 345.20',
-    discount: '20% OFF',
-    new_price: '₹ 275.16',
-  },
-  {
-    id: 3,
-    title: "McDonald's",
-    image: require('../../assets/images/home_screen/nachos.jpg'),
-    description: 'Mexican Creamy nachos',
-    original_price: '₹ 15.20',
-    discount: '10% OFF',
-    new_price: '₹ 13.20',
-  },
-  {
-    id: 4,
-    title: "Domino's",
-    image: require('../../assets/images/home_screen/pizza.jpg'),
-    description: 'Peppy Paneer pizza',
-    original_price: '₹ 345.20',
-    discount: '20% OFF',
-    new_price: '₹ 275.16',
-  },
-];
-
-const popular_Item = [
-  {
-    id: 1,
-    title: 'Grilled Chicken',
-    by: 'By XYZ',
-    price: '₹ 16.45',
-    image: require('../../assets/images/home_screen/burger.jpg'),
-  },
-  {
-    id: 2,
-    title: 'Burger',
-    by: 'By XYZ',
-    price: '₹ 16.45',
-    image: require('../../assets/images/home_screen/burger.jpg'),
-  },
-  {
-    id: 3,
-    title: 'Pizza',
-    by: 'By XYZ',
-    price: '₹ 16.45',
-    image: require('../../assets/images/home_screen/burger.jpg'),
-  },
-  {
-    id: 4,
-    title: 'Pasta',
-    by: 'By XYZ',
-    price: '₹ 16.45',
-    image: require('../../assets/images/home_screen/burger.jpg'),
-  },
-  {
-    id: 5,
-    title: 'Khaman',
-    by: 'By XYZ',
-    price: '₹ 16.45',
-    image: require('../../assets/images/home_screen/burger.jpg'),
-  },
-  {
-    id: 6,
-    title: 'Bhel',
-    by: 'By XYZ',
-    price: '₹ 16.45',
-    image: require('../../assets/images/home_screen/burger.jpg'),
-  },
-  {
-    id: 7,
-    title: 'Diet',
-    by: 'By XYZ',
-    price: '₹ 16.45',
-    image: require('../../assets/images/home_screen/diet.jpg'),
-  },
-];
+import Routes from '../../router/routes'
+import {restaurants,category_Item,popular_Item} from '../../redux/Constants/data'
+import ThemeUtils from '../../utils/ThemeUtils';
 
 export class Home extends Component {
   keyExtractor = (item, index) => item.id;
 
+  constructor(props) {
+    super(props);
+
+    this.state = {
+     scrollItemHorizontal:true,
+     visibilityText:'View all',
+    };
+  }
+
   renderTopCategories = item => {
-    return <CategoryCard title={item.title} image={item.image} />;
+    return (
+      <CategoryCard 
+      
+        title={item.title} 
+        image={item.image} 
+        onPress={()=>this.props.navigation.navigate(Routes.DetailedScreen,item)}
+    />
+    )
   };
 
   renderPopularItems = item => {
     return (
       <ItemCard
+        onPress={()=>this.props.navigation.navigate(Routes.RestaurantScreen)}
         title={item.title}
         image={item.image}
+        foodMark={this.state.scrollItemHorizontal?null:item.foodMark}
         by={item.by}
         price={item.price}
       />
@@ -162,7 +54,8 @@ export class Home extends Component {
 
   renderNearbyDeals = item => {
     return (
-      <RestaurantCard
+      <DealsByRestaurant
+        onPress={()=>this.props.navigation.navigate(Routes.RestaurantScreen)}
         image={item.image}
         title={item.title}
         description={item.description}
@@ -182,28 +75,11 @@ export class Home extends Component {
           backgroundColor={Color.WHITE_SMOKE}
         />
         <View style={styles.container}>
-          <View
-            style={{
-              marginHorizontal: 20,
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              paddingVertical: 15,
-            }}>
-            <View
-              style={[{
-                padding: 10,
-                backgroundColor: Color.WHITE,
-                borderRadius: 6,
-                
-              },CommonStyle.shadowStyle]}>
-              <Icon name="location-outline" size={25} />
-            </View>
-            
-                <Search style={CommonStyle.shadowStyle}/>
-              
-                
-           
-          </View>
+         <Header iconName='location-outline'>
+        <Search style={CommonStyle.shadowStyle}/>
+
+         </Header>
+         <ScrollView showsVerticalScrollIndicator={false}>
 
           <ContentHeader
             title="Top Categories"
@@ -221,29 +97,34 @@ export class Home extends Component {
           </View>
 
           <View style={styles.divider}></View>
-          <ContentHeader title="Popular Items" text="View all" />
-
+          <ContentHeader title="Popular Items" text={this.state.visibilityText} onPress={()=>this.setState({scrollItemHorizontal:!this.state.scrollItemHorizontal,visibilityText:this.state.scrollItemHorizontal?'Show less':'View all'})}/>
+     
           <View style={styles.listStyle}>
             <FlatList
-              horizontal
+              horizontal={this.state.scrollItemHorizontal}
+              style={{marginRight:this.state.scrollItemHorizontal?null:30}}
               showsHorizontalScrollIndicator={false}
               data={popular_Item}
               renderItem={({item}) => this.renderPopularItems(item)}
               keyExtractor={this.keyExtractor}
             />
           </View>
+          
           <View style={styles.divider}></View>
-          <ContentHeader title="Nearby Deals" text="View all" />
+          <ContentHeader title="Nearby Deals" text='View all' onPress={()=>this.props.navigation.navigate(Routes.DetailedScreen,{title:'nearby deals'})}/>
 
           <View style={styles.listStyle}>
             <FlatList
-              horizontal
+               horizontal
               showsHorizontalScrollIndicator={false}
-              data={nearby_deals}
+              data={restaurants}
+            
+
               renderItem={({item}) => this.renderNearbyDeals(item)}
               keyExtractor={this.keyExtractor}
             />
           </View>
+          </ScrollView>
         </View>
       </SafeAreaView>
     );

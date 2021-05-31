@@ -20,17 +20,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
-  editAccount: {
-    alignSelf: 'center',
-    position: 'absolute',
-    bottom: 0,
-    width: '100%',
-    paddingHorizontal: 20,
-    paddingVertical: 20,
-    backgroundColor: Color.BOX_BG,
-    borderTopStartRadius: 18,
-    borderTopEndRadius: 18,
-  },
+ 
 });
 
 export default styles;

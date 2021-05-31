@@ -1,11 +1,12 @@
 import React from 'react';
-import { View,Image } from 'react-native';
+import { View,Image, TouchableOpacity } from 'react-native';
 import Color from '../../../utils/Color';
 import ThemeUtils from '../../../utils/ThemeUtils';
 import Label from '../Label'
 
 const CategoryCard = (props) => {
     return (
+      <TouchableOpacity onPress={props.onPress}>
         <View style={{flexDirection: 'column', marginHorizontal: 5}}>
         <Image
           style={{
@@ -20,6 +21,7 @@ const CategoryCard = (props) => {
           {props.title}
         </Label>
       </View>
+      </TouchableOpacity>
     )
 }
 

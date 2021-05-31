@@ -9,8 +9,11 @@ const Routes = {
   Onboarding: 'Onboarding',
 
   Home: 'Home',
+  DetailedScreen: 'DetailedScreen',
+  RestaurantScreen: 'RestaurantScreen',
+  CartScreen: 'CartScreen',
   Profile: 'Profile',
-
+  
   ForgotPassword: 'ForgotPassword',
   OtpScreen: 'OtpScreen',
   ResetPassword: 'ResetPassword',

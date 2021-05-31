@@ -54,11 +54,13 @@ const Label = (props) => {
             marginEnd: props.me,
             paddingHorizontal: props.ph,
             paddingVertical: props.pv,
+            paddingTop:props.pt,
             paddingBottom:props.pb,
             textAlign: props.align,
             borderBottomWidth:props.border,
             borderBottomColor:props.borderColor,
-            letterSpacing:props.letterSpacing
+            letterSpacing:props.letterSpacing,
+            backgroundColor:props.bgColor,
         });
         stylesArray.push(props.style);
         return (
@@ -82,6 +84,7 @@ Label.defaultProps = {
     lighter: false,
     light: false,
     color: Color.PRIMARY_DARK,
+    bgColor: Color.TRANSPARENT,
     roboto_regular: false,
     roboto_medium: false,
     align: "left",
@@ -91,6 +94,7 @@ Label.defaultProps = {
     me: 0,
     ph:0,
     pv:0,
+    pt:0,
     pb:0,
     singleLine: false,
     border:0,
@@ -109,6 +113,7 @@ Label.propTypes = {
     light: PropTypes.bool,
     lighter: PropTypes.bool,
     color: PropTypes.string,
+    bgColor: PropTypes.string,
     roboto_medium: PropTypes.bool,
     roboto_regular: PropTypes.bool,
     mt: PropTypes.number,
@@ -117,6 +122,7 @@ Label.propTypes = {
     me: PropTypes.number,
     ph: PropTypes.number,
     pv: PropTypes.number,
+    pt: PropTypes.number,
     pb: PropTypes.number,
     align: PropTypes.string,
     singleLine: PropTypes.bool,

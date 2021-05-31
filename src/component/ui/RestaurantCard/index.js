@@ -1,39 +1,48 @@
 import React from 'react';
-import { View, Image } from 'react-native';
+import { View, Image, TouchableOpacity } from 'react-native';
 import Color from '../../../utils/Color';
 import Label from '../Label';
 import styles from './style';
 
 const RestaurantCard = (props) => {
     return (
-        <View
+   <TouchableOpacity onPress={props.onPress}>
+          <View
         style={styles.container}>
         <Image
           style={styles.imageContainer}
           source={props.image}
+          resizeMode='cover'
         />
         <View style={styles.discount}>
           <Label color={Color.WHITE} ph={8} xsmall>{props.discount}</Label>
         </View>
         <View
           style={styles.detailsContaier}>
-          <Label color={Color.PRIMARY_DARK} bolder>
+         <View style={{flexDirection:'row',justifyContent:'space-between'}}>
+         <Label color={Color.PRIMARY_DARK} bolder>
             {props.title}
           </Label>
+          <View style={styles.rating}>
+          <Label color={Color.WHITE} bolder ph={4} pb={1.4} xsmall>{props.rating}</Label>
+        </View>
+         </View>
           <Label xsmall bolder color={Color.DARK_GRAY}>
             {props.description}
           </Label>
          
-         <View style={styles.prices}>
-         <Label small bolder color={Color.DARK_GRAY}>
-            {props.original_price}
+        
+         <View style={styles.area_Price}>
+         <Label small  color={Color.PRIMARY_DARK}>
+            {props.area}
           </Label>
-          <Label small  bolder ms={15} color={Color.PRIMARY_DARK}>
-            {props.new_price}
+          <Label small  ms={15} color={Color.PRIMARY_DARK}>
+            {props.priceForOne}
           </Label>
          </View>
         </View>
       </View>
+   </TouchableOpacity>
     )
 }
 
