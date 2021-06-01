@@ -16,11 +16,11 @@ const CartItem = (props) => {
                 width: ThemeUtils.relativeHeight(2),marginTop:4,marginRight:10}} />
                 <Label bolder small>{props.foodItemName}</Label>
                 </View>
-            <ItemCountButton itemCount='1' onPressPlus={props.onPressPlus} onPressMinus={props.onPressMinus} />
+            <ItemCountButton itemCount={props.itemCount} onPressPlus={props.onPressPlus} onPressMinus={props.onPressMinus} />
             <Label  small>{props.price}</Label>
             </View>
                  <Label xsmall ms={25} color={Color.DARK_GRAY}>Regular</Label>
-                <TouchableOpacity onPress={()=>alert('expand')}><Label bolder small mt={4} ms={25} color={Color.DARK_GRAY}>Customize </Label></TouchableOpacity>
+                <TouchableOpacity onPress={()=>alert('expand')}><Label  small mt={4} ms={25} color={Color.DARK_GRAY}>Customize </Label></TouchableOpacity>
            <View style={[CommonStyle.endLine,{marginHorizontal:5,marginTop:10}]}></View>
         </View>
     )

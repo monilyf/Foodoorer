@@ -4,10 +4,11 @@ import Color from '../../utils/Color'
 const styles = StyleSheet.create({
   container: {
     backgroundColor:Color.WHITE_SMOKE,
-    marginHorizontal:20,
+    paddingHorizontal:20,
     borderBottomLeftRadius:18,
     borderBottomRightRadius:18,
-    paddingBottom:15,
+    paddingBottom:10,
+    // flex:1
   },
  
   divider:{
@@ -18,13 +19,14 @@ const styles = StyleSheet.create({
   },
   addressView:{
   alignSelf: 'center',
- 
+  marginTop:20,
   width: '100%',
   paddingHorizontal: 20,
   paddingVertical: 20,
   backgroundColor: Color.WHITE,
   borderTopStartRadius: 18,
   borderTopEndRadius: 18,
+  // paddingBottom:40
   }
 });
 

@@ -4,7 +4,7 @@ import ThemeUtils from '../../../utils/ThemeUtils';
 
 const styles = StyleSheet.create({
     container:{
-        backgroundColor: Color.BOX_BG,
+        backgroundColor: Color.WHITE,
         flexDirection: 'row',
         padding: 10,
         borderRadius: 6,

@@ -3,7 +3,7 @@ import { View, Image, TouchableOpacity } from 'react-native';
 import Label from '../Label';
 import Color from '../../../utils/Color';
 import styles from './style';
-import CommonStyles from '../../../utils/CommonStyle'
+import CommonStyle from '../../../utils/CommonStyle'
 
 const ItemCard = (props) => {
     return (
@@ -26,7 +26,7 @@ const ItemCard = (props) => {
           </Label>
           </View> */}
          <Image
-           style={CommonStyles.foodMark}
+           style={CommonStyle.foodMark}
           source={props.foodMark}
          />
          </View>
@@ -34,7 +34,7 @@ const ItemCard = (props) => {
             {props.by}
           </Label>
           <View
-            style={CommonStyles.divider}></View>
+            style={CommonStyle.divider}></View>
           <Label small bolder color={Color.PRIMARY_DARK}>
             {props.price}
           </Label>

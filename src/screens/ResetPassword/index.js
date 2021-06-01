@@ -61,7 +61,7 @@ export class ResetPassword extends Component {
       isValid = true;
     }
     if (isValid) {
-      this.props.navigation.navigate(Routes.SignIn);
+      this.props.navigation.push(Routes.SignIn);
     }
   };
 

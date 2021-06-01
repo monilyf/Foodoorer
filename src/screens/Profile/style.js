@@ -9,6 +9,7 @@ const styles = StyleSheet.create({
     borderBottomEndRadius: 18,
   },
   profileHeader: {
+    marginTop:10,
     padding: 17,
     flexDirection: 'row',
     justifyContent: 'space-between',

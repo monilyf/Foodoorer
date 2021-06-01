@@ -8,27 +8,27 @@
     {
       id: 2,
       title: 'Dosa',
-      image: require('../../assets/images/home_screen/burger.jpg'),
+      image: require('../../assets/images/home_screen/dosa.jpg'),
     },
     {
       id: 3,
       title: 'Pizza',
-      image: require('../../assets/images/home_screen/burger.jpg'),
+      image: require('../../assets/images/home_screen/pizza1.jpg'),
     },
     {
       id: 4,
       title: 'Pasta',
-      image: require('../../assets/images/home_screen/burger.jpg'),
+      image: require('../../assets/images/home_screen/pasta.jpg'),
     },
     {
       id: 5,
       title: 'Khaman',
-      image: require('../../assets/images/home_screen/burger.jpg'),
+      image: require('../../assets/images/home_screen/khaman.jpg'),
     },
     {
       id: 6,
       title: 'Bhel',
-      image: require('../../assets/images/home_screen/burger.jpg'),
+      image: require('../../assets/images/home_screen/bhel.jpg'),
     },
     {
       id: 7,
@@ -53,7 +53,7 @@
     {
       id: 2,
       title: "Domino's",
-      image: require('../../assets/images/home_screen/pizza.jpg'),
+      image: require('../../assets/images/home_screen/pizza2.jpg'),
       description: 'Peppy Paneer pizza',
       original_price: '₹ 345.20',
       discount: '20% OFF',
@@ -64,27 +64,27 @@
     },
     {
       id: 3,
-      title: "McDonald's",
-      image: require('../../assets/images/home_screen/nachos.jpg'),
-      description: 'Mexican Creamy nachos',
-      original_price: '₹ 15.20',
+      title: "Shakti's",
+      image: require('../../assets/images/home_screen/sandwich1.jpg'),
+      description: 'Mexican Creamy Sanwich',
+      original_price: '₹ 135',
       discount: 'REGULAR',
-      new_price: '₹ 13.20',
+      new_price: '₹ 100',
       rating: '3.9 ☆',
       area:'Prahlad nagar',
-      priceForOne: '₹140 for one',
+      priceForOne: '₹100 for one',
     },
     {
       id: 4,
-      title: "Domino's",
-      image: require('../../assets/images/home_screen/pizza.jpg'),
+      title: "La Pino'z",
+      image: require('../../assets/images/home_screen/pizza1.jpg'),
       description: 'Peppy Paneer pizza',
       original_price: '₹ 345.20',
       discount: '20% OFF',
       new_price: '₹ 275.16',
       rating: '3.9 ☆',
       area:'Prahlad nagar',
-      priceForOne: '₹140 for one',
+      priceForOne: '₹240 for one',
     },
     {
         id: 5,
@@ -119,7 +119,7 @@
       price: '₹ 16.45',
       rating: '3.9 ☆',
       area:'Prahlad nagar',
-      image: require('../../assets/images/home_screen/burger.jpg'),
+      image: require('../../assets/images/home_screen/chinese_bhel.jpg'),
       foodMark:require('../../assets/images/icon_non_veg.png')
       // foodMark:'NON-VEG',
     },
@@ -143,7 +143,7 @@
       price: '₹ 16.45',
       rating: '3.9 ☆',
       area:'Prahlad nagar',
-      image: require('../../assets/images/home_screen/burger.jpg'),
+      image: require('../../assets/images/home_screen/pizza2.jpg'),
       foodMark:require('../../assets/images/icon_non_veg.png')
 
 
@@ -156,7 +156,7 @@
       price: '₹ 16.45',
       rating: '3.9 ☆',
       area:'Prahlad nagar',
-      image: require('../../assets/images/home_screen/burger.jpg'),
+      image: require('../../assets/images/home_screen/pasta.jpg'),
       foodMark:require('../../assets/images/icon_veg.png')
 
 
@@ -166,12 +166,12 @@
     },
     {
       id: 5,
-      title: 'Khaman',
-      by: 'By XYZ',
+      title: 'Sandwich',
+      by: 'By Shakti',
       price: '₹ 16.45',
       rating: '3.9 ☆',
       area:'Prahlad nagar',
-      image: require('../../assets/images/home_screen/burger.jpg'),
+      image: require('../../assets/images/home_screen/sandwich.jpg'),
       foodMark:require('../../assets/images/icon_veg.png')
 
 
@@ -186,7 +186,7 @@
       price: '₹ 16.45',
       rating: '3.9 ☆',
       area:'Prahlad nagar',
-      image: require('../../assets/images/home_screen/burger.jpg'),
+      image: require('../../assets/images/home_screen/bhel.jpg'),
       foodMark:require('../../assets/images/icon_veg.png')
 
 

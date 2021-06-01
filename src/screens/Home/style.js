@@ -4,6 +4,7 @@ import Color from '../../utils/Color'
 const styles = StyleSheet.create({
   container: {
     backgroundColor:Color.WHITE_SMOKE,
+    
   },
   listStyle:{
     width: '100%',

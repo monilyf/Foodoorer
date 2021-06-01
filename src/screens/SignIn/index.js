@@ -67,11 +67,11 @@ export class SignIn extends Component {
         this.props.navigation.dispatch(this.resetToAuth);
       else {
         alert("You don't have account");
-        this.props.navigation.navigate(Routes.SignIn);
+        this.props.navigation.push(Routes.SignIn);
       }
     } catch (error) {
       alert("You don't have account");
-      this.props.navigation.navigate(Routes.SignIn);
+      this.props.navigation.push(Routes.SignIn);
     }
   };
 
@@ -195,7 +195,7 @@ export class SignIn extends Component {
                     <TouchableOpacity
                       style={{marginTop: 10, alignSelf: 'flex-end'}}
                       onPress={() =>
-                        this.props.navigation.navigate(Routes.ForgotPassword)
+                        this.props.navigation.push(Routes.ForgotPassword)
                       }>
                       <Label small color={Color.ACTIVE_COLOR} align="right" me={5}>
                         Forgot Password ?

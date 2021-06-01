@@ -50,7 +50,7 @@ export class ForgotPassword extends Component {
       isValid = true;
     }
     if (isValid) {
-      this.props.navigation.navigate(Routes.ResetPassword);
+      this.props.navigation.push(Routes.ResetPassword);
     }
   };
 

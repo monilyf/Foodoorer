@@ -154,12 +154,12 @@ class RestaurantScreen extends Component {
                 45 Mins (Delivery time)
               </Label>
 
-              <OfferTag borderColor={Color.ERROR} backgroundColor={Color.DARK_GRAY} style={{marginTop:14}}>
+              <OfferTag borderColor={Color.ERROR} backgroundColor={Color.LIGHT_GRAY} style={{marginTop:14}}>
               <Label xsmall pt={8} pb={8} color={Color.BLACK}>OFFER + 10% OFF ON ALL BEVERAGES</Label>
               </OfferTag> 
             </View>
 
-            <View>
+            <View style={{paddingBottom:40}}>
               <Label bolder mt={5} mb={5} large>
                 Recommended
               </Label>
@@ -180,6 +180,8 @@ class RestaurantScreen extends Component {
                 renderItem={({item}) => this.renderMenuItem(item)}
                 keyExtractor={item => item.id}
               />
+             
+            
             </View>
           </ScrollView>
         </View>

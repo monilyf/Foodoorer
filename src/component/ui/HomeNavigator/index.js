@@ -44,7 +44,7 @@ const HomeNavigator = () => {
           tabBarLabel: 'Explore',
           // tabBarColor: Color.ALICE_BLUE,
           tabBarIcon: ({color}) => (
-            <Icon1 name="shop" color={Color.WHITE} size={26} />
+            <Icon1 name="shop" color={color} size={26} />
           ),
         }}
 //         options={{

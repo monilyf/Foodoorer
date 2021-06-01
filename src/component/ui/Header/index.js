@@ -16,8 +16,9 @@ const Header = props => {
     style={{
       marginHorizontal: 20,
       flexDirection: 'row',
-      justifyContent: 'space-between',
+      justifyContent: props.justifyContent,
       paddingVertical: 15,
+      backgroundColor:Color.WHITE_SMOKE
     }}>
     <TouchableOpacity onPress={props.onPress}
       style={[{

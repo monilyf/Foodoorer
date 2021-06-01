@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
-import {SafeAreaView, View, ScrollView, Image, TextInput} from 'react-native';
+import {SafeAreaView, View, ScrollView, Image, TextInput, Touchable} from 'react-native';
 import {
   StatusBars,
   Header,
   CartItem,
   Label,
   HomeNavigator,
-  Search,
+  ModalView,
   OfferTag,
   SubmitButton,
 } from '../../component';
@@ -17,43 +17,76 @@ import ThemeUtils from '../../utils/ThemeUtils';
 import Icon from 'react-native-vector-icons/Feather';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import LinearGradient from 'react-native-linear-gradient';
+import Routes from '../../router/routes'
 
 export class CartScreen extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      itemCount: 1,
+      isPaymentDoneModal:false
+    };
+  }
+
+//  payemntDoneModal = (state)=>{
+//    return(
+    
+//    )
+//  }
+
   render() {
     return (
-      <SafeAreaView style={{backgroundColor:Color.WHITE_SMOKE}}>
+      <SafeAreaView >
         <StatusBars
           hidden={false}
           barStyle="dark-content"
           backgroundColor={Color.WHITE_SMOKE}
         />
-         <Header
-            iconName="chevron-back-outline"
-            onPress={() => this.props.navigation.goBack()}>
-            {/* <Search style={CommonStyle.shadowStyle}/> */}
-            <View style={{flexDirection: 'row', marginRight: 50}}>
-              <Image
-                resizeMode="contain"
-                style={{
-                  alignSelf: 'center',
-                  height: ThemeUtils.relativeHeight(5.5),
-                  width: ThemeUtils.relativeHeight(5.5),
-                }}
-                source={require('../../assets/images/mcD_logo.png')}
-              />
-              <View style={{marginStart: 15}}>
-                <Label bolder>McDonald's</Label>
-                <Label xsmall color={Color.DARK_GRAY}>
-                  SG highway, Ahmedabad
-                </Label>
-              </View>
+        <Header
+          iconName="chevron-back-outline" justifyContent='space-between'
+          onPress={() => this.props.navigation.goBack()}>
+          {/* <Search style={CommonStyle.shadowStyle}/> */}
+          <View style={{flexDirection: 'row', marginRight: 50}}>
+            <Image
+              resizeMode="contain"
+              style={{
+                alignSelf: 'center',
+                height: ThemeUtils.relativeHeight(5.5),
+                width: ThemeUtils.relativeHeight(5.5),
+              }}
+              source={require('../../assets/images/mcD_logo.png')}
+            />
+            <View style={{marginStart: 15}}>
+              <Label bolder>McDonald's</Label>
+              <Label xsmall color={Color.DARK_GRAY}>
+                SG highway, Ahmedabad
+              </Label>
             </View>
-          </Header>
-        <View style={styles.container}>
-         
-          <ScrollView showsVerticalScrollIndicator={false}>
-            <CartItem foodItemName="Creamy nachos" price="₹157.00" />
-            <CartItem foodItemName="Maharaja mac  " price="₹106.00" />
+          </View>
+        </Header>
+        <ScrollView showsVerticalScrollIndicator={false}>
+          <View style={styles.container}>
+            <CartItem
+              foodItemName="Creamy nachos"
+              price="₹157.00"
+              itemCount={this.state.itemCount}
+              onPressPlus={() =>
+                this.setState({itemCount: this.state.itemCount + 1})
+              }
+              onPressMinus={() => {
+                if (this.state.itemCount > 1) {
+                  this.setState({itemCount: this.state.itemCount - 1});
+                } else {
+                  this.setState({itemCount: 1});
+                } //set logic here
+              }}
+            />
+            <CartItem
+              foodItemName="Maharaja mac  "
+              price="₹106.00"
+              itemCount="1"
+            />
 
             {/* --------------------Bill Component Strat (can make it as separate BillComponent)---------------- */}
 
@@ -154,28 +187,31 @@ export class CartScreen extends Component {
               style={{
                 flexDirection: 'row',
                 justifyContent: 'space-between',
-                marginTop:15
+                marginTop: 15,
               }}>
               {/* <View style={{borderWidth:1,borderStyle:'dashed',borderColor:Color.PRIMARY_DARK}}> */}
-              <OfferTag borderColor={Color.PRIMARY_DARK} >
+              <OfferTag borderColor={Color.PRIMARY_DARK}>
                 <TextInput
-                  placeholder="Enter discount code" 
-                  style={{padding: 0,paddingVertical:1,paddingHorizontal:30}}
+                  placeholder="Enter discount code"
+                  style={{
+                    padding: 0,
+                    paddingVertical: 1,
+                    paddingHorizontal: 40,
+                  }}
                 />
               </OfferTag>
               {/* </View> */}
               <TouchableOpacity
                 style={{alignSelf: 'center'}}
-                onPress={() =>alert('goes to offer')}>
+                onPress={() => alert('aaplied code')}>
                 <LinearGradient
                   colors={[Color.GRADIENT3, Color.GRADIENT4]}
                   start={{x: 0, y: 1}}
                   end={{x: 1, y: 0}}
                   style={{
                     borderRadius: 6,
-                    paddingHorizontal:40,
+                    paddingHorizontal: 40,
                     paddingVertical: 6,
-                    
                   }}>
                   <Label small bolder color={Color.WHITE}>
                     APPLY
@@ -183,76 +219,57 @@ export class CartScreen extends Component {
                 </LinearGradient>
               </TouchableOpacity>
             </View>
-            <Label xsmall bolder mt={4}>Select a promo code</Label>
-          </ScrollView>
-          </View>
-
-       {/* --------is user authenticted then show address------------------- */}
-       {/* <View style={CommonStyle.checkoutModal}></View>
-       <View style={{ flexDirection: 'row',justifyContent:'space-between'}}>
-          <View style={{flexDirection:'row'}}>
-          <Icon name="home" color={Color.PRIMARY_DARK} size={20}/>
-          
-            <Label small bolder ms={10} color={Color.PRIMARY_DARK}>
-              Home
+            <TouchableOpacity  onPress={() => alert('goes to offer')}>
+              <Label xsmall bolder mt={4}>
+              Select a promo code
             </Label>
+            </TouchableOpacity>
+            {/* </ScrollView> */}
           </View>
-         
-          <TouchableOpacity onPress={()=>alert('add address screen')}><Label xsmall>CHANGE</Label></TouchableOpacity>
-        </View>
-                
 
-              <View style={{marginTop: 8, marginLeft: 20, marginRight: 30}}>
-                <Label xsmall color={Color.DARK_GRAY}>
-                  17, Sukomal Flats, Ramdev nagar, Satellite...
-                </Label>
-              </View> */}
+          {/* --------is user authenticted then show address------------------- */}
 
-             <View style={styles.addressView}>
+          <View style={styles.addressView}>
             <View
               style={{
                 flexDirection: 'row',
                 justifyContent: 'space-between',
               }}>
-              <View style={{
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-              }}>
-                 <Icon name="home" color={Color.PRIMARY_DARK} size={20}/>
-          
-          <Label small bolder ms={10} color={Color.PRIMARY_DARK}>
-            Home
-          </Label>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                }}>
+                <Icon name="home" color={Color.PRIMARY_DARK} size={20} />
+
+                <Label small bolder ms={10} color={Color.PRIMARY_DARK}>
+                  Home
+                </Label>
               </View>
-          <TouchableOpacity onPress={()=>alert('add address screen')}><Label xsmall>CHANGE</Label></TouchableOpacity>
-             
+              <TouchableOpacity onPress={() => this.props.navigation.push(Routes.ManageAddress)}>
+                <Label xsmall>CHANGE</Label>
+              </TouchableOpacity>
             </View>
-           
-                <Label xsmall color={Color.DARK_GRAY} mt={10}>
-                  17, Sukomal Flats, Ramdev nagar, Satellite...
-                </Label>
-            <SubmitButton buttonText='MAKE PAYMENT'/>
+
+            <Label xsmall color={Color.DARK_GRAY} mt={10}>
+              17, Sukomal Flats, Ramdev nagar, Satellite...
+            </Label>
+
+            <SubmitButton buttonText="MAKE PAYMENT" 
+            onPress={()=>{
+              alert('Payment done successfully')
+              this.props.navigation.push(Routes.Home)
+            // this.payemntDoneModal(this.setState({isPaymentDoneModal:true}))
+            }}/>
+            <Label></Label>
+            <Label></Label>
+            <Label></Label>
+
+            
           </View>
-
-          <Label bolder small color={Color.PRIMARY_DARK}>
-                  To Pay
-                </Label>
-                <Label bolder small color={Color.PRIMARY_DARK}>
-                  To Pay
-                </Label>
-                <Label bolder small color={Color.PRIMARY_DARK}>
-                  To Pay
-                </Label>
-                <Label bolder small color={Color.PRIMARY_DARK}>
-                  To Pay
-                </Label>
-                <Label bolder small color={Color.PRIMARY_DARK}>
-                  To Pay
-                </Label>
-                <Label bolder small color={Color.PRIMARY_DARK}>
-                  To Pay
-                </Label>
-
+          
+        </ScrollView>
+        <HomeNavigator />
       </SafeAreaView>
     );
   }

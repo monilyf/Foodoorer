@@ -111,7 +111,7 @@ export class SignUp extends Component {
     this.props.onBoardingDone(done);
     AsyncStorage.setItem('OnBoarding', {done:true});
 
-    this.props.navigation.navigate(Routes.SignIn);
+    this.props.navigation.push(Routes.SignIn);
 
   }
 

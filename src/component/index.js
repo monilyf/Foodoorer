@@ -28,6 +28,7 @@ import AddButton from './ui/AddButton';
 import ItemCountButton from './ui/ItemCountButton';
 import ModalView from './ui/ModalView';
 import CartItem from './ui/CartItem';
+import SmallButton from './ui/SmallButton';
 
 export {
   InputContainer,
@@ -60,4 +61,5 @@ export {
   ItemCountButton,
   ModalView,
   CartItem,
+  SmallButton,
 };

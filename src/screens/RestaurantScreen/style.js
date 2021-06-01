@@ -4,10 +4,10 @@ import ThemeUtils from '../../utils/ThemeUtils'
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor:Color.TRANSPARENT,
+    backgroundColor:Color.WHITE_SMOKE,
     marginHorizontal:20,
     // height:'80%',
-    height:650,
+    height:ThemeUtils.relativeHeight(80),
     marginTop:-80,
     position:'relative',
     borderRadius:6,
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
   checkoutModal:{
     alignSelf: 'center',
     position: 'absolute',
-    bottom: 50,
+    bottom: 0,
     width: '100%',
     paddingHorizontal: 20,
     paddingVertical: 20,

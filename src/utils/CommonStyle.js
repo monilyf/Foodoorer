@@ -21,6 +21,7 @@ const styles = StyleSheet.create({
     paddingVertical: 20,
     backgroundColor: Color.BOX_BG,
     borderRadius: 12,
+    // alignSelf:'center'
   },
   linearGradient: {
     width: '100%',
@@ -62,7 +63,7 @@ const styles = StyleSheet.create({
   },
   divider:{
     width: ThemeUtils.relativeWidth(12),
-    borderWidth: 1,
+    borderWidth: 0.7,
     opacity: 0.3,
     borderColor: Color.DARK_GRAY,
     marginVertical: 10,

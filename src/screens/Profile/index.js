@@ -1,5 +1,5 @@
 import React, {useState, Component} from 'react';
-import {View, SafeAreaView, TouchableOpacity, Modal} from 'react-native';
+import {View, SafeAreaView, TouchableOpacity} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   StatusBars,
@@ -7,6 +7,7 @@ import {
   InputContainer,
   SubmitButton,
   ProfileNavItem,
+  ModalView
 } from '../../component';
 import Color from '../../utils/Color';
 import CommonStyle from '../../utils/CommonStyle';
@@ -124,14 +125,14 @@ class Profile extends Component {
 
           <View style={styles.subContainer}>
             <ProfileNavItem
-              onPress={() => alert('Pressed!')}
+              onPress={() => this.props.navigation.push(Routes.MyOrderScreen)}
               iconPath={require('../../assets/icons/profile_screen_icon/order.png')}
               label="My Order"
             />
 
             <View style={CommonStyle.endLine}></View>
             <ProfileNavItem
-              onPress={() => alert('Pressed!')}
+              onPress={() => this.props.navigation.push(Routes.ManageAddress)}
               iconPath={require('../../assets/icons/profile_screen_icon/address.png')}
               label="Manage Addresses"
             />
@@ -164,9 +165,8 @@ class Profile extends Component {
               label="Logout"
             />
 
-            <Modal
-              animationType="slide"
-              transparent={true}
+            <ModalView
+             
               visible={this.state.modalVisible}
               onRequestClose={() =>
                 this.setState({modalVisible: !this.state.modalVisible})
@@ -233,7 +233,7 @@ class Profile extends Component {
                   buttonText="SAVE"
                 />
               </View>
-            </Modal>
+            </ModalView>
           </View>
         </View>
       </SafeAreaView>

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {FlatList, SafeAreaView, ScrollView, View} from 'react-native';
+import {FlatList, SafeAreaView, ScrollView, View,TouchableOpacity} from 'react-native';
 import { CommonActions } from '@react-navigation/native';
 import {
   StatusBars,
@@ -13,6 +13,8 @@ import styles from './style';
 import {restaurants} from '../../redux/Constants/data'
 import Routes from '../../router/routes';
 import CommonStyle from '../../utils/CommonStyle';
+import Icon from 'react-native-vector-icons/Feather';
+
 
 
 const DetailedScreen =(props,{navigation})=> {
@@ -23,7 +25,7 @@ const DetailedScreen =(props,{navigation})=> {
   const renderRestaurants = item => {
     return (
       <RestaurantCard
-      onPress={()=>props.navigation.navigate(Routes.RestaurantScreen)}
+      onPress={()=>props.navigation.push(Routes.RestaurantScreen)}
         image={item.image}
          area={item.area}
          rating={item.rating}
@@ -44,8 +46,28 @@ const DetailedScreen =(props,{navigation})=> {
           backgroundColor={Color.WHITE_SMOKE}
         />
         <View style={styles.container}>
-        <Header iconName='chevron-back-outline'onPress={()=>props.navigation.goBack()}>
-        <Search style={CommonStyle.shadowStyle}/>
+        <Header iconName='chevron-back-outline' justifyContent='space-between' onPress={()=>props.navigation.goBack()}>
+        <TouchableOpacity
+              onPress={() => props.navigation.push(Routes.SearchScreen)}>
+              <View
+                style={[
+                  {
+                    // paddingRight: 30,
+                    paddingVertical: 7,
+                    paddingHorizontal: 15,
+                    backgroundColor: Color.WHITE,
+                    borderRadius: 6,
+                    flexDirection: 'row',
+                    justifyContent: 'space-between',
+                  },
+                  CommonStyle.shadowStyle,
+                ]}>
+                <Label color={Color.DARK_GRAY}  large>
+                  Search for meals or area
+                </Label>
+                <Icon name="search" style={{alignSelf: 'center'}} size={20} />
+              </View>
+            </TouchableOpacity>
         </Header>
       
           <Label bolder ms={20} mb={7}>Top restaurants delivering{' '} {title}</Label>
