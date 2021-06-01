@@ -19,6 +19,8 @@ import {validation, PasswordValidate} from '../../utils/ValidationUtils';
 import Routes from '../../router/routes';
 import CommonStyle from '../../utils/CommonStyle';
 import * as Animatable from 'react-native-animatable';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+
 
 export class ResetPassword extends Component {
   constructor(props) {
@@ -88,12 +90,15 @@ export class ResetPassword extends Component {
           start={{x: 0, y: 1}}
           end={{x: 1, y: 0}}
           style={CommonStyle.linearGradient}>
-          <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-            <KeyboardAvoidingView
-              behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
-              keyboardVerticalOffset={Platform.OS == 'ios' ? 0 : 40}
-              enabled={Platform.OS === 'ios' ? true : false}>
-              <View>
+        <KeyboardAwareScrollView
+              showsVerticalScrollIndicator={false}
+              resetScrollToCoords={{x: 0, y: 0}}
+              scrollEnabled={true}
+              enableResetScrollToCoords={false}
+              keyboardVerticalOffset={0}
+              enableOnAndroid={true}
+              keyboardShouldPersistTaps="always">
+              <View  style={{marginTop: 100, alignItems: 'center'}}>
                 <Animatable.View animation="fadeInLeft" iterationDelay={400}>
                   <Logo />
                 </Animatable.View>
@@ -128,7 +133,7 @@ export class ResetPassword extends Component {
 
                     <InputContainer
                       iconName="lock"
-                      placeholder="Re-type password"
+                      placeholder="Retype password"
                       iconColor={Color.PRIMARY_DARK}
                       onChangeText={text =>
                         this.setState({confirmPassword: text})
@@ -154,8 +159,7 @@ export class ResetPassword extends Component {
                   </View>
                 </Animatable.View>
               </View>
-            </KeyboardAvoidingView>
-          </TouchableWithoutFeedback>
+          </KeyboardAwareScrollView>
         </LinearGradient>
       </SafeAreaView>
     );

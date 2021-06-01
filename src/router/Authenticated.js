@@ -10,6 +10,7 @@ import SearchScreen from '../screens/SearchScreen';
 import PaymentOptions from '../screens/PaymentOptions';
 import ManageAddress from '../screens/ManageAddress';
 import MyOrderScreen from '../screens/MyOrderScreen';
+import CouponAppliedScreen from '../screens/CouponAppliedScreen';
 
 const Stack = createStackNavigator();
 
@@ -55,6 +56,11 @@ const Authenticated = () => {
        <Stack.Screen
         name={Routes.MyOrderScreen}
         component={MyOrderScreen}
+        options={{headerShown:false}}
+      />
+       <Stack.Screen
+        name={Routes.CouponAppliedScreen}
+        component={CouponAppliedScreen}
         options={{headerShown:false}}
       />
     </Stack.Navigator>

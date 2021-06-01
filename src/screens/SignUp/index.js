@@ -250,7 +250,7 @@ export class SignUp extends Component {
 
                     <InputContainer
                       iconName="lock"
-                      placeholder="Re-type password"
+                      placeholder="Retype password"
                       iconColor={Color.PRIMARY_DARK}
                       onChangeText={text =>
                         this.setState({confirmPassword: text})

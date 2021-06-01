@@ -219,7 +219,7 @@ export class CartScreen extends Component {
                 </LinearGradient>
               </TouchableOpacity>
             </View>
-            <TouchableOpacity  onPress={() => alert('goes to offer')}>
+            <TouchableOpacity  onPress={() => this.props.navigation.push(Routes.CouponAppliedScreen)}>
               <Label xsmall bolder mt={4}>
               Select a promo code
             </Label>

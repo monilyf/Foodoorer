@@ -16,6 +16,7 @@ const Routes = {
   MyOrderScreen: 'MyOrderScreen',
   ManageAddress: 'ManageAddress',
   PaymentOptions: 'PaymentOptions',
+  CouponAppliedScreen: 'CouponAppliedScreen',
   Profile: 'Profile',
   
   ForgotPassword: 'ForgotPassword',

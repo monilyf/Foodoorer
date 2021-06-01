@@ -18,6 +18,9 @@ class Search extends React.Component {
       },this.props.style]}>
       <TextInput
         placeholder="Search for meals or area"
+        returnKeyType='search'
+        onChangeText={this.props.onChangeText}
+        onSubmitEditing={this.props.onSubmitEditing}
         // editable={this.props.editable}
         // onChangeText={()=>this.props.navigation.push(Routes.SearchScreen)}
         style={{paddingHorizontal: 15, fontSize: 20, paddingRight: 45}}
