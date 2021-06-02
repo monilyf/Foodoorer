@@ -134,14 +134,14 @@ class Profile extends Component {
             <ProfileNavItem
               onPress={() => this.props.navigation.push(Routes.ManageAddress)}
               iconPath={require('../../assets/icons/profile_screen_icon/address.png')}
-              label="Manage Addresses"
+              label="Manage Address"
             />
 
             <View style={CommonStyle.endLine}></View>
             <ProfileNavItem
-              onPress={() => alert('Pressed!')}
+              onPress={() => this.props.navigation.push(Routes.PaymentOptions)}
               iconPath={require('../../assets/icons/profile_screen_icon/payment.png')}
-              label="Payments"
+              label="Payment"
             />
 
             <View style={CommonStyle.endLine}></View>

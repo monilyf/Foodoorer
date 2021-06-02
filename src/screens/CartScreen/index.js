@@ -210,10 +210,14 @@ export class CartScreen extends Component {
                   end={{x: 1, y: 0}}
                   style={{
                     borderRadius: 6,
-                    paddingHorizontal: 40,
+                    // alignItems:'center',
+                    // paddingHorizontal: 40,
+                  width:ThemeUtils.relativeHeight(16),
+
                     paddingVertical: 6,
+
                   }}>
-                  <Label small bolder color={Color.WHITE}>
+                  <Label small bolder align='center' color={Color.WHITE}>
                     APPLY
                   </Label>
                 </LinearGradient>
@@ -258,7 +262,7 @@ export class CartScreen extends Component {
             <SubmitButton buttonText="MAKE PAYMENT" 
             onPress={()=>{
               alert('Payment done successfully')
-              this.props.navigation.push(Routes.Home)
+              this.props.navigation.push(Routes.OrderTracking)
             // this.payemntDoneModal(this.setState({isPaymentDoneModal:true}))
             }}/>
             <Label></Label>

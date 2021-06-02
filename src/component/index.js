@@ -29,6 +29,11 @@ import ItemCountButton from './ui/ItemCountButton';
 import ModalView from './ui/ModalView';
 import CartItem from './ui/CartItem';
 import SmallButton from './ui/SmallButton';
+import TodayOfferCard  from './ui/TodayOfferCard';
+import FreeDeliveryItemCard from './ui/FreeDeliveryItemCard';
+import AllOfferCard from './ui/AllOfferCard';
+import PaymentInput from './ui/PaymentInput';
+
 
 export {
   InputContainer,
@@ -62,4 +67,8 @@ export {
   ModalView,
   CartItem,
   SmallButton,
+  TodayOfferCard,
+  FreeDeliveryItemCard,
+  AllOfferCard,
+  PaymentInput
 };

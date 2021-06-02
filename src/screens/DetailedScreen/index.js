@@ -14,6 +14,7 @@ import {restaurants} from '../../redux/Constants/data'
 import Routes from '../../router/routes';
 import CommonStyle from '../../utils/CommonStyle';
 import Icon from 'react-native-vector-icons/Feather';
+import ThemeUtils from '../../utils/ThemeUtils'
 
 
 
@@ -51,15 +52,18 @@ const DetailedScreen =(props,{navigation})=> {
               onPress={() => props.navigation.push(Routes.SearchScreen)}>
               <View
                 style={[
-                  {
-                    // paddingRight: 30,
-                    paddingVertical: 7,
-                    paddingHorizontal: 15,
-                    backgroundColor: Color.WHITE,
-                    borderRadius: 6,
-                    flexDirection: 'row',
-                    justifyContent: 'space-between',
-                  },
+                {
+                  // paddingRight: 30,
+                  // paddingVertical:7,
+                  paddingHorizontal: 15,
+                  alignItems:'center',
+                  height:ThemeUtils.relativeHeight(6),
+                  width:ThemeUtils.relativeHeight(40),
+                  backgroundColor: Color.WHITE,
+                  borderRadius: 6,
+                  flexDirection: 'row',
+              justifyContent:'space-between'
+                },
                   CommonStyle.shadowStyle,
                 ]}>
                 <Label color={Color.DARK_GRAY}  large>

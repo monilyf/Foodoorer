@@ -4,12 +4,13 @@ import {createMaterialBottomTabNavigator} from '@react-navigation/material-botto
 // import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Icon1 from 'react-native-vector-icons/Entypo';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import SaleIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Home from '../../../../src/screens/Home';
 import Color from '../../../utils/Color';
 import Profile from '../../../../src/screens/Profile';
 import CartScreen from '../../../screens/CartScreen';
+import OfferScreen from '../../../screens/OfferScreen';
 import Routes from '../../../router/routes';
-import Label from '../Label'
 
 const Tab = createMaterialBottomTabNavigator();
 // const Tab = createBottomTabNavigator();
@@ -67,13 +68,13 @@ const HomeNavigator = () => {
 
       />
       <Tab.Screen
-        name="Delivery"
-        component={Home}
+        name="Offers"
+        component={OfferScreen}
         options={{
           tabBarLabel: 'Delivery',
           // tabBarColor: Color.ALICE_BLUE,
           tabBarIcon: ({color}) => (
-            <Icon name="location-arrow" color={color} size={26} />
+            <SaleIcon name="sale" color={color} size={26} />
           ),
         }}
       />

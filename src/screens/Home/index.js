@@ -95,8 +95,11 @@ export class Home extends Component {
               <View   style={[
                 {
                   // paddingRight: 30,
-                  paddingVertical:7,
+                  // paddingVertical:7,
                   paddingHorizontal: 15,
+                  alignItems:'center',
+                  height:ThemeUtils.relativeHeight(6),
+                  width:ThemeUtils.relativeHeight(40),
                   backgroundColor: Color.WHITE,
                   borderRadius: 6,
                   flexDirection: 'row',

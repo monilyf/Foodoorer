@@ -8,13 +8,13 @@ import Color from '../../../utils/Color'
 const ContentHeader = (props) => {
     return (
         <View
-        style={{
+        style={[{
           flexDirection: 'row',
           justifyContent: 'space-between',
           marginHorizontal: 20,
           marginVertical:12,
          
-        }}>
+        },props.style]}>
         <Label large bolder color={Color.PRIMARY_DARK}>
           {props.title}
         </Label>

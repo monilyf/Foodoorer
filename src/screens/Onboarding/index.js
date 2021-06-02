@@ -70,6 +70,27 @@ class Onboarding extends React.Component{
 
   // }
 
+  componentDidMount(){
+    this.check()    
+    }
+    check = async ()=>{
+      try {
+        let user = await AsyncStorage.getItem('First');
+        console.log(!user)
+        if (!user){
+          AsyncStorage.setItem('First','yes')
+        } 
+        else {
+         console.log('Second Time')
+          this.props.navigation.navigate(Routes.Login);
+        }
+      } catch (error) {
+         console.log(error);
+      }
+    }
+
+
+
   onDone = () => {
     this.props.onDone();
   };

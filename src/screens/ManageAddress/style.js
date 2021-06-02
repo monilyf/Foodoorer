@@ -24,7 +24,12 @@ const styles = StyleSheet.create({
   borderTopStartRadius: 18,
   borderTopEndRadius: 18,
   // paddingBottom:40
-  }
+  },
+  listStyle:{
+    width: '100%',
+    flexDirection: 'row', 
+    marginLeft: 20
+  },
 });
 
 export default styles;

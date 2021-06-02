@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, SafeAreaView, ScrollView, TouchableOpacity,Image} from 'react-native';
+import {View, SafeAreaView, ScrollView, TouchableOpacity,FlatList} from 'react-native';
 import {
   Label,
   StatusBars,
@@ -14,6 +14,14 @@ import ThemeUtils from '../../utils/ThemeUtils';
 import styles from './style';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import CommonStyle from '../../utils/CommonStyle';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+
+
+const address_details = [
+  {id:1,addressType:'Home',address:'17, Sukomal Flats, Ramdev Nagar cross road, Satellite, Ahmedabad',icon:'home'},
+  {id:2,addressType:'Office',address:'107, XYZ, Panjrapol cross road, Ambawadi, Ahmedabad',icon:'suitcase'},
+]
+
 
 class ManageAddress extends React.Component {
   constructor(props) {
@@ -23,6 +31,42 @@ class ManageAddress extends React.Component {
       modalVisible: false,
     };
   }
+
+  renderAddress = (item) =>{
+    return(
+      <View style={styles.addressView}>
+      <View
+        style={{
+          flexDirection: 'row',
+          // justifyContent: 'space-between',
+        }}>
+        <Icon name={item.icon} color={Color.PRIMARY_DARK} size={25} />
+
+        <Label bolder ms={10} color={Color.PRIMARY_DARK}>
+          {item.addressType}
+        </Label>
+      </View>
+
+      <Label small  color={Color.DARK_GRAY} mt={10}>
+        {item.address}{' '}
+      </Label>
+
+      <View
+        style={{
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+         
+        }}>
+        <SmallButton buttonText="EDIT" onPress={() => alert('edit')} />
+        <SmallButton
+          buttonText="DELETE"
+          onPress={() => alert('delete')}
+        />
+      </View>
+    </View>
+    )
+  }
+
   render() {
     return (
       <SafeAreaView>
@@ -31,6 +75,15 @@ class ManageAddress extends React.Component {
           barStyle="dark-content"
           backgroundColor={Color.WHITE_SMOKE}
         />
+         {/* <KeyboardAwareScrollView
+              // style={{flex: 1}}
+              showsVerticalScrollIndicator={false}
+              resetScrollToCoords={{x: 0, y: 0}}
+              scrollEnabled={true}
+              enableResetScrollToCoords={false}
+              keyboardVerticalOffset={0}
+              enableOnAndroid={true}
+              keyboardShouldPersistTaps="always"> */}
         <View style={styles.container}>
           <Header
             iconName="chevron-back-outline"
@@ -43,67 +96,15 @@ class ManageAddress extends React.Component {
             </View>
           </Header>
           <ScrollView showsVerticalScrollIndicator={false}>
-            <View style={styles.addressView}>
-              <View
-                style={{
-                  flexDirection: 'row',
-                  // justifyContent: 'space-between',
-                }}>
-                <Icon name="home" color={Color.PRIMARY_DARK} size={25} />
-
-                <Label bolder ms={10} color={Color.PRIMARY_DARK}>
-                  Home
-                </Label>
-              </View>
-
-              <Label small  color={Color.DARK_GRAY} mt={10}>
-                17, Sukomal Flats, Ramdev Nagar cross road, Satellite, Ahmedabad{' '}
-              </Label>
-
-              <View
-                style={{
-                  flexDirection: 'row',
-                  justifyContent: 'space-between',
-                 
-                }}>
-                <SmallButton buttonText="EDIT" onPress={() => alert('edit')} />
-                <SmallButton
-                  buttonText="DELETE"
-                  onPress={() => alert('delete')}
-                />
-              </View>
-            </View>
-
-            <View style={styles.addressView}>
-              <View
-                style={{
-                  flexDirection: 'row',
-                  // justifyContent: 'space-between',
-                }}>
-                <Icon name="suitcase" color={Color.PRIMARY_DARK} size={25} />
-
-                <Label bolder ms={10} color={Color.PRIMARY_DARK}>
-                  Office
-                </Label>
-              </View>
-
-              <Label small  color={Color.DARK_GRAY} mt={10}>
-                107, XYZ, Panjrapol cross road, Ambawadi, Ahmedabad{' '}
-              </Label>
-
-              <View
-                style={{
-                  flexDirection: 'row',
-                  justifyContent: 'space-between',
-               
-                }}>
-                <SmallButton buttonText="EDIT" onPress={() => alert('edit')} />
-                <SmallButton
-                  buttonText="DELETE"
-                  onPress={() => alert('delete')}
-                />
-              </View>
-            </View>
+           
+          <FlatList
+                
+                showsHorizontalScrollIndicator={false}
+                data={address_details}
+                renderItem={({item}) => this.renderAddress(item)}
+                keyExtractor={(item)=>item.id}
+              />
+           
           </ScrollView>
           <SubmitButton
             buttonText="ADD NEW"
@@ -120,7 +121,9 @@ class ManageAddress extends React.Component {
           onRequestClose={() =>
             this.setState({modalVisible: !this.state.modalVisible})
           }>
+
           <View style={CommonStyle.modalStyle}>
+          
             <View
               style={{
                 flexDirection: 'row',
@@ -203,7 +206,9 @@ class ManageAddress extends React.Component {
               buttonText="SAVE"
             />
           </View>
+          
         </ModalView>
+        {/* </KeyboardAwareScrollView> */}
       </SafeAreaView>
     );
   }

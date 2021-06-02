@@ -46,8 +46,10 @@
       original_price: '₹ 15.20',
       discount: '10% OFF',
       rating: '3.9 ☆',
+      ratings: '3.9',
       area:'Prahlad nagar',
       priceForOne: '₹140 for one',
+      time:'40-50 mins',
       new_price: '₹ 13.20',
     },
     {
@@ -59,7 +61,9 @@
       discount: '20% OFF',
       new_price: '₹ 275.16',
       rating: '3.9 ☆',
+      ratings: '3.9',
       area:'Prahlad nagar',
+      time:'40-50 mins',
       priceForOne: '₹140 for one',
     },
     {
@@ -71,7 +75,9 @@
       discount: 'REGULAR',
       new_price: '₹ 100',
       rating: '3.9 ☆',
+      ratings: '3.9',
       area:'Prahlad nagar',
+      time:'40-50 mins',
       priceForOne: '₹100 for one',
     },
     {
@@ -82,8 +88,10 @@
       original_price: '₹ 345.20',
       discount: '20% OFF',
       new_price: '₹ 275.16',
+      ratings: '3.9',
       rating: '3.9 ☆',
       area:'Prahlad nagar',
+      time:'40-50 mins',
       priceForOne: '₹240 for one',
     },
     {
@@ -94,9 +102,11 @@
         original_price: '₹ 15.20',
         discount: '10% OFF',
         new_price: '₹ 13.20',
-        rating: '3.9 ☆',
+      ratings: '3.9',
+      rating: '3.9',
         area:'Prahlad nagar',
-        priceForOne: '₹140 for one',
+      time:'40-50 mins',
+      priceForOne: '₹140 for one',
       },
       {
         id: 6,
@@ -106,9 +116,11 @@
         original_price: '₹ 345.20',
         discount: '20% OFF',
         new_price: '₹ 275.16',
-        rating: '3.9 ☆',
+      ratings: '3.9',
+      rating: '3.9 ☆',
         area:'Prahlad nagar',
-        priceForOne: '₹140 for one',}
+        priceForOne: '₹140 for one',time:'40-50 mins',
+      }
   ];
   
   export const popular_Item = [
@@ -225,3 +237,15 @@
     require('../../assets/images/restaurant_screen/4.jpg'),
   ];
 
+export  const offers = [
+
+  {id:1,title:"Gulab Jamun",type:"Desserts",rating:"4.5",time:"40-50mins",Price:"₹140.00",image:require('../../assets/images/Gulab_logo.jpg'),offerTag:"HOT DEAL",discount:"10% OFF",costForTwo :'₹ 800 for 2',offerType:'Delivery',price:'₹ 320'},
+  {id:2,title:"Imarti",type:"Sweets",rating:"4.1",time:"40-70mins",Price:"₹160.00",image:require('../../assets/images/imarti_logo.jpg'),offerTag:"HOT DEAL",discount:"20% OFF",costForTwo :'₹ 500 for 2',offerType:'Voucher',price:'₹ 320'},
+  {id:3,title:"Jalebi",type:"Desserts",rating:"4",time:"40-60mins",Price:"₹100.00",image:require('../../assets/images/jalebi_logo.jpg'),offerTag:"HOT DEAL",discount:"30% OFF",costForTwo :'₹ 400 for 2',offerType:'Delivery',price:'₹ 320'},
+  {id:4,title:"Kaju Katli",type:"Sweets",rating:"4.0",time:"40-70mins",Price:"₹240.00",image:require('../../assets/images/kajukatli_logo.jpg'),offerTag:"HOT DEAL",discount:"40% OFF",costForTwo :'₹ 700 for 2',offerType:'Voucher',price:'₹ 320'},
+  {id:5,title:"Ghevar",type:"Sweets",rating:"4.9",time:"40-60mins",Price:"₹240.00",image:require('../../assets/images/ghevar_logo.jpg'),offerTag:"HOT DEAL",discount:"50% OFF",costForTwo :'₹ 900 for 2',offerType:'Delivery',price:'₹ 320'}
+
+
+
+
+  ]

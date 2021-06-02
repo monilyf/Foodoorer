@@ -3,7 +3,7 @@ import Color from '../utils/Color';
 import DateUtils from '../utils/DateUtils';
 import Messages from '../utils/MessageUtils';
 import Constants from '../utils/Constants';
-import CommonStyle from '../utils/CommonStyles';
+import CommonStyle from '../utils/CommonStyle';
 import ThemeUtils from '../utils/ThemeUtils';
 import {validation, PasswordValidate} from '../utils/ValidationUtils';
 
