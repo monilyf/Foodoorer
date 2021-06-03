@@ -13,7 +13,7 @@ const FreeDeliveryItemCard = props => {
       <View style={styles.container}>
         <Image style={styles.imageContainer} source={props.image} />
         <View style={styles.detailsContaier}>
-          <Label color={Color.PRIMARY_DARK} bolder>
+          <Label color={Color.PRIMARY_DARK}  small bolder>
             {props.title}
           </Label>
 

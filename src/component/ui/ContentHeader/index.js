@@ -15,13 +15,13 @@ const ContentHeader = (props) => {
           marginVertical:12,
          
         },props.style]}>
-        <Label large bolder color={Color.PRIMARY_DARK}>
+        <Label  bolder color={Color.PRIMARY_DARK}>
           {props.title}
         </Label>
        <TouchableOpacity onPress={props.onPress} 
        style={{flexDirection: 'row',alignSelf:'center'}}>
-          <Icon name={props.iconName} size={16} style={{alignSelf:'center'}} color={Color.DARK_GRAY} />
-          <Label color={Color.DARK_GRAY} ms={10} small>
+          <Icon name={props.iconName} size={14} style={{alignSelf:'center'}} color={Color.DARK_GRAY} />
+          <Label color={Color.DARK_GRAY} ms={10} xsmall>
            {props.text}
           </Label>
        </TouchableOpacity>

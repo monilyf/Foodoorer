@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   Image,
   View,
-  Modal,
+  Share,
 } from 'react-native';
 import {CommonActions} from '@react-navigation/native';
 import {
@@ -49,8 +49,6 @@ class RestaurantScreen extends Component {
   renderMenuItem = item => {
     return (
       <RestaurantItem
-        backgroundColor={this.state.isRepeatSameModalVisible
-      ?Color.LIGHT_GRAY:Color.WHITE}
         image={item.image}
         foodMark={item.foodMark}
         itemName={item.itemName}
@@ -83,10 +81,22 @@ class RestaurantScreen extends Component {
       </RestaurantItem>
     );
   };
+
+
+   onShare = async () => {
+    try {
+      const result = await Share.share({
+        message:
+         '“McDonald’s: Get one FREE double cheeseburger when you purchase any…”'
+      });
+    }
+ catch (error) {
+    alert(error.message);
+  }
+}
   render() {
     return (
-      <SafeAreaView style={{backgroundColor:this.state.isRepeatSameModalVisible
-      ?Color.DARK_GRAY:Color.WHITE_SMOKE}}>
+      <SafeAreaView style={{backgroundColor:Color.WHITE_SMOKE}}>
         <StatusBars
           hidden={true}
         />
@@ -106,10 +116,7 @@ class RestaurantScreen extends Component {
 
         <View style={styles.container}>
           <ScrollView showsVerticalScrollIndicator={false}>
-            <View style={[styles.infoContainer,
-            {backgroundColor:this.state.isRepeatSameModalVisible
-      ?Color.LIGHT_GRAY:Color.WHITE}
-            ]}>
+            <View style={styles.infoContainer}>
               <View
                 style={[
                   styles.rowContainer,
@@ -130,12 +137,14 @@ class RestaurantScreen extends Component {
                 </View>
                 <View style={styles.rowContainer}>
                   <Icon name="heart-outline" color={Color.ERROR} size={26} />
-                  <Icon
+                 <TouchableOpacity onPress={()=>{this.onShare()}}>
+                 <Icon
                     name="share-social-outline"
                     style={{marginLeft: 10}}
                     color={Color.PRIMARY_DARK}
                     size={26}
                   />
+                 </TouchableOpacity>
                 </View>
               </View>
 

@@ -17,7 +17,7 @@ const CategoryCard = (props) => {
           // resizeMode="contain"
           source={props.image}
         />
-        <Label small bolder mt={5} ms={30} color={Color.PRIMARY_DARK}>
+        <Label xsmall bolder mt={5} ms={30} color={Color.PRIMARY_DARK}>
           {props.title}
         </Label>
       </View>

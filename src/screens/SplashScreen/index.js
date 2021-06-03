@@ -46,7 +46,7 @@ class SplashScreen extends Component {
     return (
       <View style={[styles.SplashScreen_RootView, CommonStyle.container]}>
         <StatusBars hidden={true} />
-        <Image source={logo} style={styles.logo} />
+        <Image source={logo}  style={styles.logo} />
 
         <View style={styles.footer}>
           <Label color={Color.DARK_GRAYISH_BLUE}> By Team{'\n'}Foodoorer</Label>

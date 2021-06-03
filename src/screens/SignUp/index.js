@@ -24,6 +24,7 @@ import { bindActionCreators } from 'redux';
 import {createUser} from '../../redux/reducers/SignUp/action'
 import { connect } from 'react-redux';
 import {onBoardingDone} from '../../redux/reducers/OnBoarding/action'
+import {CommonActions} from '@react-navigation/routers'
 
 export class SignUp extends Component {
   constructor(props) {
@@ -109,11 +110,15 @@ export class SignUp extends Component {
     this.props.createUser(register_data);
     let done='true'
     this.props.onBoardingDone(done);
-    AsyncStorage.setItem('OnBoarding', {done:true});
-
-    this.props.navigation.push(Routes.SignIn);
+    // AsyncStorage.setItem('OnBoarding', {done:true});
+    // AsyncStorage.setItem('OnBoarding', JSON.stringify(obj));
+    this.props.navigation.dispatch(this.resetToAuth);
 
   }
+  resetToAuth = CommonActions.reset({
+    index: 0,
+    routes: [{name: Routes.Authenticated}],
+  });
 
   handlePasswordToggle = () => {
     this.state.isSecurePassword

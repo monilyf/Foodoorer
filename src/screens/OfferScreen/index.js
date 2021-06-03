@@ -14,6 +14,7 @@ import PromoScreen from './PromosScreen';
 import RestaurantOfferScreen from './RestaurantOfferScreen';
 import styles from './style';
 import Color from '../../utils/Color';
+import Routes from '../../router/routes'
 const {width} = Dimensions.get('window');
 
 class OfferScreen extends React.Component {
@@ -149,7 +150,7 @@ class OfferScreen extends React.Component {
             </TouchableOpacity>
           </View>
               </View>
-          <ScrollView>
+          <ScrollView showsVerticalScrollIndicator={false}>
             <Animated.View
               style={[styles.center,{
                
@@ -166,7 +167,7 @@ class OfferScreen extends React.Component {
               }>
             
               {/* <View> */}
-                <RestaurantOfferScreen/>
+                <RestaurantOfferScreen  navigation={this.props.navigation} />
                
               {/* </View> */}
             </Animated.View>

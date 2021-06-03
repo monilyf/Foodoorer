@@ -22,10 +22,10 @@ const DealsByRestaurant = (props) => {
         </View>
         <View
           style={styles.detailsContaier}>
-          <Label color={Color.PRIMARY_DARK} bolder>
+          <Label color={Color.PRIMARY_DARK} small bolder>
             {props.title}
           </Label>
-          <Label xsmall bolder color={Color.DARK_GRAY}>
+          <Label xsmall  color={Color.DARK_GRAY}>
             {props.description}
           </Label>
          

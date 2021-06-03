@@ -7,9 +7,9 @@ import CommonStyles from '../../../utils/CommonStyle'
 
 const RestaurantItem = (props) => {
     return (
-       <TouchableOpacity onPress={props.onPress}>
+      //  <TouchableOpacity onPress={props.onPress}>
           <View
-        style={[styles.container,{backgroundColor:props.backgroundColor}]}>
+        style={styles.container}>
         <Image
           style={styles.imageContainer}
           source={props.image}
@@ -48,7 +48,7 @@ const RestaurantItem = (props) => {
          </View>
         </View>
       </View>
-       </TouchableOpacity>
+      //  </TouchableOpacity>
     )
 }
 

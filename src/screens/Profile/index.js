@@ -76,7 +76,7 @@ class Profile extends Component {
     try {
       console.log('logout');
       // await AsyncStorage.clear();
-      this.removeItemValue('register_data')
+      // this.removeItemValue('register_data')
       // this.removeItemValue('OnBoarding')
       this.props.navigation.dispatch(this.resetStack);
     } catch (e) {
@@ -92,18 +92,10 @@ class Profile extends Component {
           barStyle="dark-content"
           backgroundColor={Color.WHITE}
         />
-        <View
-          style={[
-            styles.container,
-            {
-              backgroundColor: this.state.modalVisible
-                ? Color.LIGHT_GRAY
-                : Color.WHITE,
-            },
-          ]}>
+        <View style={styles.container}>
           <View style={styles.profileHeader}>
             <View>
-              <Label bolder large color={Color.BLACK}>
+              <Label bolder large color={Color.PRIMARY_DARK}>
                 Steve Smith
               </Label>
               <Label color={Color.DARK_GRAY} small>

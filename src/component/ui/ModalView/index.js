@@ -13,13 +13,15 @@ const ModalView = (props) => {
           hidden={true}
         />
           <Modal
-        backdropOpacity={0.3}
+        // backdropOpacity={0.3}
         animationType="slide"
         transparent={true}
         visible={props.visible}
         onRequestClose={props.onRequestClose}
       >
+        <View style={{backgroundColor:"#000000aa",flex:1,justifyContent:'center',alignItems:'center'}}>
        {props.children}
+       </View>
       </Modal>
        </View>
     )

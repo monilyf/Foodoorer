@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, Image, FlatList} from 'react-native';
+import {View, Image, FlatList, ScrollView} from 'react-native';
 import {ContentHeader, Label} from '../../component';
 import ThemeUtils from '../../utils/ThemeUtils';
 import CommonStyle from '../../utils/CommonStyle';
@@ -53,7 +53,7 @@ class RestaurantOfferScreen extends React.Component {
   renderTodaysOffers = item => {
     return (
       <TodayOfferCard
-        onPress={() => this.props.navigation.push(Routes.RestaurantScreen)}
+        onPress={() =>this.props.navigation.push(Routes.CartScreen)}
         image={item.image}
         title={item.title}
         time={item.time}
@@ -131,18 +131,20 @@ class RestaurantOfferScreen extends React.Component {
           }
           style={{marginHorizontal: 0}}
         />
-
+<ScrollView horizontal={this.state.scrollItemHorizontal}   showsHorizontalScrollIndicator={false}>
         <FlatList
-           horizontal={this.state.scrollItemHorizontal}
-          style={{
-            marginRight: this.state.scrollItemHorizontal ? null : 30,
-          }}
-          showsHorizontalScrollIndicator={false}
+          //  horizontal={this.state.scrollItemHorizontal}
+           contentContainerStyle={{alignSelf: 'flex-start'}}
+          // style={{
+          //   marginRight: this.state.scrollItemHorizontal ? null : 30,
+          // }}
+        
+          numColumns={this.state.scrollItemHorizontal?Math.ceil(offers.length / 2):1} 
           data={offers}
           renderItem={({item}) => this.renderFreeDelivery(item)}
           keyExtractor={item => item.id}
         />
-
+        </ScrollView>
         <ContentHeader title="All offers" style={{marginHorizontal: 0}} />
 
         <FlatList

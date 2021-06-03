@@ -12,6 +12,7 @@ const styles = StyleSheet.create({
       
         marginRight:10,
         marginVertical:5,
+        elevation:0.5
     },
     imageContainer:{
         borderRadius: 6,

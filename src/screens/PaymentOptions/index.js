@@ -1,10 +1,47 @@
 import React, {Component} from 'react';
-import {Image, SafeAreaView, ScrollView, Text, TouchableOpacity, View} from 'react-native';
+import {Image, SafeAreaView, ScrollView, Text, Touchable, TouchableOpacity, View} from 'react-native';
 import {Color, CommonStyle, ThemeUtils} from '../../utils';
 import {Header,StatusBars, Label} from '../../component';
 import Icon from 'react-native-vector-icons/Feather';
 import Routes from '../../router/routes';
 import styles from './style'
+
+const WalletsDetails =(props) =>{
+  return(
+    <TouchableOpacity
+    style={{
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      marginVertical: 10,
+    }}>
+    <View
+      style={{
+        ustifyContent: 'space-between',
+        flexDirection: 'row',
+        alignItems: 'center',
+      }}>
+      <Image
+        source={props.image}
+        style={{
+          height: ThemeUtils.relativeHeight(5),
+          width: ThemeUtils.relativeWidth(10),
+          borderRadius: 10,
+          alignSelf: 'center',
+        }}
+      />
+      <Label small ms={20} color={Color.PRIMARY_DARK}>
+       {props.walletName}
+      </Label>
+    </View>
+    <TouchableOpacity>
+    <Label xsmall color={Color.PRIMARY_DARK}>
+      LINK ACCOUNT
+    </Label>
+    </TouchableOpacity>
+  </TouchableOpacity>
+  )
+}
 
 export class PaymentOptions extends Component {
   render() {
@@ -20,141 +57,30 @@ export class PaymentOptions extends Component {
             iconName="chevron-back-outline"
             onPress={() => this.props.navigation.goBack()}>
             {/* <Search style={CommonStyle.shadowStyle}/> */}
-            <View style={{alignSelf: 'center'}}>
-              <Label ms={30} bolder large>
+            <View style={{alignSelf: 'center',marginStart:30}}>
+              <Label  bolder >
                 PaymentOptions
               </Label>
+             
+              <Label xsmall color={Color.DARK_GRAY}>
+               2 item(s),To pay:₹ 248.00
+              </Label>
+            
             </View>
           </Header>
           <ScrollView showsVerticalScrollIndicator={false}>
 
           <View style={{ marginHorizontal: 20}}>
-            <Label large bolder mb={10} color={Color.PRIMARY_DARK}>
+            <Label  bolder mb={10} color={Color.PRIMARY_DARK}>
               Wallets
             </Label>
 
-            <View
-              style={{
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                marginVertical: 10,
-              }}>
-              <View
-                style={{
-                  ustifyContent: 'space-between',
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                }}>
-                <Image
-                  source={require('../../assets/images/payment_screen/amazon.png')}
-                  style={{
-                    height: ThemeUtils.relativeHeight(5),
-                    width: ThemeUtils.relativeWidth(10),
-                    borderRadius: 10,
-                    alignSelf: 'center',
-                  }}
-                />
-                <Label small ms={20} color={Color.PRIMARY_DARK}>
-                  Amazon Pay
-                </Label>
-              </View>
-              <Label small color={Color.PRIMARY_DARK}>
-                Link Account
-              </Label>
-            </View>
-            <View
-              style={{
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                marginVertical: 10,
-              }}>
-              <View
-                style={{
-                  ustifyContent: 'space-between',
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                }}>
-                <Image
-                  source={require('../../assets/images/payment_screen/paytm.png')}
-                  style={{
-                    height: ThemeUtils.relativeHeight(5),
-                    width: ThemeUtils.relativeWidth(10),
-                    borderRadius: 10,
-                    alignSelf: 'center',
-                  }}
-                />
-                <Label small ms={20} color={Color.PRIMARY_DARK}>
-                   Paytm
-                </Label>
-              </View>
-              <Label small color={Color.PRIMARY_DARK}>
-                Link Account
-              </Label>
-            </View>
-            <View
-              style={{
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                marginVertical: 10,
-              }}>
-              <View
-                style={{
-                  ustifyContent: 'space-between',
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                }}>
-                <Image
-                  source={require('../../assets/images/payment_screen/paypal.png')}
-                  style={{
-                    height: ThemeUtils.relativeHeight(5),
-                    width: ThemeUtils.relativeWidth(10),
-                    borderRadius: 10,
-                    alignSelf: 'center',
-                  }}
-                />
-                <Label small ms={20} color={Color.PRIMARY_DARK}>
-                  PayPal
-                </Label>
-              </View>
-              <Label small color={Color.PRIMARY_DARK}>
-                Link Account
-              </Label>
-            </View>
-            <View
-              style={{
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                marginVertical: 10,
-              }}>
-              <View
-                style={{
-                  ustifyContent: 'space-between',
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                }}>
-                <Image
-                  source={require('../../assets/images/payment_screen/google_pay.png')}
-                  style={{
-                    height: ThemeUtils.relativeHeight(5),
-                    width: ThemeUtils.relativeWidth(10),
-                    borderRadius: 10,
-                    alignSelf: 'center',
-                  }}
-                />
-                <Label small ms={20} color={Color.PRIMARY_DARK}>
-                  Google Pay
-                </Label>
-              </View>
-              <Label small color={Color.PRIMARY_DARK}>
-                Link Account
-              </Label>
-            </View>
-          </View>
-       
+          <WalletsDetails walletName='Amazon Pay' image={require('../../assets/images/payment_screen/amazon.png')}/>
+          <WalletsDetails walletName='Paytm' image={require('../../assets/images/payment_screen/paytm.png')}/> 
+          <WalletsDetails walletName='PayPal' image={require('../../assets/images/payment_screen/paypal.png')}/>
+          <WalletsDetails walletName='Google Pay' image={require('../../assets/images/payment_screen/google_pay.png')}/>
+
+</View>       
         <View
           style={{
             backgroundColor: Color.WHITE_SMOKE,
@@ -162,7 +88,7 @@ export class PaymentOptions extends Component {
             marginTop: 20,
           }}>
           <View style={{marginHorizontal: 20}}>
-            <Label large bolder mb={10} color={Color.PRIMARY_DARK}>
+            <Label  bolder mb={10} color={Color.PRIMARY_DARK}>
               Credit/Debit Card
             </Label>
             <View
@@ -182,7 +108,7 @@ export class PaymentOptions extends Component {
                
                 <Icon name="plus" size={20} />
                 <Label small ms={10} color={Color.PRIMARY_DARK}>
-                  Add New Card
+                  ADD NEW CARD
                 </Label>
     
               </View>
@@ -197,7 +123,7 @@ export class PaymentOptions extends Component {
                 <Image
                   source={require('../../assets/images/payment_screen/visa.png')}
                   style={{
-                    height: ThemeUtils.relativeHeight(2.5),
+                    height: ThemeUtils.relativeHeight(2.2),
                     width: ThemeUtils.relativeHeight(8),
                     borderRadius: 10,
                     marginHorizontal: 5,
@@ -206,8 +132,8 @@ export class PaymentOptions extends Component {
                 <Image
                   source={require('../../assets/images/payment_screen/master_card.png')}
                   style={{
-                    height: ThemeUtils.relativeHeight(3),
-                    width: ThemeUtils.relativeWidth(13),
+                    height: ThemeUtils.relativeHeight(2.2),
+                    width: ThemeUtils.relativeWidth(8),
                     borderRadius: 10,
                     marginHorizontal: 5,
                   }}
@@ -222,7 +148,7 @@ export class PaymentOptions extends Component {
             marginTop: 20,
           }}>
               <View style={{marginHorizontal: 20}}>
-                    <Label large bolder mb={10} color={Color.PRIMARY_DARK}>
+                    <Label bolder mb={10} color={Color.PRIMARY_DARK}>
                         Net Banking
                     </Label>
                 </View>
@@ -348,7 +274,7 @@ export class PaymentOptions extends Component {
                 marginVertical: 10,
                 marginHorizontal:20,
               }}>
-                <Label color={Color.PRIMARY_DARK}>MORE BANKS</Label>
+                <Label xsmall color={Color.PRIMARY_DARK}>MORE BANKS</Label>
                 <View>
                     <Icon name="chevron-right" size={20}/>
                 </View>
@@ -365,7 +291,7 @@ export class PaymentOptions extends Component {
             marginTop: 20,
           }}>
               <View style={{marginHorizontal: 20}}>
-                    <Label large bolder mb={10} color={Color.PRIMARY_DARK}>
+                    <Label bolder mb={10} color={Color.PRIMARY_DARK}>
                         Pay On Delivery 
                     </Label>
                 </View>
@@ -376,9 +302,9 @@ export class PaymentOptions extends Component {
                 marginVertical: 10,
                 marginHorizontal:20,
               }}>
-                <Label small color={Color.PRIMARY_DARK}>Cash Only</Label>
+                <Label xsmall color={Color.PRIMARY_DARK}>Cash Only</Label>
                 <View>
-                    <Icon name="circle" size={20} color={Color.RED}/>
+                    <Icon name="circle" size={20} color={Color.ERROR}/>
                 </View>
             </View>
 

@@ -57,7 +57,7 @@ export class CartScreen extends Component {
               }}
               source={require('../../assets/images/mcD_logo.png')}
             />
-            <View style={{marginStart: 15}}>
+            <View style={{marginStart: 15,alignContent:'center'}}>
               <Label bolder>McDonald's</Label>
               <Label xsmall color={Color.DARK_GRAY}>
                 SG highway, Ahmedabad
@@ -196,7 +196,9 @@ export class CartScreen extends Component {
                   style={{
                     padding: 0,
                     paddingVertical: 1,
-                    paddingHorizontal: 40,
+                    // paddingHorizontal: 40,
+                    paddingLeft:10,
+                    width:ThemeUtils.relativeHeight(25),
                   }}
                 />
               </OfferTag>
@@ -261,8 +263,7 @@ export class CartScreen extends Component {
 
             <SubmitButton buttonText="MAKE PAYMENT" 
             onPress={()=>{
-              alert('Payment done successfully')
-              this.props.navigation.push(Routes.OrderTracking)
+              this.props.navigation.push(Routes.PaymentOptions)
             // this.payemntDoneModal(this.setState({isPaymentDoneModal:true}))
             }}/>
             <Label></Label>

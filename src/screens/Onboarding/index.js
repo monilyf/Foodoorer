@@ -32,13 +32,10 @@ const slides = [
 ];
 class Onboarding extends React.Component{
  
-  constructor(props) {
-    super(props);
-
-    this.state = {
+  state = {
       onBoardingDone:false
     };
-  }
+
 
   // componentDidMount(){
   //   // console.log('isOnboardingDone--',this.props.isOnboardingDone)
@@ -70,28 +67,29 @@ class Onboarding extends React.Component{
 
   // }
 
-  componentDidMount(){
-    this.check()    
-    }
-    check = async ()=>{
-      try {
-        let user = await AsyncStorage.getItem('First');
-        console.log(!user)
-        if (!user){
-          AsyncStorage.setItem('First','yes')
-        } 
-        else {
-         console.log('Second Time')
-          this.props.navigation.navigate(Routes.Login);
-        }
-      } catch (error) {
-         console.log(error);
-      }
-    }
+  // componentDidMount(){
+  //   this.check()    
+  //   }
+  //   check = async ()=>{
+  //     try {
+  //       let user = await AsyncStorage.getItem('OnBoarding');
+  //       console.log(!user)
+  //       if (!user){
+  //         AsyncStorage.setItem('First','yes')
+  //       } 
+  //       else {
+  //        console.log('Second Time')
+  //         this.props.navigation.navigate(Routes.SignIn);
+  //       }
+  //     } catch (error) {
+  //        console.log(error);
+  //     }
+  //   }
 
 
 
   onDone = () => {
+    this.setState({onBoardingDone: true})
     this.props.onDone();
   };
 
@@ -144,7 +142,7 @@ class Onboarding extends React.Component{
     // <View>
     // {this.state.onBoardingDone ?
     
-    //  this.props.navigation.push(Routes.SignIn)
+    //  null
 
     //   :
 
@@ -163,8 +161,8 @@ class Onboarding extends React.Component{
     
 
     </View>
-  //  }
-  //  </View>
+  //   }
+  // </View>
   );
  }
 };

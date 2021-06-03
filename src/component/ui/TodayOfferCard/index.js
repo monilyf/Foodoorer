@@ -26,7 +26,7 @@ const TodayOfferCard = (props) => {
         <View
           style={styles.detailsContaier}>
          <View style={{flexDirection:'row',justifyContent:'space-between',alignContent:'center'}}>
-         <Label color={Color.PRIMARY_DARK} bolder>
+         <Label color={Color.PRIMARY_DARK} small bolder>
             {props.title}
           </Label>
           <View style={styles.rating}>

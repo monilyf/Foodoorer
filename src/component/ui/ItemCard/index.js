@@ -17,7 +17,7 @@ const ItemCard = (props) => {
         <View
           style={styles.detailsContaier}>
          <View style={[{flexDirection:'row',justifyContent:'space-between'}]}>
-         <Label color={Color.PRIMARY_DARK} bolder>
+         <Label color={Color.PRIMARY_DARK} small bolder>
             {props.title}
           </Label>
           {/* <View style={{alignSelf:'center',}}>

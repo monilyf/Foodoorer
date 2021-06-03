@@ -1,5 +1,6 @@
 import {StyleSheet} from 'react-native';
 import Color from '../../utils/Color';
+import ThemeUtils from '../../utils/ThemeUtils';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -16,7 +17,7 @@ const styles = StyleSheet.create({
   logo: {
     height: 200,
     width: '80%',
-    alignItems: 'center',
+    alignSelf: 'center',
   },
   footer: {
     position: 'absolute',

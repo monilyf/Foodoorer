@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {SafeAreaView, ScrollView, View} from 'react-native';
+import {SafeAreaView, TextInput,ScrollView, View} from 'react-native';
 import {
   StatusBars,
   Header,
@@ -35,7 +35,7 @@ class AddNewCard extends Component {
           </View>
         </Header>
         <ScrollView showsVerticalScrollIndicator={false}>
-          <View style={{marginHorizontal: 20, marginTop: 20}}>
+          {/* <View style={{marginHorizontal: 20, marginTop: 20}}> */}
             <KeyboardAwareScrollView
               style={{flex: 1}}
               resetScrollToCoords={{x: 0, y: 0}}
@@ -44,23 +44,30 @@ class AddNewCard extends Component {
               keyboardVerticalOffset={0}
               enableOnAndroid={true}
               keyboardShouldPersistTaps="always">
-              <PaymentInput name="Card Number" />
-              <View
-                style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-                <View
-                  style={{
-                    flexDirection: 'row',
-                    justifyContent: 'space-between',
-                    width: ThemeUtils.relativeWidth(50),
-                  }}>
-                  <PaymentInput name="Valid upto(mm/yy)" />
-                </View>
-                <View
-                  style={{width: ThemeUtils.relativeWidth(30), marginRight: 5}}>
-                  <PaymentInput name="CVV" />
-                </View>
+            <View>
+                  <Label ms={20} color={Color.PRIMARY_DARK}mb={10}>Card Number</Label>
+                  <View style={{borderColor:Color.DARK_GRAY,borderRadius:6,borderWidth:1,marginHorizontal:20}}>
+                  <TextInput/>
+                  </View>
+                  <View style={{flexDirection:'row'}}>
+                  <View>  
+                  <Label mt={20} ms={20} mb={10} color={Color.PRIMARY_DARK}>Valid upto(MM/YY)</Label>
+                  <View style={{borderColor:Color.DARK_GRAY,borderRadius:6,borderWidth:1,marginHorizontal:20,width:ThemeUtils.relativeWidth(50)}}>
+                  <TextInput/>
+                  </View>
+                  </View>
+                  <View>
+                  <Label mt={20} ms={20} mb={10} color={Color.PRIMARY_DARK}>CVV</Label>
+                  <View style={{borderColor:Color.DARK_GRAY,borderRadius:6,borderWidth:1,marginHorizontal:20,width:ThemeUtils.relativeWidth(30)}}>
+                  <TextInput/>
+                  </View>
+                  </View>
+                  </View>
+                  <Label ms={20} mt={20} color={Color.PRIMARY_DARK}mb={10}>Name on Card</Label>
+                  <View style={{borderColor:Color.DARK_GRAY,borderRadius:6,borderWidth:1,marginHorizontal:20}}>
+                  <TextInput/>
+                  </View>
               </View>
-              <PaymentInput name="Name on card" />
 
               <SubmitButton
             buttonText="ADD NEW"
@@ -70,8 +77,7 @@ class AddNewCard extends Component {
             }
           />
             </KeyboardAwareScrollView>
-          </View>
-          <Search />
+          {/* </View> */}
         </ScrollView>
       </View>
       </SafeAreaView>
