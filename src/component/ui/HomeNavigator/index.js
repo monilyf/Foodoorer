@@ -71,7 +71,7 @@ const HomeNavigator = () => {
         name="Offers"
         component={OfferScreen}
         options={{
-          tabBarLabel: 'Delivery',
+          tabBarLabel: 'Offers',
           // tabBarColor: Color.ALICE_BLUE,
           tabBarIcon: ({color}) => (
             <SaleIcon name="sale" color={color} size={26} />

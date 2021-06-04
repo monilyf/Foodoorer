@@ -17,7 +17,7 @@ class Search extends React.Component {
         paddingHorizontal: 15,
         justifyContent:'space-between',
                   alignItems:'center',
-                  height:ThemeUtils.relativeHeight(6),
+                  height:ThemeUtils.relativeHeight(6.5),
                   width:ThemeUtils.relativeHeight(38),
  
       },this.props.style]}>

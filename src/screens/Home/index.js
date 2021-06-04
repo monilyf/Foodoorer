@@ -98,8 +98,8 @@ export class Home extends Component {
                   // paddingVertical:7,
                   paddingHorizontal: 15,
                   alignItems:'center',
-                  height:ThemeUtils.relativeHeight(6),
-                  width:ThemeUtils.relativeHeight(40),
+                  height:ThemeUtils.relativeHeight(6.5),
+                  width:ThemeUtils.relativeHeight(38),//40
                   backgroundColor: Color.WHITE,
                   borderRadius: 6,
                   flexDirection: 'row',

@@ -57,8 +57,8 @@ const DetailedScreen =(props,{navigation})=> {
                   // paddingVertical:7,
                   paddingHorizontal: 15,
                   alignItems:'center',
-                  height:ThemeUtils.relativeHeight(6),
-                  width:ThemeUtils.relativeHeight(36),
+                  height:ThemeUtils.relativeHeight(6.5),
+                  width:ThemeUtils.relativeHeight(38),//36
                   backgroundColor: Color.WHITE,
                   borderRadius: 6,
                   flexDirection: 'row',
