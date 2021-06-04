@@ -1,8 +1,10 @@
 import {SET_ONBOARDING} from '../../Constants/action-types';
 
-export const  onBoardingDone = (done) => 
-
+export const  onBoardingDone = (val) => 
   ({
   type: SET_ONBOARDING,
-  done,
+  val,
 })
+
+
+// console.log('onboarding--=-=-=',done) --true

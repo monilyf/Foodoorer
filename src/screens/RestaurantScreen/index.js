@@ -25,7 +25,7 @@ import LinearGradient from 'react-native-linear-gradient';
 
 import Color from '../../utils/Color';
 import styles from './style';
-import {restaurant_menu,restaurants_image_slider} from '../../redux/Constants/data';
+import {recommended_items,combo_meals,restaurants_image_slider} from '../../redux/Constants/data';
 import CommonStyle from '../../utils/CommonStyle';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Icon1 from 'react-native-vector-icons/Entypo';
@@ -43,18 +43,44 @@ class RestaurantScreen extends Component {
       isAddButtonPressed: false,
       isCheckOutModalVisible: false,
       isRepeatSameModalVisible: false,
+      cartItems:{
+
+      },selectedId:[],
+      // selectedItem:{
+      //   id:null,
+      //   itemName:null,
+      //   itemCount:null,
+      //   price:null,
+      // },
     };
   }
 
+  // const renderItem = ({ item }) => {
+  //   const backgroundColor = item.id === selectedId ? "#6e3b6e" : "#f9c2ff";
+  //   const color = item.id === selectedId ? 'white' : 'black';
+
+  //   return (
+  //     <Item
+  //       item={item}
+  //       onPress={() => setSelectedId(item.id)}
+  //       backgroundColor={{ backgroundColor }}
+  //       textColor={{ color }}
+  //     />
+  //   );
+  // };
   renderMenuItem = item => {
     return (
       <RestaurantItem
+       key={item.id}
         image={item.image}
         foodMark={item.foodMark}
         itemName={item.itemName}
         description={item.description}
         price={item.price}>
-        {this.state.isAddButtonPressed ? (
+          {/* item.id === this.state.selectedId */}
+        { this.state.isAddButtonPressed
+        
+          ? (
           <ItemCountButton
             itemCount={this.state.itemCount}
             onPressMinus={() => {
@@ -69,12 +95,27 @@ class RestaurantScreen extends Component {
           />
         ) : (
           <AddButton
-            onPress={() =>
+            onPress={() =>{ 
+              // this.handleSelectionMultiple(item.id)
+         
+
               this.setState({
+                selectedId:item.id,
+                selectedItem:{
+        id:item.id,
+        itemName:item.itemName,
+        itemCount:this.state.itemCount,
+        price:item.price,
+      },
                 isAddButtonPressed: true,
                 isCheckOutModalVisible: true,
                 // isRepeatSameModalVisible:true
               })
+    console.log('--------selected id-jkj------',this.state.selectedItem)
+
+              // this.handleSelection(item.id)
+              
+            }
             }
           />
         )}
@@ -82,6 +123,28 @@ class RestaurantScreen extends Component {
     );
   };
 
+
+//   handleSelectionMultiple = (id) => {
+//     var selectedIds = this.state.selectedId // clone state
+//     console.log('--------selected id-------',selectedIds)
+//     if(selectedIds.includes(id))
+//       selectedIds = selectedIds.filter(_id => _id !== id)
+//     else 
+//       selectedIds.push(id)
+ 
+//     this.setState({selectedId:selectedIds})
+//  }
+
+
+
+//   andleSelection = (id) => {
+//     var selectedId = this.state.selectedId
+//     console.log('selected id')
+//     if(selectedId === id)
+//       this.setState({selectedItem: null})
+//     else 
+//       this.setState({selectedItem: id})
+//  }
 
    onShare = async () => {
     try {
@@ -175,7 +238,8 @@ class RestaurantScreen extends Component {
 
               <FlatList
                 showsVerticalScrollIndicator={false}
-                data={restaurant_menu}
+                data={recommended_items}
+                extraData={this.state.selectedItem}
                 renderItem={({item}) => this.renderMenuItem(item)}
                 keyExtractor={item => item.id}
               />
@@ -185,7 +249,7 @@ class RestaurantScreen extends Component {
               </Label>
               <FlatList
                 showsVerticalScrollIndicator={false}
-                data={restaurant_menu}
+                data={combo_meals}
                 renderItem={({item}) => this.renderMenuItem(item)}
                 keyExtractor={item => item.id}
               />
@@ -209,7 +273,7 @@ class RestaurantScreen extends Component {
                   Extra charges may apply
                 </Label>
               </View>
-              <TouchableOpacity style={{alignSelf: 'center'}} onPress={()=>this.props.navigation.push(Routes.CartScreen)}>
+              <TouchableOpacity style={{alignSelf: 'center'}} onPress={()=>this.props.navigation.push(Routes.CartScreen,this.state.selectedItem)}>
                 <LinearGradient
                   colors={[Color.GRADIENT3, Color.GRADIENT4]}
                   start={{x: 0, y: 1}}

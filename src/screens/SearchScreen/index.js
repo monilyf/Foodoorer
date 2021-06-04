@@ -46,7 +46,7 @@ class SearchScreen extends Component {
             data={searchHistory}
             renderItem={({item}) => (
               <View style={{marginHorizontal: 35}}>
-               <TouchableOpacity><Label bolder small mt={12} mb={12}>{item.foodItem}</Label></TouchableOpacity>
+               <TouchableOpacity><Label  small mt={12} mb={12}>{item.foodItem}</Label></TouchableOpacity>
                 <View style={[CommonStyle.endLine,{marginHorizontal:0}]}></View>
               </View>
             )}

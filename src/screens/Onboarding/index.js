@@ -138,6 +138,8 @@ class Onboarding extends React.Component{
     );
   };
  render(){
+  console.log('onboarding naana--=-=-=',this.props.isOnboardingDone) 
+
   return (
     // <View>
     // {this.state.onBoardingDone ?
@@ -171,7 +173,7 @@ class Onboarding extends React.Component{
 
 const mapStateToProps = state =>(
   {
-    isOnboardingDone :state.onBoarding.done,
+    isOnboardingDone :state.onBoarding,
   }
 )
 export default connect(mapStateToProps,null)(Onboarding);

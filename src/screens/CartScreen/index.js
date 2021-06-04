@@ -25,7 +25,8 @@ export class CartScreen extends Component {
 
     this.state = {
       itemCount: 1,
-      isPaymentDoneModal:false
+      isPaymentDoneModal:false,
+      showToast:false
     };
   }
 
@@ -33,7 +34,11 @@ export class CartScreen extends Component {
 //    return(
     
 //    )
-//  }
+// //  }
+//   componentDidMount(){
+//     const { id,itemName,price,itemCount } = route.params;
+//     this.setState({id:id,itemName:itemName,price:price,itemCount:it})
+//   }
 
   render() {
     return (
@@ -205,7 +210,7 @@ export class CartScreen extends Component {
               {/* </View> */}
               <TouchableOpacity
                 style={{alignSelf: 'center'}}
-                onPress={() => alert('aaplied code')}>
+                onPress={() => {alert('Code Applied')}}>
                 <LinearGradient
                   colors={[Color.GRADIENT3, Color.GRADIENT4]}
                   start={{x: 0, y: 1}}
@@ -262,6 +267,8 @@ export class CartScreen extends Component {
             </Label>
 
             <SubmitButton buttonText="MAKE PAYMENT" 
+                        style={{width: ThemeUtils.relativeHeight(47)}}
+
             onPress={()=>{
               this.props.navigation.push(Routes.PaymentOptions)
             // this.payemntDoneModal(this.setState({isPaymentDoneModal:true}))

@@ -1,12 +1,14 @@
-import React, {Component} from 'react';
+import React, {Component,useState} from 'react';
 import {Image, SafeAreaView, ScrollView, Text, Touchable, TouchableOpacity, View} from 'react-native';
 import {Color, CommonStyle, ThemeUtils} from '../../utils';
-import {Header,StatusBars, Label} from '../../component';
+import {Header,StatusBars,ToastMessage, Label} from '../../component';
 import Icon from 'react-native-vector-icons/Feather';
 import Routes from '../../router/routes';
 import styles from './style'
 
-const WalletsDetails =(props) =>{
+const WalletsDetails =(props,{navigation}) =>{
+
+
   return(
     <TouchableOpacity
     style={{
@@ -34,7 +36,7 @@ const WalletsDetails =(props) =>{
        {props.walletName}
       </Label>
     </View>
-    <TouchableOpacity>
+    <TouchableOpacity onPress={props.onPress}>
     <Label xsmall color={Color.PRIMARY_DARK}>
       LINK ACCOUNT
     </Label>
@@ -44,6 +46,16 @@ const WalletsDetails =(props) =>{
 }
 
 export class PaymentOptions extends Component {
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      showToast:false,
+    };
+  }
+
+
   render() {
     return (
       <SafeAreaView style={{backgroundColor:Color.WHITE_SMOKE}}>
@@ -75,10 +87,37 @@ export class PaymentOptions extends Component {
               Wallets
             </Label>
 
-          <WalletsDetails walletName='Amazon Pay' image={require('../../assets/images/payment_screen/amazon.png')}/>
-          <WalletsDetails walletName='Paytm' image={require('../../assets/images/payment_screen/paytm.png')}/> 
-          <WalletsDetails walletName='PayPal' image={require('../../assets/images/payment_screen/paypal.png')}/>
-          <WalletsDetails walletName='Google Pay' image={require('../../assets/images/payment_screen/google_pay.png')}/>
+          <WalletsDetails walletName='Amazon Pay' image={require('../../assets/images/payment_screen/amazon.png')} onPress={()=>{
+       
+            this.setState({showToast:true})
+            setTimeout(()=>{
+            this.setState({showToast:false})},2000)
+    
+            setTimeout(()=>{
+            this.props.navigation.push(Routes.OrderTracking)},2000);
+           }} />
+          <WalletsDetails walletName='Paytm' image={require('../../assets/images/payment_screen/paytm.png')} onPress={()=>{
+             this.setState({showToast:true})
+            setTimeout(()=>{
+            this.setState({showToast:false})},2000)
+    
+            setTimeout(()=>{
+            this.props.navigation.push(Routes.OrderTracking)},2000);
+          }}/> 
+          <WalletsDetails walletName='PayPal' image={require('../../assets/images/payment_screen/paypal.png')} onPress={()=>{
+              this.setState({showToast:true})
+            setTimeout(()=>{
+            this.setState({showToast:false})},2000)
+    
+            setTimeout(()=>{
+            this.props.navigation.push(Routes.OrderTracking)},2000);}}/>
+          <WalletsDetails walletName='Google Pay' image={require('../../assets/images/payment_screen/google_pay.png')} onPress={()=>{
+              this.setState({showToast:true})
+            setTimeout(()=>{
+            this.setState({showToast:false})},2000)
+    
+            setTimeout(()=>{
+            this.props.navigation.push(Routes.OrderTracking)},2000);}}/>
 
 </View>       
         <View
@@ -309,8 +348,12 @@ export class PaymentOptions extends Component {
             </View>
 
         </View>
-        <Label></Label>
-      
+
+      <View style={{alignSelf:'center',position:'absolute',bottom:0}}>
+              {this.state.showToast ? (
+                <ToastMessage text='Your wallet account linked! & Payment Done' />
+              ) : null}
+            </View>     
         
 
         </ScrollView>

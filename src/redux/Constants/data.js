@@ -221,14 +221,19 @@
     },
   ];
 
-  export const restaurant_menu=[
+  export const recommended_items=[
     {id:1,itemName:'Creamy nachos',image: require('../../assets/images/restaurant_screen/creamy_nachos.jpg'),description:'with mexican salad',price:'₹ 157',foodMark:require('../../assets/images/icon_non_veg.png')},
     {id:2,itemName:'Maharaja mac',image: require('../../assets/images/restaurant_screen/2.jpg'),description:'with french fries',price:'₹ 107',foodMark:require('../../assets/images/icon_veg.png')},
-    // {id:3,itemName:'Mc Veggie mac',image: require('../../assets/images/restaurant_screen/4.jpg'),description:'free french fries',price:'₹ 145',foodMark:require('../../assets/images/icon_veg.png')},
     // {id:4,itemName:'Creamy nachos',image: require('../../assets/images/restaurant_screen/creamy_nachos.jpg'),description:'with mexican salad',price:'₹ 157',foodMark:require('../../assets/images/icon_non_veg.png')},
     // {id:5,itemName:'Maharaja mac',image: require('../../assets/images/restaurant_screen/2.jpg'),description:'with french fries',price:'₹ 107',foodMark:require('../../assets/images/icon_veg.png')},
     // {id:6,itemName:'Mc Veggie mac',image: require('../../assets/images/restaurant_screen/4.jpg'),description:'free french fries',price:'₹ 145',foodMark:require('../../assets/images/icon_veg.png')},
   ];
+
+  export const combo_meals =[
+    {id:1,itemName:'Mc Veggie mac',image: require('../../assets/images/restaurant_screen/4.jpg'),description:'free french fries',price:'₹ 145',foodMark:require('../../assets/images/icon_veg.png')},
+    {id:2,itemName:'Patsa',image: require('../../assets/images/home_screen/pasta.jpg'),description:'free french fries',price:'₹ 145',foodMark:require('../../assets/images/icon_veg.png')},
+    
+  ]
 
   export const  restaurants_image_slider= [
     require('../../assets/images/restaurant_screen/1.jpg'),

@@ -15,7 +15,7 @@ const ToastMessage = (props) => {
             <View style={styles.content}>
               <View style={styles.toastMsg}>
                 <Icon name="alert-circle" size={20} color={Color.PRIMARY_DARK} />
-                <Label color={Color.PRIMARY_DARK} ms={12}>
+                <Label color={Color.PRIMARY_DARK} small ms={12}>
                   {props.text}
                 </Label>
                 {/* {props.children} */}

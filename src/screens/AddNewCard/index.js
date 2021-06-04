@@ -4,17 +4,25 @@ import {
   StatusBars,
   Header,
   Label,
-  PaymentInput,
+  ToastMessage,
   SubmitButton,Search
 } from '../../component';
 import CommonStyle from '../../utils/CommonStyle';
 import ThemeUtils from '../../utils/ThemeUtils';
 import Color from '../../utils/Color';
 import styles from './style';
+import Routes from '../../router/routes';
 
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
 class AddNewCard extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      showToast:false,
+    };
+  }
   render() {
     return (
       <SafeAreaView style={{backgroundColor:Color.WHITE_SMOKE}}>
@@ -72,13 +80,18 @@ class AddNewCard extends Component {
               <SubmitButton
             buttonText="ADD NEW"
             style={{width: ThemeUtils.relativeHeight(47)}}
-            onPress={() =>
-             alert('card added')
-            }
+            onPress={() =>{ this.setState({showToast:true})
+            setTimeout(()=>{
+            this.props.navigation.goBack()},2000);}}
           />
             </KeyboardAwareScrollView>
           {/* </View> */}
         </ScrollView>
+        <View style={{alignSelf:'center',position:'absolute',bottom:0}}>
+              {this.state.showToast ? (
+                <ToastMessage text='New Card addded!' />
+              ) : null}
+            </View>     
       </View>
       </SafeAreaView>
     );

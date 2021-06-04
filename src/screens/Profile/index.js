@@ -7,7 +7,7 @@ import {
   InputContainer,
   SubmitButton,
   ProfileNavItem,
-  ModalView
+  ModalView,ToastMessage
 } from '../../component';
 import Color from '../../utils/Color';
 import CommonStyle from '../../utils/CommonStyle';
@@ -27,6 +27,7 @@ class Profile extends Component {
       emailError: '',
       phone: '',
       phoneError: '',
+      showToast:false
     };
   }
   handleOnSubmit = () => {
@@ -76,9 +77,10 @@ class Profile extends Component {
     try {
       console.log('logout');
       // await AsyncStorage.clear();
-      // this.removeItemValue('register_data')
+      this.removeItemValue('register_data')
       // this.removeItemValue('OnBoarding')
       this.props.navigation.dispatch(this.resetStack);
+      // this.props.navigation.push(Routes.SignIn);
     } catch (e) {
       console.log(e);
     }
@@ -138,21 +140,31 @@ class Profile extends Component {
 
             <View style={CommonStyle.endLine}></View>
             <ProfileNavItem
-              onPress={() => alert('Pressed!')}
+              onPress={() =>   { 
+            this.setState({showToast:true})
+            setTimeout(()=>{
+            this.setState({showToast:false})},2000)
+            }}
               iconPath={require('../../assets/icons/profile_screen_icon/favourite.png')}
               label="Favourites"
             />
 
             <View style={CommonStyle.endLine}></View>
             <ProfileNavItem
-              onPress={() => alert('Pressed!')}
+             onPress={() =>   { 
+            this.setState({showToast:true})
+            setTimeout(()=>{
+            this.setState({showToast:false})},2000)
+            }}
               iconPath={require('../../assets/icons/profile_screen_icon/help.png')}
               label="Help"
             />
 
             <View style={CommonStyle.endLine}></View>
             <ProfileNavItem
-              onPress={() => this.removeAuthentication()}
+              onPress={() =>
+               this.removeAuthentication()
+               }
               iconPath={require('../../assets/icons/profile_screen_icon/logout.png')}
               label="Logout"
             />
@@ -228,6 +240,11 @@ class Profile extends Component {
             </ModalView>
           </View>
         </View>
+        <View style={{alignSelf:'center'}}>
+              {this.state.showToast ? (
+                <ToastMessage text='Coming Soon!' />
+              ) : null}
+            </View>     
       </SafeAreaView>
     );
   }

@@ -58,7 +58,7 @@ const DetailedScreen =(props,{navigation})=> {
                   paddingHorizontal: 15,
                   alignItems:'center',
                   height:ThemeUtils.relativeHeight(6),
-                  width:ThemeUtils.relativeHeight(35),
+                  width:ThemeUtils.relativeHeight(36),
                   backgroundColor: Color.WHITE,
                   borderRadius: 6,
                   flexDirection: 'row',
@@ -66,7 +66,7 @@ const DetailedScreen =(props,{navigation})=> {
                 },
                   CommonStyle.shadowStyle,
                 ]}>
-                <Label color={Color.DARK_GRAY}  large>
+                <Label color={Color.DARK_GRAY}  small>
                   Search for meals or area
                 </Label>
                 <Icon name="search" style={{alignSelf: 'center'}} size={20} />

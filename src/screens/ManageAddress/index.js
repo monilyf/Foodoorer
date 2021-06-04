@@ -7,7 +7,7 @@ import {
   SubmitButton,
   SmallButton,
   ModalView,
-  InputContainer,
+  InputContainer,ToastMessage
 } from '../../component';
 import Color from '../../utils/Color';
 import ThemeUtils from '../../utils/ThemeUtils';
@@ -28,7 +28,8 @@ class ManageAddress extends React.Component {
     super(props);
 
     this.state = {
-      modalVisible: false,
+      modalVisible:false,
+      showToast:false,
     };
   }
 
@@ -57,10 +58,16 @@ class ManageAddress extends React.Component {
           justifyContent: 'space-between',
          
         }}>
-        <SmallButton buttonText="EDIT" onPress={() => alert('edit')} />
+        <SmallButton buttonText="EDIT" onPress={() => {
+            this.setState({showToast:true})
+            setTimeout(()=>{
+            this.setState({showToast:false})},2000)
+        }} />
         <SmallButton
           buttonText="DELETE"
-          onPress={() => alert('delete')}
+          onPress={() =>{  this.setState({showToast:true})
+            setTimeout(()=>{
+            this.setState({showToast:false})},2000)}}
         />
       </View>
     </View>
@@ -209,6 +216,11 @@ class ManageAddress extends React.Component {
           
         </ModalView>
         {/* </KeyboardAwareScrollView> */}
+        <View style={{alignSelf:'center'}}>
+              {this.state.showToast ? (
+                <ToastMessage text='In Progress' />
+              ) : null}
+            </View>     
       </SafeAreaView>
     );
   }

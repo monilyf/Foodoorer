@@ -15,9 +15,10 @@ class Search extends React.Component {
         borderRadius: 6,
         flexDirection: 'row',
         paddingHorizontal: 15,
+        justifyContent:'space-between',
                   alignItems:'center',
                   height:ThemeUtils.relativeHeight(6),
-                  width:ThemeUtils.relativeHeight(40),
+                  width:ThemeUtils.relativeHeight(38),
  
       },this.props.style]}>
       <TextInput
@@ -27,9 +28,9 @@ class Search extends React.Component {
         onSubmitEditing={this.props.onSubmitEditing}
         // editable={this.props.editable}
         // onChangeText={()=>this.props.navigation.push(Routes.SearchScreen)}
-        style={{ fontSize: 20}}
+        style={{ fontSize: 18}}
       />
-      <Icon name="search" style={{alignSelf: 'center', paddingLeft:10}} size={20} />
+      <Icon name="search" style={{alignSelf: 'center'}} size={20} />
     </View>
   );
     }

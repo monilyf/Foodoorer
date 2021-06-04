@@ -108,8 +108,9 @@ export class SignUp extends Component {
     const {name,email,phone,password} = this.state;
     console.log('store register_data',name,email,password,phone);
     this.props.createUser(register_data);
-    let done='true'
-    this.props.onBoardingDone(done);
+    let onboardingData={onBoarding:true}
+    this.props.onBoardingDone(onboardingData);
+    
     // AsyncStorage.setItem('OnBoarding', {done:true});
     // AsyncStorage.setItem('OnBoarding', JSON.stringify(obj));
     this.props.navigation.dispatch(this.resetToAuth);

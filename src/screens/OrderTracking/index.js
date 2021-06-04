@@ -1,12 +1,29 @@
 import React, {Component} from 'react';
-import {View, SafeAreaView, Image} from 'react-native';
+import {View, SafeAreaView, Image, TouchableOpacity} from 'react-native';
 import Color from '../../utils/Color';
-import {Label, Header, StatusBars, SubmitButton} from '../../component';
+import {Label, Header, StatusBars, ModalView} from '../../component';
 import styles from './style';
 import ThemeUtils from '../../utils/ThemeUtils';
 import CommonStyle from '../../utils/CommonStyle';
+import Icon from 'react-native-vector-icons/FontAwesome'
+import Routes from '../../router/routes';
 
 export class OrderTracking extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+    
+      showModal: false,
+    };
+  }
+
+  componentDidMount(){
+    setTimeout(()=>{
+      this.setState({showModal:true})},5000);
+      
+  }
+
   render() {
     return (
       <SafeAreaView>
@@ -76,6 +93,29 @@ export class OrderTracking extends Component {
             </View>
           </View>
         </View>
+        <ModalView visible={this.state.showModal} >
+              <View style={[CommonStyle.modalStyle,{bottom:350,borderRadius:18,width:'85%',alignItems:'center'}]}>
+                <Icon
+                  name="thumbs-up"
+                  size={65}
+                  // style={{marginTop: 40}}
+                  color={Color.PRIMARY}
+                />
+                <Label mt={10} xlarge color={Color.PRIMARY_DARK}>
+                  Enjoy your food
+                </Label>
+                {/* <Label mt={20} large>
+                  $50
+                </Label>
+                <Label mt={20} large>
+                  Earned by you!
+                </Label> */}
+                <TouchableOpacity style={{marginTop: 10}} onPress={()=>{this.setState({showModal:false})
+                this.props.navigation.push(Routes.Home)}}>
+                  <Label color={Color.ACTIVE_COLOR} border={1} borderColor={Color.PRIMARY}>Done</Label>
+           </TouchableOpacity>
+            </View>
+          </ModalView>
       </SafeAreaView>
     );
   }
