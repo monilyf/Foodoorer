@@ -81,6 +81,8 @@ export class Home extends Component {
   };
 
   render() {
+  console.log('-----------home screen render ----------- isOnboardingDone--',this.props.isOnboardingDone)
+
     return (
       <SafeAreaView>
         <StatusBars
@@ -189,15 +191,11 @@ export class Home extends Component {
   }
 }
 
-const mapStateToProps = state =>{
-  console.log('home screen state--',state)
-  console.log('home screen state.onboarding--',state.onBoarding)
-  // console.log('home screen state.signUpResponse--',state.signUpResponse)
+const mapStateToProps = state =>({
+  isOnboardingDone: state.onBoarding.val,
+  
  
-  return {
-    register_data:state
-  }
-}
+})
 
 export default connect(mapStateToProps,null)(Home);
 // export default Home;

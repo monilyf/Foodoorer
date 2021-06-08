@@ -32,61 +32,8 @@ const slides = [
   },
 ];
 class Onboarding extends React.Component {
-  state = {
-    onBoardingDone: false,
-  };
-
-  // componentDidMount(){
-  //   console.log('isOnboardingDone--',this.props.isOnboardingDone)
-  //   if (this.props.isOnboardingDone===null){
-  //     this.setState({
-  //       onBoardingDone:false
-  //     })
-  //   }
-  //   else{
-  //     this.setState({
-  //       onBoardingDone:true
-  //     })
-  //   }
-
-  //  const isOnboardingDone = AsyncStorage.getItem('OnBoarding')
-  // //  let parsed = JSON.parse(isOnboardingDone);
-  // console.log('isOnboardingdone-async-',isOnboardingDone)
-
-  // if (isOnboardingDone.done!==null){
-  //     this.setState({
-  //       onBoardingDone:true
-  //     })
-  //   }
-  //   else{
-  //     this.setState({
-  //       onBoardingDone:false
-  //     })
-  //   }
-
-  // }
-
-  // componentDidMount(){
-  //   this.check()
-  //   }
-  //   check = async ()=>{
-  //     try {
-  //       let user = await AsyncStorage.getItem('OnBoarding');
-  //       console.log(!user)
-  //       if (!user){
-  //         AsyncStorage.setItem('First','yes')
-  //       }
-  //       else {
-  //        console.log('Second Time')
-  //         this.props.navigation.navigate(Routes.SignIn);
-  //       }
-  //     } catch (error) {
-  //        console.log(error);
-  //     }
-  //   }
-
+  
   onDone = () => {
-    // this.setState({ onBoardingDone: true })
     this.props.onDone();
   };
 
@@ -104,7 +51,6 @@ class Onboarding extends React.Component {
         onPress={() => {
 
           this.props.onBoardingDone(true);
-    console.log('onboarding done button|||||||||||||||||||||--=-=-=', this.props.isOnboardingDone);
 
           this.props.navigation.navigate(Routes.SignIn);
         }}>
@@ -166,7 +112,7 @@ class Onboarding extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  isOnboardingDone: state.onBoarding.val.onBoarding,
+  isOnboardingDone: state.onBoarding.val,
 });
 
 const mapDispatchToProps = dispatch => 
@@ -177,13 +123,6 @@ const mapDispatchToProps = dispatch =>
     dispatch,
   );
 
-// const mapDispatchToProps = (dispatch) => 
-//   bindActionCreators(
-//     {
-//       // createUser,
-//       // onBoardingDone,
-//     },
-//     dispatch,
-//   );
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(Onboarding);
