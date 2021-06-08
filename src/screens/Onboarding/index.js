@@ -6,9 +6,10 @@ import Routes from '../../router/routes';
 import {Label, StatusBars} from '../../component';
 import Color from '../../utils/Color';
 import styles from './style';
-import {connect} from 'react-redux'
+import {connect} from 'react-redux';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import {onBoardingDone} from '../../redux/reducers/OnBoarding/action';
+import {bindActionCreators} from 'redux';
 
 const slides = [
   {
@@ -30,45 +31,43 @@ const slides = [
     image: require('../../assets/images/food_delivery.png'),
   },
 ];
-class Onboarding extends React.Component{
- 
+class Onboarding extends React.Component {
   state = {
-      onBoardingDone:false
-    };
-
+    onBoardingDone: false,
+  };
 
   // componentDidMount(){
-  //   // console.log('isOnboardingDone--',this.props.isOnboardingDone)
-  //   // if (this.props.isOnboardingDone!==null){
-  //   //   this.setState({
-  //   //     onBoardingDone:true
-  //   //   })
-  //   // }
-  //   // else{
-  //   //   this.setState({
-  //   //     onBoardingDone:false
-  //   //   })
-  //   // }
-  //   // }
-  //    const isOnboardingDone = AsyncStorage.getItem('OnBoarding')
-  //   //  let parsed = JSON.parse(isOnboardingDone);
-  //   console.log('isOnboardingdone-async-',isOnboardingDone)
-     
-  //   if (isOnboardingDone.done!==null){
-  //       this.setState({
-  //         onBoardingDone:true
-  //       })
-  //     }
-  //     else{
-  //       this.setState({
-  //         onBoardingDone:false
-  //       })
-  //     }
+  //   console.log('isOnboardingDone--',this.props.isOnboardingDone)
+  //   if (this.props.isOnboardingDone===null){
+  //     this.setState({
+  //       onBoardingDone:false
+  //     })
+  //   }
+  //   else{
+  //     this.setState({
+  //       onBoardingDone:true
+  //     })
+  //   }
+
+  //  const isOnboardingDone = AsyncStorage.getItem('OnBoarding')
+  // //  let parsed = JSON.parse(isOnboardingDone);
+  // console.log('isOnboardingdone-async-',isOnboardingDone)
+
+  // if (isOnboardingDone.done!==null){
+  //     this.setState({
+  //       onBoardingDone:true
+  //     })
+  //   }
+  //   else{
+  //     this.setState({
+  //       onBoardingDone:false
+  //     })
+  //   }
 
   // }
 
   // componentDidMount(){
-  //   this.check()    
+  //   this.check()
   //   }
   //   check = async ()=>{
   //     try {
@@ -76,7 +75,7 @@ class Onboarding extends React.Component{
   //       console.log(!user)
   //       if (!user){
   //         AsyncStorage.setItem('First','yes')
-  //       } 
+  //       }
   //       else {
   //        console.log('Second Time')
   //         this.props.navigation.navigate(Routes.SignIn);
@@ -86,10 +85,8 @@ class Onboarding extends React.Component{
   //     }
   //   }
 
-
-
   onDone = () => {
-    this.setState({onBoardingDone: true})
+    // this.setState({ onBoardingDone: true })
     this.props.onDone();
   };
 
@@ -103,7 +100,14 @@ class Onboarding extends React.Component{
 
   RenderDoneButton = () => {
     return (
-      <TouchableOpacity onPress={() => this.props.navigation.navigate(Routes.SignIn)}>
+      <TouchableOpacity
+        onPress={() => {
+
+          this.props.onBoardingDone(true);
+    console.log('onboarding done button|||||||||||||||||||||--=-=-=', this.props.isOnboardingDone);
+
+          this.props.navigation.navigate(Routes.SignIn);
+        }}>
         <View style={styles.buttonCircle}>
           <Icon name="thumbs-up" style={styles.icon} />
         </View>
@@ -112,8 +116,7 @@ class Onboarding extends React.Component{
   };
   RenderItem = ({item}) => {
     return (
-
-        <View style={styles.container}>
+      <View style={styles.container}>
         <Image
           style={styles.introImageStyle}
           source={item.image}
@@ -134,46 +137,53 @@ class Onboarding extends React.Component{
           </Label>
         </View>
       </View>
-      
     );
   };
- render(){
-  console.log('onboarding naana--=-=-=',this.props.isOnboardingDone) 
+  render() {
+    console.log('onboarding render--=-=-=', this.props.isOnboardingDone);
 
-  return (
-    // <View>
-    // {this.state.onBoardingDone ?
-    
-    //  null
-
-    //   :
-
-    <View style={{flex: 1}}>
-   
-      <StatusBars hidden={true} />
-      <AppIntroSlider
-        data={slides}
-        renderItem={this.RenderItem}
-        onDone={this.onDone}
-        renderDoneButton={this.RenderDoneButton}
-        renderNextButton={this.RenderNextButton}
-        dotStyle={styles.dotStyle}
-        activeDotStyle={styles.activeDotStyle}
-      />
-    
-
-    </View>
-  //   }
-  // </View>
-  );
- }
-};
-
-
-
-const mapStateToProps = state =>(
-  {
-    isOnboardingDone :state.onBoarding,
+    return (
+      <>
+        {this.props.isOnboardingDone === true ? (
+          this.props.navigation.navigate(Routes.SignIn)
+        ) : (
+          <View style={{flex: 1}}>
+            <StatusBars hidden={true} />
+            <AppIntroSlider
+              data={slides}
+              renderItem={this.RenderItem}
+              onDone={this.onDone}
+              renderDoneButton={this.RenderDoneButton}
+              renderNextButton={this.RenderNextButton}
+              dotStyle={styles.dotStyle}
+              activeDotStyle={styles.activeDotStyle}
+            />
+          </View>
+        )}
+      </>
+    );
   }
-)
-export default connect(mapStateToProps,null)(Onboarding);
+}
+
+const mapStateToProps = state => ({
+  isOnboardingDone: state.onBoarding.val.onBoarding,
+});
+
+const mapDispatchToProps = dispatch => 
+  bindActionCreators(
+    {
+      onBoardingDone,
+    },
+    dispatch,
+  );
+
+// const mapDispatchToProps = (dispatch) => 
+//   bindActionCreators(
+//     {
+//       // createUser,
+//       // onBoardingDone,
+//     },
+//     dispatch,
+//   );
+
+export default connect(mapStateToProps, mapDispatchToProps)(Onboarding);

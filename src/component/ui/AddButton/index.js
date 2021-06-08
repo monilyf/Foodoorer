@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, TouchableOpacity } from 'react-native'
+import { TouchableOpacity } from 'react-native'
 import Label from '../Label'
 import LinearGradient from 'react-native-linear-gradient';
 import Color from '../../../utils/Color'

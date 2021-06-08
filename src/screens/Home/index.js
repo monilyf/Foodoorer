@@ -28,6 +28,8 @@ import {
 } from '../../redux/Constants/data';
 import ThemeUtils from '../../utils/ThemeUtils';
 import Icon from 'react-native-vector-icons/Feather';
+import { connect } from 'react-redux';
+
 
 export class Home extends Component {
   keyExtractor = (item, index) => item.id;
@@ -187,4 +189,15 @@ export class Home extends Component {
   }
 }
 
-export default Home;
+const mapStateToProps = state =>{
+  console.log('home screen state--',state)
+  console.log('home screen state.onboarding--',state.onBoarding)
+  // console.log('home screen state.signUpResponse--',state.signUpResponse)
+ 
+  return {
+    register_data:state
+  }
+}
+
+export default connect(mapStateToProps,null)(Home);
+// export default Home;

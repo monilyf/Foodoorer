@@ -1,7 +1,7 @@
 import {types} from '../../Constants/action-types';
 export const createUser = (user) => ({
     type: types.CREATE_USER,
-    user,
+    payload:user,
 })
 
 

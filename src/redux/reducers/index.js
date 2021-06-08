@@ -5,8 +5,8 @@ import onBoardingReducer from './OnBoarding/reducer';
 
 
 const rootReducer = combineReducers({
-    signUp:signUpReducer,
-    signIn:signInReducer,
+    // signUp:signUpReducer,
+    // signIn:signInReducer,
     onBoarding:onBoardingReducer,
 
 });

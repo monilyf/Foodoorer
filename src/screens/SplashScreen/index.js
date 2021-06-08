@@ -43,6 +43,8 @@ class SplashScreen extends Component {
   };
 
   render() {
+  console.log('splash screen render state--',this.props.register_data)
+
     return (
       <View style={[styles.SplashScreen_RootView, CommonStyle.container]}>
         <StatusBars hidden={true} />
@@ -59,7 +61,7 @@ class SplashScreen extends Component {
 
 const mapStateToProps = state =>{
   console.log('splash screen state--',state)
-  console.log('splash screen state.signUpResponse--',state.signUpResponse)
+  // console.log('splash screen state.signUpResponse--',state.signUpResponse)
  
   return {
     register_data:state

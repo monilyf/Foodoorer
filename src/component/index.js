@@ -22,7 +22,6 @@ import ImageSlider from './ui/ImageSlider';
 import IconSqure from './ui/IconSqure';
 import OfferTag from './ui/OfferTag';
 import HomeNavigator from './ui/HomeNavigator'
-import Back from './ui/Back';
 import RestaurantItem from './ui/RestaurantItem';
 import AddButton from './ui/AddButton';
 import ItemCountButton from './ui/ItemCountButton';
@@ -47,7 +46,6 @@ export {
   Header,
   ToastMessage,
   Logo,
-  Back,
   Error,
   StatusBars,
   ProfileNavItem,
