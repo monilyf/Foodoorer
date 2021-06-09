@@ -1,7 +1,7 @@
 import {types} from '../../Constants/action-types';
 
 let initialState = { 
-    signUpResponse : []
+    signUpResponse : {}
 }
 
 const signUpReducer = (state = initialState, action) => {
@@ -11,7 +11,7 @@ const signUpReducer = (state = initialState, action) => {
         //     return {...state,signUpResponse:action.payload}
         
         case types.CREATE_USER_SUCCESS:
-            return {...state,signUpResponse:action.payload.data}
+            return {...state,signUpResponse:action.payload}
 
         case types.CREATE_USER_FAILURE:
             return {...state,signUpResponse:action.payload}

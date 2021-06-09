@@ -77,8 +77,10 @@ class RestaurantScreen extends Component {
         itemName={item.itemName}
         description={item.description}
         price={item.price}>
-          {/* item.id === this.state.selectedId */}
-        { this.state.isAddButtonPressed
+          {/* this.state.isAddButtonPressed */}
+
+        { 
+          item.id === this.state.selectedId
         
           ? (
           <ItemCountButton
@@ -97,7 +99,7 @@ class RestaurantScreen extends Component {
           <AddButton
             onPress={() =>{ 
               // this.handleSelectionMultiple(item.id)
-         
+              // this.selectItem(item)
 
               this.setState({
                 selectedId:item.id,
@@ -111,7 +113,7 @@ class RestaurantScreen extends Component {
                 isCheckOutModalVisible: true,
                 // isRepeatSameModalVisible:true
               })
-    console.log('--------selected id-jkj------',this.state.selectedItem)
+    console.log('--------selected id-jkj------',this.state.selectedId)
 
               // this.handleSelection(item.id)
               
@@ -244,7 +246,7 @@ class RestaurantScreen extends Component {
                 keyExtractor={item => item.id}
               />
 
-              <Label bolder large>
+              {/* <Label bolder large>
                 Combo Meal
               </Label>
               <FlatList
@@ -252,7 +254,7 @@ class RestaurantScreen extends Component {
                 data={combo_meals}
                 renderItem={({item}) => this.renderMenuItem(item)}
                 keyExtractor={item => item.id}
-              />
+              /> */}
              
             
             </View>

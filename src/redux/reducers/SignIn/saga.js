@@ -9,7 +9,7 @@ export function* fetchUser(payload){
             url:"https://reqres.in/api/login",
             data:{
                 "email":"eve.holt@reqres.in",
-                "password":"cityslicka"
+                "password":"cityslicka",
             }
         };
         const response = yield call(axios,apiConfig)

@@ -2,14 +2,17 @@ import {types} from '../../Constants/action-types';
 import {put,call} from 'redux-saga/effects';
 import axios from 'axios';
 
-export function* createUsers(payload){
+export function* createUsers(action){
     try{
         const apiConfig = {
             method:'POST',
-            url:'https://reqres.in/api/register',
+            url:'http://foodooerdashboard.project-demo.info/api/register',
             data:{
-                email:'eve.holt@reqres.in',
-                password:'cityslicka',
+                name:action.payload.name,
+                email:action.payload.email,
+                password:action.payload.password,
+                password_confirmation:action.payload.confirmPassword,
+                contact_no:action.payload.phone,
             },
         };
 

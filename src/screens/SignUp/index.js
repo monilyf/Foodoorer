@@ -93,6 +93,7 @@ export class SignUp extends Component {
         email: this.state.email,
         phone: this.state.phone,
         password: this.state.password,
+        confirmPassword: this.state.confirmPassword,
       };
       AsyncStorage.setItem('register_data', JSON.stringify(register_data));
 
@@ -105,14 +106,10 @@ export class SignUp extends Component {
 
   signUpUserRequest = (register_data) => {
     console.log('signUpUserRequest')
-    const {name,email,phone,password} = this.state;
-    console.log('store register_data',name,email,password,phone);
+    // const {name,email,phone,password} = this.state;
+    // console.log('store register_data',name,email,password,phone);
     // this.props.createUser(register_data);
-    // let onboardingData={onBoarding:true}
-    // this.props.onBoardingDone(true);//onboardingData
     
-    // AsyncStorage.setItem('OnBoarding', {done:true});
-    // AsyncStorage.setItem('OnBoarding', JSON.stringify(obj));
     this.props.navigation.dispatch(this.resetToAuth);
 
   }
@@ -136,6 +133,8 @@ export class SignUp extends Component {
   };
 
   render() {
+    // console.log('store register_data',this.props.register);
+
     return (
       <SafeAreaView style={CommonStyle.container}>
         <StatusBars hidden={true} />
@@ -290,16 +289,19 @@ export class SignUp extends Component {
   }
 }
 
-
+// const mapStateToProps = state =>({
+//   register:state.signUp.signUpResponse
+// })
 
 // const mapDispatchToProps = (dispatch) => 
 //   bindActionCreators(
 //     {
-//       // createUser,
+//       createUser,
 //       // onBoardingDone,
 //     },
 //     dispatch,
 //   );
 
 
-export default connect(null,null)(SignUp);
+// export default connect(mapStateToProps,mapDispatchToProps)(SignUp);
+export default SignUp;
