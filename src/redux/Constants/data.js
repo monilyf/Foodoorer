@@ -222,8 +222,8 @@
   ];
 
   export const recommended_items=[
-    {id:1,itemName:'Creamy nachos',image: require('../../assets/images/restaurant_screen/creamy_nachos.jpg'),description:'with mexican salad',price:'₹ 157',foodMark:require('../../assets/images/icon_non_veg.png')},
-    {id:2,itemName:'Maharaja mac',image: require('../../assets/images/restaurant_screen/2.jpg'),description:'with french fries',price:'₹ 107',foodMark:require('../../assets/images/icon_veg.png')},
+    {id:1,itemName:'Creamy nachos',image: require('../../assets/images/restaurant_screen/creamy_nachos.jpg'),description:'with mexican salad',price:'₹ 157',foodMark:require('../../assets/images/icon_veg.png'),},
+    {id:2,itemName:'Maharaja mac',image: require('../../assets/images/restaurant_screen/2.jpg'),description:'with french fries',price:'₹ 107',foodMark:require('../../assets/images/icon_non_veg.png')},
     {id:3,itemName:'Mc Veggie mac',image: require('../../assets/images/restaurant_screen/4.jpg'),description:'free french fries',price:'₹ 145',foodMark:require('../../assets/images/icon_veg.png')},
     {id:4,itemName:'Patsa',image: require('../../assets/images/home_screen/pasta.jpg'),description:'free french fries',price:'₹ 145',foodMark:require('../../assets/images/icon_veg.png')},
 

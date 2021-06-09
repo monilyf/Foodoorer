@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {SafeAreaView, View, ScrollView, Image, TextInput, Touchable} from 'react-native';
+import {SafeAreaView, View, ScrollView,FlatList, Image, TextInput, Touchable} from 'react-native';
 import {
   StatusBars,
   Header,
@@ -17,7 +17,8 @@ import ThemeUtils from '../../utils/ThemeUtils';
 import Icon from 'react-native-vector-icons/Feather';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import LinearGradient from 'react-native-linear-gradient';
-import Routes from '../../router/routes'
+import Routes from '../../router/routes';
+import route from '@react-navigation/routers'
 
 export class CartScreen extends Component {
   constructor(props) {
@@ -25,6 +26,7 @@ export class CartScreen extends Component {
 
     this.state = {
       itemCount: 1,
+      cartItemDetails:null,
       isPaymentDoneModal:false,
       showToast:false
     };
@@ -35,12 +37,37 @@ export class CartScreen extends Component {
     
 //    )
 // //  }
-//   componentDidMount(){
-//     const { id,itemName,price,itemCount } = route.params;
-//     this.setState({id:id,itemName:itemName,price:price,itemCount:it})
-//   }
+  // componentDidMount(){
+  //   const { cartItemDetails } = this.props.route.params;
+  //   this.setState({cartItemDetails:cartItemDetails})
+  // }
 
+  renderCartItem =()=>{
+    return(
+      <CartItem
+      foodItemName={this.state.cartItemDetails.itemName}
+      price={this.state.cartItemDetails.price}
+      itemCount={this.state.cartItemDetails.quantity}
+      onPressPlus={() =>
+        this.setState({itemCount: this.state.cartItemDetails.quantity + 1})
+      }
+      onPressMinus={() => {
+        if (this.state.itemCount > 1) {
+          this.setState({itemCount: this.state.cartItemDetails.quantity - 1});
+        } else {
+          this.setState({itemCount: this.state.cartItemDetails.quantity});
+        } //set logic here
+      }}
+    />
+    )
+  }
   render() {
+    console.log('this.props---',this.props)
+    console.log('this.props.route---',this.props.route)
+    console.log('props.params---',this.props.params)
+    const { id,description,foodMark,image,itemName,quantity,price} = this.props.route.params;
+    console.log('hello from params=====-=-=-=-=-',id,description,foodMark,image,itemName,quantity,price)
+    // this.setState({cartItemDetails:cartItemDetails})
     return (
       <SafeAreaView >
         <StatusBars
@@ -72,7 +99,14 @@ export class CartScreen extends Component {
         </Header>
         <ScrollView showsVerticalScrollIndicator={false}>
           <View style={styles.container}>
-            <CartItem
+          <FlatList
+                showsVerticalScrollIndicator={false}
+                data={this.state.cartItemDetails}
+                extraData={this.state.selectedItem}
+                renderItem={({item}) => this.renderCartItem(item)}
+                keyExtractor={item => item.id}
+              />
+            {/* <CartItem
               foodItemName="Creamy nachos"
               price="₹157.00"
               itemCount={this.state.itemCount}
@@ -86,12 +120,12 @@ export class CartScreen extends Component {
                   this.setState({itemCount: 1});
                 } //set logic here
               }}
-            />
-            <CartItem
+            /> */}
+            {/* <CartItem
               foodItemName="Maharaja mac  "
               price="₹106.00"
               itemCount="1"
-            />
+            /> */}
 
             {/* --------------------Bill Component Strat (can make it as separate BillComponent)---------------- */}
 

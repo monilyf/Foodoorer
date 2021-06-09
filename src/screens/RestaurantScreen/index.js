@@ -43,9 +43,8 @@ class RestaurantScreen extends Component {
       isAddButtonPressed: false,
       isCheckOutModalVisible: false,
       isRepeatSameModalVisible: false,
-      cartItems:{
-
-      },selectedId:[],
+      userCartItemsIds:[],
+      userCartItemsList:[],
       // selectedItem:{
       //   id:null,
       //   itemName:null,
@@ -79,13 +78,17 @@ class RestaurantScreen extends Component {
         price={item.price}>
           {/* this.state.isAddButtonPressed */}
 
+          {/* item.id === this.state.selectedId */}
+          {/* this.state.userCartItems.map() */}
+    {/* console.log('---------itemId------',item.id) */}
         { 
-          item.id === this.state.selectedId
+          this.state.userCartItemsIds.includes(item.id)
         
           ? (
           <ItemCountButton
             itemCount={this.state.itemCount}
             onPressMinus={() => {
+              item.id === this.state.selectedId 
               if (this.state.itemCount>1){
                 this.setState({itemCount:this.state.itemCount-1})
               }
@@ -100,22 +103,28 @@ class RestaurantScreen extends Component {
             onPress={() =>{ 
               // this.handleSelectionMultiple(item.id)
               // this.selectItem(item)
+console.log('id------------------',item.id)
+console.log('id--------userCartItem----------',item.id,'==========',this.state.userCartItemsIds)
 
               this.setState({
                 selectedId:item.id,
-                selectedItem:{
-        id:item.id,
-        itemName:item.itemName,
-        itemCount:this.state.itemCount,
-        price:item.price,
-      },
+                userCartItemsIds:[...this.state.userCartItemsIds,item.id],
+                userCartItemsList:[...this.state.userCartItemsList,{...item,"quantity":this.state.itemCount}],
+        //         selectedItem:{
+        // id:item.id,
+        // itemName:item.itemName,
+        // itemCount:this.state.itemCount,
+        // price:item.price,
+      // },
                 isAddButtonPressed: true,
                 isCheckOutModalVisible: true,
                 // isRepeatSameModalVisible:true
               })
-    console.log('--------selected id-jkj------',this.state.selectedId)
+    // console.log('--------selected id-jkj------',this.state.selectedId)
 
               // this.handleSelection(item.id)
+console.log('-userCartItemIDs-',item.id,'==========',this.state.userCartItemsIds)
+console.log('-userCartItem List-',item.id,'==========',this.state.userCartItemsList)
               
             }
             }
@@ -160,6 +169,8 @@ class RestaurantScreen extends Component {
   }
 }
   render() {
+    console.log('~~~~~~~~~~~~~~~~~~~~~~usercartItems Ids~~~~~~',this.state.userCartItemsIds)
+    console.log('~~~~~~~~~~~~~~~~~~~~~~usercartItems List~~~~~~',this.state.userCartItemsList)
     return (
       <SafeAreaView style={{backgroundColor:Color.WHITE_SMOKE}}>
         <StatusBars
@@ -269,13 +280,13 @@ class RestaurantScreen extends Component {
               }}>
               <View>
                 <Label small bolder>
-                  {this.state.itemCount} Item | ₹ 157{' '}
+                  {this.state.userCartItemsIds.length} Item | ₹ 157{' '}
                 </Label>
                 <Label xsmall color={Color.DARK_GRAY}>
                   Extra charges may apply
                 </Label>
               </View>
-              <TouchableOpacity style={{alignSelf: 'center'}} onPress={()=>this.props.navigation.push(Routes.CartScreen,this.state.selectedItem)}>
+              <TouchableOpacity style={{alignSelf: 'center'}} onPress={()=>this.props.navigation.push(Routes.CartScreen,this.state.userCartItemsList)}>
                 <LinearGradient
                   colors={[Color.GRADIENT3, Color.GRADIENT4]}
                   start={{x: 0, y: 1}}
