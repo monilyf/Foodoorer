@@ -81,7 +81,7 @@ export class Home extends Component {
   };
 
   render() {
-  console.log('-----------home screen render ----------- isOnboardingDone--',this.props.isOnboardingDone)
+  console.log('-----------home screen render ----------- state--',this.props.isOnboardingDone)
 
     return (
       <SafeAreaView>
@@ -192,7 +192,7 @@ export class Home extends Component {
 }
 
 const mapStateToProps = state =>({
-  isOnboardingDone: state.onBoarding.val,
+  isOnboardingDone: state,
   
  
 })

@@ -4,7 +4,7 @@ import axios from 'axios';
 
 export function* setOnboarding(action){
     try{
-        console.log('-----------------saga payload--',action.payload)
+        // console.log('-----------------saga payload--',action.payload)
         yield put({type:SET_ONBOARDING_SUCCESS,payload:action.payload});
     }
     catch(e){

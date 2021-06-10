@@ -86,7 +86,7 @@ class Onboarding extends React.Component {
     );
   };
   render() {
-    console.log('onboarding render--=-=-=', this.props.isOnboardingDone);
+    // console.log('onboarding render--=-=-=', this.props.isOnboardingDone);
 
     return (
       <>

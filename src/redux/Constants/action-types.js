@@ -1,10 +1,28 @@
+// onboarding action
 export const SET_ONBOARDING = 'SET_ONBOARDING';
 export const SET_ONBOARDING_FAILURE = 'SET_ONBOARDING_FAILURE';
 export const SET_ONBOARDING_SUCCESS = 'SET_ONBOARDING_SUCCESS';
+
+// cart action 
+export const cartAction={
+
+
+
+    ADD_CART : "ADD_CART",
+    ADD_DETAILS_CART : "ADD_DETAILS_CART",
+ADD_ITEM_ID : "ADD_ITEM_ID",
+ADD_ITEM_DETAILS : "ADD_ITEM_DETAILS",
+CART_FAILURE_ADD : "CART_FAILURE_ADD",
+}
+
+
+// login action
+
 export const FETCH_USER = 'FETCH_USER';
 export const FETCH_USER_SUCCESS = 'FETCH_USER_SUCCESS';
 export const FETCH_USER_FAILURE = 'FETCH_USER_FAILURE';
 
+// signup action
 export const types = {
     CREATE_USER : 'CREATE_USER',
     CREATE_USER_SUCCESS : 'CREATE_USER_SUCCESS',

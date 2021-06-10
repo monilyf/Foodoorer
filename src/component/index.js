@@ -32,6 +32,7 @@ import TodayOfferCard  from './ui/TodayOfferCard';
 import FreeDeliveryItemCard from './ui/FreeDeliveryItemCard';
 import AllOfferCard from './ui/AllOfferCard';
 import PaymentInput from './ui/PaymentInput';
+import DropDown from './ui/DropDown';
 
 
 export {
@@ -68,5 +69,6 @@ export {
   TodayOfferCard,
   FreeDeliveryItemCard,
   AllOfferCard,
-  PaymentInput
+  PaymentInput,
+  DropDown,
 };

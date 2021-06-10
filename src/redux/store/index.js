@@ -8,7 +8,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const persistConfig = {
     key:'root',
-    storage: AsyncStorage
+    storage: AsyncStorage,
+    // blacklist: ['cart']
 };
 
 const persistedReducer = persistReducer(persistConfig,rootReducer);

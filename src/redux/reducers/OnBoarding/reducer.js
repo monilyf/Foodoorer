@@ -4,18 +4,12 @@ const initialState = {
   val: '',
 };
 const onBoardingReducer = (state = initialState, action) => {
-  console.log('onboardingReducer--action=-=-=', action.payload);
+  // console.log('onboardingReducer--action=-=-=', action.payload);
   switch (action.type) {
-    // case SET_ONBOARDING:
-    //   console.log('onboardingReducer--SET_ONBOARDING=-=-=', action.payload);
 
-    //   return {
-    //     ...state,
-    //     // val: action.payload,
-    //   };
 
     case SET_ONBOARDING_SUCCESS:
-      console.log('onboardingReducer--SET_ONBOARDING_SUCCESS=-=-=', action.payload);
+      // console.log('onboardingReducer--SET_ONBOARDING_SUCCESS=-=-=', action.payload);
 
       return {
         ...state,
@@ -23,7 +17,7 @@ const onBoardingReducer = (state = initialState, action) => {
       };
 
       case SET_ONBOARDING_FAILURE:
-        console.log('onboardingReducer--SET_ONBOARDING_FAILURE=-=-=',action.payload) 
+        // console.log('onboardingReducer--SET_ONBOARDING_FAILURE=-=-=',action.payload) 
       
             return {
               
@@ -32,7 +26,7 @@ const onBoardingReducer = (state = initialState, action) => {
             };
           
     default:
-      console.log('onboardingReducer--default=-=-=', state);
+      // console.log('onboardingReducer--default=-=-=', state);
 
       return state;
   }

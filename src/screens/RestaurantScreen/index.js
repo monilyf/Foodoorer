@@ -30,6 +30,10 @@ import CommonStyle from '../../utils/CommonStyle';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Icon1 from 'react-native-vector-icons/Entypo';
 import Routes from '../../router/routes';
+import {add_itemId_cart,add_item_details} from '../../redux/reducers/Cart/action';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+
 
 
 
@@ -45,6 +49,7 @@ class RestaurantScreen extends Component {
       isRepeatSameModalVisible: false,
       userCartItemsIds:[],
       userCartItemsList:[],
+      showDropDown:false,
       // selectedItem:{
       //   id:null,
       //   itemName:null,
@@ -106,6 +111,9 @@ class RestaurantScreen extends Component {
 console.log('id------------------',item.id)
 console.log('id--------userCartItem----------',item.id,'==========',this.state.userCartItemsIds)
 
+              // this.props.add_itemId_cart(item.id);
+              // this.props.add_item_details({...item,"quantity":this.state.itemCount})
+                  
               this.setState({
                 selectedId:item.id,
                 userCartItemsIds:[...this.state.userCartItemsIds,item.id],
@@ -123,8 +131,8 @@ console.log('id--------userCartItem----------',item.id,'==========',this.state.u
     // console.log('--------selected id-jkj------',this.state.selectedId)
 
               // this.handleSelection(item.id)
-console.log('-userCartItemIDs-',item.id,'==========',this.state.userCartItemsIds)
-console.log('-userCartItem List-',item.id,'==========',this.state.userCartItemsList)
+// console.log('-userCartItemIDs-',item.id,'==========',this.state.userCartItemsIds)
+// console.log('-userCartItem List-',item.id,'==========',this.state.userCartItemsList)
               
             }
             }
@@ -186,9 +194,13 @@ console.log('-userCartItem List-',item.id,'==========',this.state.userCartItemsL
             onPress={() => this.props.navigation.goBack()}
           />
           <IconSqure
-            image={require('../../assets/images/restaurant_screen/Icon_Fork.png')}
+            image={require('../../assets/images/restaurant_screen/Icon_Fork.png')} onPress={()=>{
+              // this.setState({showDropDown:!this.state.showDropDown})
+              this.props.navigation.push(Routes.DropDown)
+              }}
           />
         </View>
+        {/* {this.state.showDropDown?<DropDown/>:null} */}
 
         <View style={styles.container}>
           <ScrollView showsVerticalScrollIndicator={false}>
@@ -286,7 +298,13 @@ console.log('-userCartItem List-',item.id,'==========',this.state.userCartItemsL
                   Extra charges may apply
                 </Label>
               </View>
-              <TouchableOpacity style={{alignSelf: 'center'}} onPress={()=>this.props.navigation.push(Routes.CartScreen,this.state.userCartItemsList)}>
+              <TouchableOpacity style={{alignSelf: 'center'}} 
+              // onPress={()=>this.props.navigation.push(Routes.CartScreen,this.state.userCartItemsList)}
+              onPress={()=>{   this.props.add_itemId_cart(this.state.userCartItemsIds);
+              this.props.add_item_details([...this.state.userCartItemsList])
+              this.props.navigation.push(Routes.CartScreen)
+              }}
+              >
                 <LinearGradient
                   colors={[Color.GRADIENT3, Color.GRADIENT4]}
                   start={{x: 0, y: 1}}
@@ -354,4 +372,23 @@ console.log('-userCartItem List-',item.id,'==========',this.state.userCartItemsL
   }
 }
 
-export default RestaurantScreen;
+// export default RestaurantScreen;
+const mapStateToProps = state => ({
+
+  // isOnboardingDone: state.onBoarding.val,
+  cartItemsList:state.cart.cartItemDetails,
+  cartItemIds:state.cart.cartItemId
+});
+
+const mapDispatchToProps = dispatch => 
+  bindActionCreators(
+    {
+      add_item_details,add_itemId_cart
+    },
+    dispatch,
+  );
+
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(RestaurantScreen);
+

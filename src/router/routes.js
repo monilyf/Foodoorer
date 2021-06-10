@@ -27,6 +27,8 @@ const Routes = {
   ForgotPassword: 'ForgotPassword',
   OtpScreen: 'OtpScreen',
   ResetPassword: 'ResetPassword',
+
+  DropDown:'DropDown',
 };
 
 export default Routes;

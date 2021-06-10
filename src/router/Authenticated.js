@@ -14,7 +14,8 @@ import CouponAppliedScreen from '../screens/CouponAppliedScreen';
 import OrderTracking from '../screens/OrderTracking';
 import RestaurantOfferScreen from '../screens/OfferScreen/RestaurantOfferScreen';
 import PromoScreen from '../screens/OfferScreen/PromosScreen';
-import AddNewCard from '../screens/AddNewCard'
+import AddNewCard from '../screens/AddNewCard';
+import DropDownScreen from '../screens/DropDown'
 
 const Stack = createStackNavigator();
 
@@ -85,6 +86,11 @@ const Authenticated = () => {
        <Stack.Screen
         name={Routes.AddNewCard}
         component={AddNewCard}
+        options={{headerShown:false}}
+      />
+       <Stack.Screen
+        name={Routes.DropDown}
+        component={DropDownScreen}
         options={{headerShown:false}}
       />
     </Stack.Navigator>

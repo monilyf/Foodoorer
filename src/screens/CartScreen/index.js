@@ -19,6 +19,8 @@ import {TouchableOpacity} from 'react-native-gesture-handler';
 import LinearGradient from 'react-native-linear-gradient';
 import Routes from '../../router/routes';
 import route from '@react-navigation/routers'
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 
 export class CartScreen extends Component {
   constructor(props) {
@@ -45,29 +47,32 @@ export class CartScreen extends Component {
   renderCartItem =()=>{
     return(
       <CartItem
-      foodItemName={this.state.cartItemDetails.itemName}
-      price={this.state.cartItemDetails.price}
-      itemCount={this.state.cartItemDetails.quantity}
-      onPressPlus={() =>
-        this.setState({itemCount: this.state.cartItemDetails.quantity + 1})
-      }
-      onPressMinus={() => {
-        if (this.state.itemCount > 1) {
-          this.setState({itemCount: this.state.cartItemDetails.quantity - 1});
-        } else {
-          this.setState({itemCount: this.state.cartItemDetails.quantity});
-        } //set logic here
-      }}
+      // foodItemName={this.state.cartItemDetails.itemName}
+      // price={this.state.cartItemDetails.price}
+      // itemCount={this.state.cartItemDetails.quantity}
+      // onPressPlus={() =>
+      //   this.setState({itemCount: this.state.cartItemDetails.quantity + 1})
+      // }
+      // onPressMinus={() => {
+      //   if (this.state.itemCount > 1) {
+      //     this.setState({itemCount: this.state.cartItemDetails.quantity - 1});
+      //   } else {
+      //     this.setState({itemCount: this.state.cartItemDetails.quantity});
+      //   } //set logic here
+      // }}
     />
     )
   }
   render() {
-    console.log('this.props---',this.props)
-    console.log('this.props.route---',this.props.route)
-    console.log('props.params---',this.props.params)
-    const { id,description,foodMark,image,itemName,quantity,price} = this.props.route.params;
-    console.log('hello from params=====-=-=-=-=-',id,description,foodMark,image,itemName,quantity,price)
+    console.log('hiiiiii')
+    // console.log('this.props---',this.props)
+    // console.log('this.props.route---',this.props.route)
+    // console.log('this.props.route.params---',this.props.route.params)
+    // const { one, two} = this.props.route.params;
+    // console.log('hello from params=====-=-=-=-=-',one,two)
     // this.setState({cartItemDetails:cartItemDetails})
+    // console.log('-----------this.props.cartItemIds------',this.props.cartItemId)
+    console.log('-----------this.props.cartItemList------',this.props.cartItemsList)
     return (
       <SafeAreaView >
         <StatusBars
@@ -321,4 +326,24 @@ export class CartScreen extends Component {
   }
 }
 
-export default CartScreen;
+// export default CartScreen;
+const mapStateToProps = state => ({
+
+  // isOnboardingDone: state.onBoarding.val,
+  cartItemsList:state.cart,
+  // cartItemIds:state.cart.cartItemId
+});
+
+// const mapDispatchToProps = dispatch => 
+//   bindActionCreators(
+//     {
+//       add_item_details,add_itemId_cart
+//     },
+//     dispatch,
+//   );
+
+
+
+export default connect(mapStateToProps, null)(CartScreen);
+
+
