@@ -44,24 +44,27 @@ export class CartScreen extends Component {
   //   this.setState({cartItemDetails:cartItemDetails})
   // }
 
-  renderCartItem =()=>{
+  renderCartItem =(item)=>{
+    console.log('------------ cart', this.props.cartItemsList);
     return(
+      // <>
       <CartItem
-      // foodItemName={this.state.cartItemDetails.itemName}
-      // price={this.state.cartItemDetails.price}
-      // itemCount={this.state.cartItemDetails.quantity}
-      // onPressPlus={() =>
-      //   this.setState({itemCount: this.state.cartItemDetails.quantity + 1})
-      // }
-      // onPressMinus={() => {
-      //   if (this.state.itemCount > 1) {
-      //     this.setState({itemCount: this.state.cartItemDetails.quantity - 1});
-      //   } else {
-      //     this.setState({itemCount: this.state.cartItemDetails.quantity});
-      //   } //set logic here
-      // }}
-    />
-    )
+      foodItemName={item.itemName}
+      price={item.price}
+      itemCount={item.quantity}
+      onPressPlus={() =>
+        this.setState({itemCount: this.state.itemCount + 1})
+      }
+      onPressMinus={() => {
+        if (this.state.itemCount > 1) {
+          this.setState({itemCount: this.state.itemCount - 1});
+        } else {
+          this.setState({itemCount: this.state.itemCount});
+        } //set logic here
+      }}
+    />)
+      // </>
+    
   }
   render() {
     console.log('hiiiiii')
@@ -71,7 +74,7 @@ export class CartScreen extends Component {
     // const { one, two} = this.props.route.params;
     // console.log('hello from params=====-=-=-=-=-',one,two)
     // this.setState({cartItemDetails:cartItemDetails})
-    // console.log('-----------this.props.cartItemIds------',this.props.cartItemId)
+    console.log('-----------this.props.cartItemId------',this.props.cartItemId)
     console.log('-----------this.props.cartItemList------',this.props.cartItemsList)
     return (
       <SafeAreaView >
@@ -106,7 +109,7 @@ export class CartScreen extends Component {
           <View style={styles.container}>
           <FlatList
                 showsVerticalScrollIndicator={false}
-                data={this.state.cartItemDetails}
+                data={this.props.cartItemsList}
                 extraData={this.state.selectedItem}
                 renderItem={({item}) => this.renderCartItem(item)}
                 keyExtractor={item => item.id}
@@ -330,8 +333,8 @@ export class CartScreen extends Component {
 const mapStateToProps = state => ({
 
   // isOnboardingDone: state.onBoarding.val,
-  cartItemsList:state.cart,
-  // cartItemIds:state.cart.cartItemId
+  cartItemsList:state.cart.cartItemDetails,
+  cartItemId:state.cart.cartItemId
 });
 
 // const mapDispatchToProps = dispatch => 

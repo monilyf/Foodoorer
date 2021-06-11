@@ -81,7 +81,7 @@ export class Home extends Component {
   };
 
   render() {
-  console.log('-----------home screen render ----------- state--',this.props.isOnboardingDone)
+  // console.log('-----`------home screen render ----------- state--',this.props.isOnboardingDone)
 
     return (
       <SafeAreaView>

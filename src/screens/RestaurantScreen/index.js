@@ -93,12 +93,13 @@ class RestaurantScreen extends Component {
           <ItemCountButton
             itemCount={this.state.itemCount}
             onPressMinus={() => {
-              item.id === this.state.selectedId 
-              if (this.state.itemCount>1){
-                this.setState({itemCount:this.state.itemCount-1})
+              item.id === this.props.cartItemsList.id 
+              if (this.props.cartItemsList.quantity>1){
+                this.setState({itemCount:this.props.cartItemsList.quantity-1})
               }
               else{
-                this.setState({isAddButtonPressed: false,isCheckOutModalVisible:false})
+                // arr = arr.filter(item => item !== value)
+                // this.setState({isAddButtonPressed: false,isCheckOutModalVisible:false})
               }
             }}
             onPressPlus={() => this.setState({isRepeatSameModalVisible: true})}
@@ -300,9 +301,9 @@ console.log('id--------userCartItem----------',item.id,'==========',this.state.u
               </View>
               <TouchableOpacity style={{alignSelf: 'center'}} 
               // onPress={()=>this.props.navigation.push(Routes.CartScreen,this.state.userCartItemsList)}
-              onPress={()=>{   this.props.add_itemId_cart(this.state.userCartItemsIds);
+              onPress={()=>{this.props.add_itemId_cart(this.state.userCartItemsIds);
               this.props.add_item_details([...this.state.userCartItemsList])
-              this.props.navigation.push(Routes.CartScreen)
+              this.props.navigation.navigate(Routes.CartScreen)
               }}
               >
                 <LinearGradient
@@ -347,7 +348,8 @@ console.log('id--------userCartItem----------',item.id,'==========',this.state.u
                     I'LL CHOOSE
                   </Label>
               </TouchableOpacity>
-              <TouchableOpacity style={{alignSelf: 'center'}} onPress={()=>this.setState({isRepeatSameModalVisible:!this.state.isRepeatSameModalVisible,itemCount:this.state.itemCount+1})}>
+              <TouchableOpacity style={{alignSelf: 'center'}} onPress={()=>{ console.log('selected id---',this.state.selectedId,this.props.cartItemsList.id,this.props.cartItemsList.quantity)
+                this.setState({isRepeatSameModalVisible:!this.state.isRepeatSameModalVisible,itemCount:this.state.itemCount+1})}}>
                 <LinearGradient
                   colors={[Color.GRADIENT3, Color.GRADIENT4]}
                   start={{x: 0, y: 1}}

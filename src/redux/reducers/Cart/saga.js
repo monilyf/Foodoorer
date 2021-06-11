@@ -4,7 +4,7 @@ import axios from 'axios';
 
 export function* setItemIdCart(action){
     try{
-        console.log('-----------------saga payload--',action.payload)
+        // console.log('-----------------saga payload--',action.payload)
         yield put({type:cartAction.ADD_ITEM_ID,payload:action.payload});
     }
     catch(e){
@@ -15,7 +15,7 @@ export function* setItemIdCart(action){
 }
 export function* setItemDetailsCart(action){
     try{
-        console.log('-----------------saga payload--',action.payload)
+        // console.log('-----------------saga payload--',action.payload)
         yield put({type:cartAction.ADD_ITEM_DETAILS,payload:action.payload});
     }
     catch(e){
