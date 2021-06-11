@@ -73,6 +73,8 @@ class RestaurantScreen extends Component {
   //   );
   // };
   renderMenuItem = item => {
+    let data = this.props.cartItemsList.find((item) => item.id === this.state.selectedId)
+
     return (
       <RestaurantItem
        key={item.id}
@@ -84,25 +86,39 @@ class RestaurantScreen extends Component {
           {/* this.state.isAddButtonPressed */}
 
           {/* item.id === this.state.selectedId */}
+          {/* this.state.userCartItemsIds.includes(item.id) */}
           {/* this.state.userCartItems.map() */}
     {/* console.log('---------itemId------',item.id) */}
         { 
-          this.state.userCartItemsIds.includes(item.id)
-        
+        this.state.userCartItemsIds.includes(item.id)
           ? (
           <ItemCountButton
-            itemCount={this.state.itemCount}
+            itemCount={data.quantity}
             onPressMinus={() => {
-              item.id === this.props.cartItemsList.id 
-              if (this.props.cartItemsList.quantity>1){
-                this.setState({itemCount:this.props.cartItemsList.quantity-1})
-              }
-              else{
-                // arr = arr.filter(item => item !== value)
-                // this.setState({isAddButtonPressed: false,isCheckOutModalVisible:false})
-              }
+            //   let idx = this.props.cartItemsList.indexOf(item['id'])
+            //   console.log('@@@@@@@@@@@@@    id true   @@@@@@@',item['id'],item)
+            //  { this.props.cartItemIds.includes(this.state.selectedId) 
+            //   console.log('#----#',this.props.cartItemIds,idx,'#######',this.props.cartItemsList.quantity,this.state.selectedId,this.props.cartItemIds.includes(this.state.selectedId) )
+
+            //   if (this.props.cartItemsList[idx].quantity>1){
+            //     this.setState({itemCount:this.props.cartItemsList.quantity-1})
+            //   }
+            //   else{
+            //     // arr = arr.filter(item => item !== value)
+            //     // this.setState({isAddButtonPressed: false,isCheckOutModalVisible:false})
+            //   }}
+            // var id = this.props.cartItemsList.find(item => item.id === this.state.selectedId);
+            // this.props.cartItemsList.find((item) => item.id === this.state.selectedId)
+
+            console.log('----------id---------',data.quantity)
             }}
-            onPressPlus={() => this.setState({isRepeatSameModalVisible: true})}
+            onPressPlus={() =>{ 
+              this.props.cartItemIds === this.state.selectedId
+              console.log('########',this.props.cartItemIds,'#######',this.state.selectedId)
+                
+              this.setState({isRepeatSameModalVisible: true})
+              data.quantity+=1
+              }}
           />
         ) : (
           <AddButton
