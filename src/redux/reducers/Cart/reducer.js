@@ -17,7 +17,9 @@ const cartReducer = (state = initialState, action) => {
 
       return {
         ...state,
-        cartItemId: action.payload,
+        // cartItemId: action.payload,
+        cartItemId:[...state.cartItemId, action.payload]
+
       };
 
       case cartAction.ADD_ITEM_DETAILS:
@@ -25,9 +27,11 @@ const cartReducer = (state = initialState, action) => {
 
       return {
         ...state,
-        cartItemDetails: action.payload,
-      };
+        // cartItemDetails: action.payload,
+        cartItemDetails: [...state.products, action.payload]
 
+      };
+      
 
       case cartAction.CART_FAILURE_ADD:
       // console.log('cartReducer--CART_FAILURE_ADD=-=-=', action.payload);
