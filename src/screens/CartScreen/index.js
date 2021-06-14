@@ -27,8 +27,9 @@ export class CartScreen extends Component {
     super(props);
 
     this.state = {
-      itemCount: 1,
-      cartItemDetails:null,
+      // itemCount: 1,
+      // cartItemDetails:null,
+      cartData:this.props.cartItemsList,
       isPaymentDoneModal:false,
       showToast:false
     };
@@ -43,28 +44,78 @@ export class CartScreen extends Component {
   //   const { cartItemDetails } = this.props.route.params;
   //   this.setState({cartItemDetails:cartItemDetails})
   // }
+  
+  addItem = (id) => {
+    let temp = this.state.cartData;
+    let indexc=this.state.cartData.findIndex(item=>item.id == id);
+    console.log(indexc,'=============',temp,"counddddddddddddt data....................");
+
+    if (temp.length > 0) {
+      let temps = temp[indexc];
+      temps.count = 1;
+      
+      temp[indexc]=temps;
+      this.setState({totalItems:this.state.totalItems+1,totalPrice:this.state.totalPrice+(temps.price),cartData:temp})
+      console.log(temps,"count data....................");
+    }
+  }
+
+  addItemQuantity = (id) => {
+    let temp = this.state.cartData;
+    let indexc=this.state.cartData.findIndex(item=>item.id == id);
+    console.log(indexc,'=============',temp,"counddddddddddddt data....................");
+
+    if (temp.length > 0) {
+      let temps = temp[indexc];
+      temps.count +=1;
+      temp[indexc]=temps;
+      this.setState({totalItems:this.state.totalItems+1,totalPrice:this.state.totalPrice+(temps.price),cartData:temp})
+      console.log(temps,"count data....................");
+    }
+  }
+
+
+  removeItem=(id)=>{
+    let temp = this.state.cartData;
+    let indexc=this.state.cartData.findIndex(item=>item.id == id);
+    if (temp.length > 0) {
+      let temps = temp[indexc];
+
+      temps.count = temps.count-1;
+      temp[indexc]=temps;
+      this.setState({totalItems:this.state.totalItems-1,totalPrice:this.state.totalPrice-(temps.price),cartData:temp})
+      console.log(temps,"count data....................");
+    }
+  }
+
 
   renderCartItem =({item})=>{
     console.log('------------ cart', this.props.cartItemsList);
+    
     return(
       // <>
+      item.count>0?
       <CartItem
       foodItemName={item.itemName}
       price={item.price}
-      itemCount={item.quantity}
+      itemCount={item.count}
       onPressPlus={() =>
-        this.setState({itemCount: this.state.itemCount + 1})
+        // this.setState({itemCount: this.state.itemCount + 1})
+        this.addItemQuantity(item.id)
       }
       onPressMinus={() => {
-        if (this.state.itemCount > 1) {
-          this.setState({itemCount: this.state.itemCount - 1});
-        } else {
-          this.setState({itemCount: this.state.itemCount});
-        } //set logic here
+        this.removeItem(item.id)
+        // if (this.state.itemCount > 1) {
+        //   this.setState({itemCount: this.state.itemCount - 1});
+        // } else {
+        //   this.setState({itemCount: this.state.itemCount});
+        // } //set logic here
       }}
-    />)
+      
+    />
+    : <View></View>
       // </>
-    
+    )
   }
   render() {
     console.log('hiiiiii')
