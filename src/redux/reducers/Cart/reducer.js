@@ -27,8 +27,8 @@ const cartReducer = (state = initialState, action) => {
 
       return {
         ...state,
-        // cartItemDetails: action.payload,
-        cartItemDetails: [...state.products, action.payload]
+        cartItemDetails: action.payload,
+        // cartItemDetails: [...state.products, action.payload]
 
       };
       

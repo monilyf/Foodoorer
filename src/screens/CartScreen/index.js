@@ -44,7 +44,7 @@ export class CartScreen extends Component {
   //   this.setState({cartItemDetails:cartItemDetails})
   // }
 
-  renderCartItem =(item)=>{
+  renderCartItem =({item})=>{
     console.log('------------ cart', this.props.cartItemsList);
     return(
       // <>
@@ -74,7 +74,7 @@ export class CartScreen extends Component {
     // const { one, two} = this.props.route.params;
     // console.log('hello from params=====-=-=-=-=-',one,two)
     // this.setState({cartItemDetails:cartItemDetails})
-    console.log('-----------this.props.cartItemId------',this.props.cartItemId)
+    // console.log('-----------this.props.cartItemId------',this.props.cartItemId)
     console.log('-----------this.props.cartItemList------',this.props.cartItemsList)
     return (
       <SafeAreaView >
@@ -111,7 +111,7 @@ export class CartScreen extends Component {
                 showsVerticalScrollIndicator={false}
                 data={this.props.cartItemsList}
                 extraData={this.state.selectedItem}
-                renderItem={({item}) => this.renderCartItem(item)}
+                renderItem={this.renderCartItem}
                 keyExtractor={item => item.id}
               />
             {/* <CartItem
@@ -334,7 +334,7 @@ const mapStateToProps = state => ({
 
   // isOnboardingDone: state.onBoarding.val,
   cartItemsList:state.cart.cartItemDetails,
-  cartItemId:state.cart.cartItemId
+  // cartItemId:state.cart.cartItemId
 });
 
 // const mapDispatchToProps = dispatch => 

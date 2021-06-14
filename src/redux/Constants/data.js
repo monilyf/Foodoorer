@@ -1,4 +1,3 @@
-
 export const category_Item = [
   {
     id: 1,
@@ -119,8 +118,9 @@ export const restaurants = [
     ratings: '3.9',
     rating: '3.9 ☆',
     area: 'Prahlad nagar',
-    priceForOne: '₹140 for one', time: '40-50 mins',
-  }
+    priceForOne: '₹140 for one',
+    time: '40-50 mins',
+  },
 ];
 
 export const popular_Item = [
@@ -132,7 +132,7 @@ export const popular_Item = [
     rating: '3.9 ☆',
     area: 'Prahlad nagar',
     image: require('../../assets/images/home_screen/chinese_bhel.jpg'),
-    foodMark: require('../../assets/images/icon_non_veg.png')
+    foodMark: require('../../assets/images/icon_non_veg.png'),
     // foodMark:'NON-VEG',
   },
   {
@@ -143,10 +143,9 @@ export const popular_Item = [
     rating: '3.9 ☆',
     area: 'Prahlad nagar',
     image: require('../../assets/images/home_screen/burger.jpg'),
-    foodMark: require('../../assets/images/icon_veg.png')
+    foodMark: require('../../assets/images/icon_veg.png'),
 
     // foodMark:'VEG'
-
   },
   {
     id: 3,
@@ -156,8 +155,7 @@ export const popular_Item = [
     rating: '3.9 ☆',
     area: 'Prahlad nagar',
     image: require('../../assets/images/home_screen/pizza2.jpg'),
-    foodMark: require('../../assets/images/icon_non_veg.png')
-
+    foodMark: require('../../assets/images/icon_non_veg.png'),
 
     // foodMark:'NON-VEG'
   },
@@ -169,12 +167,9 @@ export const popular_Item = [
     rating: '3.9 ☆',
     area: 'Prahlad nagar',
     image: require('../../assets/images/home_screen/pasta.jpg'),
-    foodMark: require('../../assets/images/icon_veg.png')
-
+    foodMark: require('../../assets/images/icon_veg.png'),
 
     // foodMark:'VEG'
-
-
   },
   {
     id: 5,
@@ -184,12 +179,9 @@ export const popular_Item = [
     rating: '3.9 ☆',
     area: 'Prahlad nagar',
     image: require('../../assets/images/home_screen/sandwich.jpg'),
-    foodMark: require('../../assets/images/icon_veg.png')
-
+    foodMark: require('../../assets/images/icon_veg.png'),
 
     // foodMark:'VEG'
-
-
   },
   {
     id: 6,
@@ -199,11 +191,9 @@ export const popular_Item = [
     rating: '3.9 ☆',
     area: 'Prahlad nagar',
     image: require('../../assets/images/home_screen/bhel.jpg'),
-    foodMark: require('../../assets/images/icon_veg.png')
-
+    foodMark: require('../../assets/images/icon_veg.png'),
 
     // foodMark:'VEG'
-
   },
   {
     id: 7,
@@ -213,51 +203,71 @@ export const popular_Item = [
     rating: '3.9 ☆',
     area: 'Prahlad nagar',
     image: require('../../assets/images/home_screen/diet.jpg'),
-    foodMark: require('../../assets/images/icon_veg.png')
-
+    foodMark: require('../../assets/images/icon_veg.png'),
 
     // foodMark:'VEG'
-
   },
 ];
 
 export let recommended_items = [
   {
-    id: 1, itemName: 'Creamy nachos',
+    id: 1,
+    itemName: 'Creamy nachos',
     image: require('../../assets/images/restaurant_screen/creamy_nachos.jpg'),
     description: 'with mexican salad',
-    price: '₹ 157', foodMark: require('../../assets/images/icon_veg.png'),
-    cout: 0
+    price: 157,
+    foodMark: require('../../assets/images/icon_veg.png'),
+    count: 0,
   },
   {
-    id: 2, itemName: 'Maharaja mac',
+    id: 2,
+    itemName: 'Maharaja mac',
     image: require('../../assets/images/restaurant_screen/2.jpg'),
     description: 'with french fries',
-    price: '₹ 107', foodMark: require('../../assets/images/icon_non_veg.png'),
-    cout: 0
+    price: 107,
+    foodMark: require('../../assets/images/icon_non_veg.png'),
+    count: 0,
   },
   {
-    id: 3, itemName: 'Mc Veggie mac',
+    id: 3,
+    itemName: 'Mc Veggie mac',
     image: require('../../assets/images/restaurant_screen/4.jpg'),
     description: 'free french fries',
-    price: '₹ 145', foodMark: require('../../assets/images/icon_veg.png'),
-    cout: 0
+    price: 145,
+    foodMark: require('../../assets/images/icon_veg.png'),
+    count: 0,
   },
   {
-    id: 4, itemName: 'Patsa',
+    id: 4,
+    itemName: 'Patsa',
     image: require('../../assets/images/home_screen/pasta.jpg'),
     description: 'free french fries',
-    price: '₹ 145', foodMark: require('../../assets/images/icon_veg.png'),
-    cout: 0
+    price: 120,
+    foodMark: require('../../assets/images/icon_veg.png'),
+    count: 0,
   },
-
 ];
 
-export const combo_meals = [
-  { id: 1, itemName: 'Mc Veggie mac', image: require('../../assets/images/restaurant_screen/4.jpg'), description: 'free french fries', price: '₹ 145', foodMark: require('../../assets/images/icon_veg.png') },
-  { id: 2, itemName: 'Patsa', image: require('../../assets/images/home_screen/pasta.jpg'), description: 'free french fries', price: '₹ 145', foodMark: require('../../assets/images/icon_veg.png') },
-
-]
+export let combo_meals = [
+  {
+    id: 5,
+    count: 0,
+    itemName: 'Mc Veggie mac',
+    image: require('../../assets/images/restaurant_screen/4.jpg'),
+    description: 'free french fries',
+    price: 76,
+    foodMark: require('../../assets/images/icon_veg.png'),
+  },
+  {
+    id: 6,
+    count: 0,
+    itemName: 'Patsa',
+    image: require('../../assets/images/home_screen/pasta.jpg'),
+    description: 'free french fries',
+    price: 89,
+    foodMark: require('../../assets/images/icon_veg.png'),
+  },
+];
 
 export const restaurants_image_slider = [
   require('../../assets/images/restaurant_screen/1.jpg'),
@@ -267,14 +277,74 @@ export const restaurants_image_slider = [
 ];
 
 export const offers = [
-
-  { id: 1, title: "Gulab Jamun", type: "Desserts", rating: "4.5", time: "40-50mins", Price: "₹140.00", image: require('../../assets/images/Gulab_logo.jpg'), offerTag: "HOT DEAL", discount: "10% OFF", costForTwo: '₹ 800 for 2', offerType: 'Delivery', price: '₹ 320' },
-  { id: 2, title: "Imarti", type: "Sweets", rating: "4.1", time: "40-70mins", Price: "₹160.00", image: require('../../assets/images/imarti_logo.jpg'), offerTag: "HOT DEAL", discount: "20% OFF", costForTwo: '₹ 500 for 2', offerType: 'Voucher', price: '₹ 320' },
-  { id: 3, title: "Jalebi", type: "Desserts", rating: "4", time: "40-60mins", Price: "₹100.00", image: require('../../assets/images/jalebi_logo.jpg'), offerTag: "HOT DEAL", discount: "30% OFF", costForTwo: '₹ 400 for 2', offerType: 'Delivery', price: '₹ 320' },
-  { id: 4, title: "Kaju Katli", type: "Sweets", rating: "4.0", time: "40-70mins", Price: "₹240.00", image: require('../../assets/images/kajukatli_logo.jpg'), offerTag: "HOT DEAL", discount: "40% OFF", costForTwo: '₹ 700 for 2', offerType: 'Voucher', price: '₹ 320' },
-  { id: 5, title: "Ghevar", type: "Sweets", rating: "4.9", time: "40-60mins", Price: "₹240.00", image: require('../../assets/images/ghevar_logo.jpg'), offerTag: "HOT DEAL", discount: "50% OFF", costForTwo: '₹ 900 for 2', offerType: 'Delivery', price: '₹ 320' }
-
-
-
-
-]
+  {
+    id: 1,
+    title: 'Gulab Jamun',
+    type: 'Desserts',
+    rating: '4.5',
+    time: '40-50mins',
+    Price: '₹140.00',
+    image: require('../../assets/images/Gulab_logo.jpg'),
+    offerTag: 'HOT DEAL',
+    discount: '10% OFF',
+    costForTwo: '₹ 800 for 2',
+    offerType: 'Delivery',
+    price: '₹ 320',
+  },
+  {
+    id: 2,
+    title: 'Imarti',
+    type: 'Sweets',
+    rating: '4.1',
+    time: '40-70mins',
+    Price: '₹160.00',
+    image: require('../../assets/images/imarti_logo.jpg'),
+    offerTag: 'HOT DEAL',
+    discount: '20% OFF',
+    costForTwo: '₹ 500 for 2',
+    offerType: 'Voucher',
+    price: '₹ 320',
+  },
+  {
+    id: 3,
+    title: 'Jalebi',
+    type: 'Desserts',
+    rating: '4',
+    time: '40-60mins',
+    Price: '₹100.00',
+    image: require('../../assets/images/jalebi_logo.jpg'),
+    offerTag: 'HOT DEAL',
+    discount: '30% OFF',
+    costForTwo: '₹ 400 for 2',
+    offerType: 'Delivery',
+    price: '₹ 320',
+  },
+  {
+    id: 4,
+    title: 'Kaju Katli',
+    type: 'Sweets',
+    rating: '4.0',
+    time: '40-70mins',
+    Price: '₹240.00',
+    image: require('../../assets/images/kajukatli_logo.jpg'),
+    offerTag: 'HOT DEAL',
+    discount: '40% OFF',
+    costForTwo: '₹ 700 for 2',
+    offerType: 'Voucher',
+    price: '₹ 320',
+  },
+  {
+    id: 5,
+    title: 'Ghevar',
+    type: 'Sweets',
+    rating: '4.9',
+    time: '40-60mins',
+    Price: '₹240.00',
+    image: require('../../assets/images/ghevar_logo.jpg'),
+    offerTag: 'HOT DEAL',
+    discount: '50% OFF',
+    costForTwo: '₹ 900 for 2',
+    offerType: 'Delivery',
+    price: '₹ 320',
+  },
+];

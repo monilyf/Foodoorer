@@ -51,38 +51,8 @@ class RestaurantScreen extends Component {
       userCartItemsList: [],
       showDropDown: false,
       totalPrice: 0,
-      cartData:[{
-        id: 1, itemName: 'Creamy nachos',
-        image: require('../../assets/images/restaurant_screen/creamy_nachos.jpg'),
-        description: 'with mexican salad',
-        price: '₹ 157', foodMark: require('../../assets/images/icon_veg.png'),
-        count : 0
-      },
-      {
-        id: 2, itemName: 'Maharaja mac',
-        image: require('../../assets/images/restaurant_screen/2.jpg'),
-        description: 'with french fries',
-        price: '₹ 107', foodMark: require('../../assets/images/icon_non_veg.png'),
-        count : 0
-
-      },
-      {
-        id: 3, itemName: 'Mc Veggie mac',
-        image: require('../../assets/images/restaurant_screen/4.jpg'),
-        description: 'free french fries',
-        price: '₹ 145', foodMark: require('../../assets/images/icon_veg.png'),
-        count : 0
-
-      },
-      {
-        id: 4, itemName: 'Patsa',
-        image: require('../../assets/images/home_screen/pasta.jpg'),
-        description: 'free french fries',
-        price: '₹ 145', foodMark: require('../../assets/images/icon_veg.png'),
-        count : 0
-
-      },
-    ]
+      totalItems:0,
+      cartData:recommended_items
       // selectedItem:{
       //   id:null,
       //   itemName:null,
@@ -114,13 +84,26 @@ class RestaurantScreen extends Component {
     if (temp.length > 0) {
       let temps = temp[indexc];
       temps.count = 1;
+      
       temp[indexc]=temps;
-      this.setState({cartData:temp})
+      this.setState({totalItems:this.state.totalItems+1,totalPrice:this.state.totalPrice+(temps.price),cartData:temp})
       console.log(temps,"count data....................");
     }
   }
 
- 
+  addItemQuantity = (id) => {
+    let temp = this.state.cartData;
+    let indexc=this.state.cartData.findIndex(item=>item.id == id);
+    console.log(indexc,'=============',temp,"counddddddddddddt data....................");
+
+    if (temp.length > 0) {
+      let temps = temp[indexc];
+      temps.count +=1;
+      temp[indexc]=temps;
+      this.setState({totalItems:this.state.totalItems+1,totalPrice:this.state.totalPrice+(temps.price),cartData:temp})
+      console.log(temps,"count data....................");
+    }
+  }
 
 
   removeItem=(id)=>{
@@ -131,7 +114,7 @@ class RestaurantScreen extends Component {
 
       temps.count = temps.count-1;
       temp[indexc]=temps;
-      this.setState({cartData:temp})
+      this.setState({totalItems:this.state.totalItems-1,totalPrice:this.state.totalPrice-(temps.price),cartData:temp})
       console.log(temps,"count data....................");
     }
   }
@@ -178,7 +161,7 @@ class RestaurantScreen extends Component {
                   // console.log('----------id---------', data.id, data.quantity)
                 }}
                 onPressPlus={() => {
-                 
+                  this.addItemQuantity(item.id)
                   // this.props.cartItemIds === this.state.selectedId
                   // this.state
                   // console.log('########', this.props.cartItemIds, '#######', this.state.selectedId)
@@ -377,7 +360,7 @@ class RestaurantScreen extends Component {
               }}>
               <View>
                 <Label small bolder>
-                  {this.state.userCartItemsIds.length} Item | ₹ 157{' '}
+                  {this.state.totalItems} Item | ₹ {this.state.totalPrice}{' '}
                 </Label>
                 <Label xsmall color={Color.DARK_GRAY}>
                   Extra charges may apply
@@ -386,8 +369,8 @@ class RestaurantScreen extends Component {
               <TouchableOpacity style={{ alignSelf: 'center' }}
                 // onPress={()=>this.props.navigation.push(Routes.CartScreen,this.state.userCartItemsList)}
                 onPress={() => {
-                  this.props.add_itemId_cart(this.state.userCartItemsIds);
-                  this.props.add_item_details([...this.state.userCartItemsList])
+                  // this.props.add_itemId_cart(this.state.userCartItemsIds);
+                  this.props.add_item_details(this.state.cartData)
                   this.props.navigation.navigate(Routes.CartScreen)
                 }}
               >

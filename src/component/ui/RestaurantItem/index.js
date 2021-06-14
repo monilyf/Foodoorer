@@ -39,7 +39,7 @@ const RestaurantItem = (props) => {
             style={CommonStyles.divider}></View>
          <View style={styles.row}>
          <Label small bolder color={Color.PRIMARY_DARK}>
-            {props.price}
+         ₹{' '}{props.price}
           </Label>
          {props.children}
          {/* <TouchableOpacity >
