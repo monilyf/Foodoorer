@@ -14,7 +14,7 @@ import {
   ItemCard,
   DealsByRestaurant,
   Header,
-  Search,
+  RestaurantCard,
   Label,
 } from '../../component';
 import Color from '../../utils/Color';
@@ -80,8 +80,23 @@ export class Home extends Component {
     );
   };
 
+   renderRestaurants = item => {
+    return (
+      <RestaurantCard
+      onPress={()=>props.navigation.push(Routes.RestaurantScreen)}
+        image={item.image}
+         area={item.area}
+         rating={item.rating}
+        priceForOne={item.priceForOne}
+        title={item.title}
+        description={item.description}
+        discount={item.discount}
+      />
+    );
+  };
+
   render() {
-  // console.log('-----`------home screen render ----------- state--',this.props.isOnboardingDone)
+  console.log('-----`------home screen render ----------- state--',this.props.isOnboardingDone)
 
     return (
       <SafeAreaView>
@@ -181,6 +196,21 @@ export class Home extends Component {
                 showsHorizontalScrollIndicator={false}
                 data={restaurants}
                 renderItem={({item}) => this.renderNearbyDeals(item)}
+                keyExtractor={this.keyExtractor}
+              />
+            </View>
+
+            <View style={styles.divider}></View>
+            <ContentHeader
+              title="Nearby Restaurants"
+            />
+
+            <View style={styles.listStyle,{marginLeft:0,paddingBottom:150}}>
+              <FlatList
+                // horizontal
+                showsHorizontalScrollIndicator={false}
+                data={restaurants}
+                renderItem={({item}) => this.renderRestaurants(item)}
                 keyExtractor={this.keyExtractor}
               />
             </View>

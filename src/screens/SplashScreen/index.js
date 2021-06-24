@@ -28,19 +28,52 @@ class SplashScreen extends Component {
     this.checkAuthentication();
   }
 
+
   checkAuthentication = async () => {
-    let authenticated = await AsyncStorage.getItem('register_data');
-    console.log('checkAuth Authenticated val - ', authenticated);
-    if (authenticated != null) {
+    let isAuthenticated = await AsyncStorage.getItem('token');
+    console.log('====================================');
+    console.log(isAuthenticated);
+    console.log('====================================');
+    if (
+      isAuthenticated != null &&
+      isAuthenticated != undefined &&
+      isAuthenticated != ''
+    ) {
+      this.goTo(true);
+      global.userToken = isAuthenticated;
+    }
+    else
+      this.goTo(false);
+  };
+
+
+  goTo = async value => {
+    if (value) {
       setTimeout(() => {
         this.props.navigation.dispatch(this.resetToAuth);
-      }, 3000);
+      }, 2000);
     } else {
       setTimeout(() => {
         this.props.navigation.dispatch(this.resetToNotAuth);
-      }, 3000);
+      }, 2000);
     }
   };
+
+
+
+  // checkAuthentication = async () => {
+  //   let authenticated = await AsyncStorage.getItem('register_data');
+  //   console.log('checkAuth Authenticated val - ', authenticated);
+  //   if (authenticated != null) {
+  //     setTimeout(() => {
+  //       this.props.navigation.dispatch(this.resetToAuth);
+  //     }, 3000);
+  //   } else {
+  //     setTimeout(() => {
+  //       this.props.navigation.dispatch(this.resetToNotAuth);
+  //     }, 3000);
+  //   }
+  // };
 
   render() {
   console.log('splash screen render state--',this.props.register_data)

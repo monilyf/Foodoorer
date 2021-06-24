@@ -7,8 +7,8 @@ const initialState = {
   error:''
 };
 const cartReducer = (state = initialState, action) => {
-  console.log('cartReducer--action=-=-=', action.payload);
-  console.log('cartReducer--state=-=-=', state);
+  // console.log('cartReducer--action=-=-=', action.payload);
+  // console.log('cartReducer--state=-=-=', state);
   switch (action.type) {
 
 

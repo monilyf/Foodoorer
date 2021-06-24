@@ -11,6 +11,7 @@ import {
 } from '../../component';
 import {restaurants, offers} from '../../redux/Constants/data';
 import Routes from '../../router/routes';
+import Color from '../../utils/Color'
 
 const discount_card_image = [
   {id: 1, source: require('../../assets/images/discount2.png')},
@@ -53,7 +54,7 @@ class RestaurantOfferScreen extends React.Component {
   renderTodaysOffers = item => {
     return (
       <TodayOfferCard
-        onPress={() =>this.props.navigation.push(Routes.CartScreen)}
+        onPress={() =>this.props.navigation.push(Routes.RestaurantScreen)}
         image={item.image}
         title={item.title}
         time={item.time}
@@ -68,6 +69,10 @@ class RestaurantOfferScreen extends React.Component {
     return (
       <FreeDeliveryItemCard
         onPress={() => this.props.navigation.push(Routes.RestaurantScreen)}
+        style={{
+          // backgroundColor:Color.ALICE_BLUE,
+            paddingRight: this.state.scrollItemHorizontal ? null : 110,
+          }}
         title={item.title}
         image={item.image}
         rating={item.rating}
@@ -136,7 +141,8 @@ class RestaurantOfferScreen extends React.Component {
           //  horizontal={this.state.scrollItemHorizontal}
            contentContainerStyle={{alignSelf: 'flex-start'}}
           // style={{
-          //   marginRight: this.state.scrollItemHorizontal ? null : 30,
+          // // backgroundColor:Color.ALICE_BLUE,
+          //   paddingRight: this.state.scrollItemHorizontal ? null : 30,
           // }}
         
           numColumns={this.state.scrollItemHorizontal?Math.ceil(offers.length / 2):1} 

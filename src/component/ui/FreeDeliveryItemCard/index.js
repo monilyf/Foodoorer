@@ -10,7 +10,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 const FreeDeliveryItemCard = props => {
   return (
     <TouchableOpacity onPress={props.onPress}>
-      <View style={styles.container}>
+      <View style={[styles.container,props.style]}>
         <Image style={styles.imageContainer} source={props.image} />
         <View style={styles.detailsContaier}>
           <Label color={Color.PRIMARY_DARK}  small bolder>

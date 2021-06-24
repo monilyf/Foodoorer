@@ -10,7 +10,14 @@
 
 
 
+import {types} from '../../Constants/action-types';
 
+export const registerUserAction = (user, props) => {
+    return {
+        type: types.CREATE_USER,
+        payload: user, props
+    }
+}
 
 
 

@@ -66,6 +66,7 @@ class Profile extends Component {
   async removeItemValue(key) {
     try {
         await AsyncStorage.removeItem(key);
+        // await AsyncStorage.removeItem(key2);
         return true;
     }
     catch(exception) {
@@ -77,7 +78,7 @@ class Profile extends Component {
     try {
       console.log('logout');
       // await AsyncStorage.clear();
-      this.removeItemValue('register_data')
+      this.removeItemValue('token')
       // this.removeItemValue('OnBoarding')
       this.props.navigation.dispatch(this.resetStack);
       // this.props.navigation.push(Routes.SignIn);

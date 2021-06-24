@@ -24,7 +24,8 @@ import { bindActionCreators } from 'redux';
 import {createUser} from '../../redux/reducers/SignUp/action'
 import { connect } from 'react-redux';
 import {onBoardingDone} from '../../redux/reducers/OnBoarding/action'
-import {CommonActions} from '@react-navigation/routers'
+import {CommonActions} from '@react-navigation/routers';
+import {registerUserAction} from '../../redux/reducers/SignUp/action';
 
 export class SignUp extends Component {
   constructor(props) {
@@ -95,22 +96,30 @@ export class SignUp extends Component {
         password: this.state.password,
         confirmPassword: this.state.confirmPassword,
       };
-      AsyncStorage.setItem('register_data', JSON.stringify(register_data));
+      // AsyncStorage.setItem('register_data', JSON.stringify(register_data));
 
-      console.log('async storage register_data:', register_data);
+      // console.log('async storage register_data:', register_data);
       // this.props.navigation.navigate(Routes.SignIn);
       
-      this.signUpUserRequest(register_data);
+      this.signUpUserRequest();
     }
   };
 
-  signUpUserRequest = (register_data) => {
+  signUpUserRequest = async() => {
     console.log('signUpUserRequest')
-    // const {name,email,phone,password} = this.state;
+    const {name,email,phone,password,confirmPassword} = this.state;
     // console.log('store register_data',name,email,password,phone);
     // this.props.createUser(register_data);
-    
-    this.props.navigation.dispatch(this.resetToAuth);
+    let param={
+        name: this.state.name,
+        email: this.state.email,
+        phoneNo: this.state.phone,
+        password: this.state.password,
+        confirmPassword: this.state.confirmPassword
+
+    }
+    this.props.registerUserAction(param,this.props)
+    // this.props.navigation.dispatch(this.resetToAuth);
 
   }
   resetToAuth = CommonActions.reset({
@@ -293,15 +302,13 @@ export class SignUp extends Component {
 //   register:state.signUp.signUpResponse
 // })
 
-// const mapDispatchToProps = (dispatch) => 
-//   bindActionCreators(
-//     {
-//       createUser,
-//       // onBoardingDone,
-//     },
-//     dispatch,
-//   );
+const mapDispatchToProps = (dispatch) => 
+  bindActionCreators(
+    {
+      registerUserAction,
+    },
+    dispatch,
+  );
 
 
-// export default connect(mapStateToProps,mapDispatchToProps)(SignUp);
-export default SignUp;
+export default connect(null,mapDispatchToProps)(SignUp);

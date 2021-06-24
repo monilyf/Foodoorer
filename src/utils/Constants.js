@@ -42,8 +42,16 @@ const ResponseCode = {
   BAD_GATEWAY: 502,
 };
 
+const apiMethods = {
+  GET: 'GET',
+  POST: 'POST',
+  PUT: 'PUT',
+  DELETE: 'DELETE'
+};
+
 export default {
   notificationKey,
   ResponseCode,
   Permissions,
+  apiMethods
 };

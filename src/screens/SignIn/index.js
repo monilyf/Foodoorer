@@ -23,11 +23,14 @@ import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
 import {CommonActions} from '@react-navigation/routers';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+
 import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import {validation} from '../../utils/ValidationUtils';
 import Routes from '../../router/routes';
 import CommonStyle from '../../utils/CommonStyle';
 import * as Animatable from 'react-native-animatable';
+import {loginUserAction} from '../../redux/reducers/SignIn/action'
 
 export class SignIn extends Component {
   constructor(props) {
@@ -55,8 +58,8 @@ export class SignIn extends Component {
   };
 
   checkAuthentication = async () => {
-    try {
-      let user = await AsyncStorage.getItem('register_data');
+    // try {
+   /*   let user = await AsyncStorage.getItem('register_data');
       let parsed = JSON.parse(user);
       console.log(parsed.email, parsed.password);
 
@@ -72,7 +75,14 @@ export class SignIn extends Component {
     } catch (error) {
       alert("You don't have account");
       this.props.navigation.push(Routes.SignIn);
-    }
+    }*/
+
+    const {email,password} = this.state;
+    let param = {
+      email: this.state.email,
+      password: this.state.password,
+    };
+    this.props.loginUserAction(param,this.props);
   };
 
   handleOnSubmit = () => {
@@ -101,6 +111,67 @@ export class SignIn extends Component {
       this.checkAuthentication();
     }
   };
+
+
+  // loginUserRequest = async () => {
+  //   console.log('login User clicked');
+
+  //   const { email, password } = this.state;
+  //   this.setState({ visibility: true }, () => {
+  //     let param =
+  //     {
+  //       email: this.state.email,
+  //       password: this.state.password,
+  //     };
+  //     this.props.loginUserAction(param, this.props,
+  //       // cbError = err => {
+  //       //   console.log(err)
+
+  //       // },
+  //       // cbSuccess = err => {
+  //       //   console.log("Hello World")
+
+  //       // }
+  //     );
+  //     // this.fetchAll(param);
+  //   });
+  // }
+
+  // checked_filed = () => {
+  //   let emailError, PasswordError, isValid;
+  //   emailError = validation('email', this.state.email);
+  //   PasswordError = validation('password', this.state.password);
+  //   if (emailError != null || PasswordError != null) {
+  //     this.setState({
+  //       emailError: emailError,
+  //       PasswordError: PasswordError,
+  //     });
+  //     isValid = false;
+  //   } else {
+  //     this.setState({
+  //       emailError: '',
+  //       PasswordError: '',
+  //     });
+  //     isValid = true;
+  //   }
+  //   if (true) {
+  //     this.loginUserRequest();
+
+  //     // this.props.navigation.navigate(Routes.Auth, {
+  //     //   email: this.state.email,
+  //     //   password: this.state.password,
+  //     // });
+  //   }
+  // };
+
+  // making_api_call = () => {
+  //   if (this.checked_filed()) {
+  //     // this.props.navigation.navigate(Routes.Home);
+  //     this.props.navigation.navigate(Routes.Home)
+  //   }
+  // };
+
+  
 
   render() {
     return (
@@ -188,7 +259,7 @@ export class SignIn extends Component {
 
                     <SubmitButton
                       onPress={() => {
-                        this.handleOnSubmit();
+                        this.handleOnSubmit()
                       }}
                       buttonText="Sign In"
                     />
@@ -228,4 +299,22 @@ export class SignIn extends Component {
   }
 }
 
-export default SignIn;
+const mapStateToProps = (state) =>{
+  console.log('====================================');
+  console.log('------state login ',state);
+  console.log('====================================');
+  return{
+    signIn:state.signIn
+  }
+}
+
+const mapDispatchToProps = dispatch => 
+  bindActionCreators(
+    {
+      loginUserAction,
+    },
+    dispatch
+  )
+
+
+export default connect(mapStateToProps,mapDispatchToProps)(SignIn);

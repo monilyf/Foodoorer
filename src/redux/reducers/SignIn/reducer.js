@@ -2,8 +2,9 @@ import * as types from '../../Constants/action-types';
 
 const initialState = {
   user: [],
+  token:''//
 };
-const loginReducer = (state = initialState, action) => {
+const signInReducer = (state = initialState, action) => {
   switch (action.type) {
     case types.FETCH_USER_SUCCESS:
       return {
@@ -20,4 +21,4 @@ const loginReducer = (state = initialState, action) => {
   }
 };
 
-export default loginReducer;
+export default signInReducer;

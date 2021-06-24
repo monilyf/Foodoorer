@@ -8,8 +8,8 @@ import addressReducer from './Address/reducer';
 
 
 const rootReducer = combineReducers({
-   // signUp:signUpReducer,
-    // signIn:signInReducer,
+    signUp:signUpReducer,
+    signIn:signInReducer,
     onBoarding:onBoardingReducer,
     // cart:cartReducer,
     cart:cartReducer,
