@@ -10,6 +10,8 @@ import {connect} from 'react-redux';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {onBoardingDone} from '../../redux/reducers/OnBoarding/action';
 import {bindActionCreators} from 'redux';
+import {onBoardingDoneAction} from '../../redux/reducers/Common/action'
+import { resetNavigation } from '../../utils/CommonFunctions';
 
 const slides = [
   {
@@ -33,8 +35,16 @@ const slides = [
 ];
 class Onboarding extends React.Component {
   
+  state = {
+    onBoardingDone: false,
+  };
+
   onDone = () => {
-    this.props.onDone();
+    // this.props.onDone();
+    this.setState({ onBoardingDone: true });
+    this.props.onBoardingDoneAction(true);
+    resetNavigation(this.props.navigation, Routes.NotAuthenticated);
+    // this.props.onDone();
   };
 
   RenderNextButton = () => {
@@ -48,12 +58,12 @@ class Onboarding extends React.Component {
   RenderDoneButton = () => {
     return (
       <TouchableOpacity
-        onPress={() => {
-
-          this.props.onBoardingDone(true);
-
-          this.props.navigation.navigate(Routes.SignIn);
-        }}>
+        // onPress={() => {
+        //   // this.props.onBoardingDoneAction(true);
+        //   // this.props.navigation.navigate(Routes.SignIn);
+        // }}
+        onPress={this.onDone}
+        >
         <View style={styles.buttonCircle}>
           <Icon name="thumbs-up" style={styles.icon} />
         </View>
@@ -90,9 +100,9 @@ class Onboarding extends React.Component {
 
     return (
       <>
-        {this.props.isOnboardingDone === true ? (
+        {/* {this.props.isOnboardingDone === true ? (
           this.props.navigation.navigate(Routes.SignIn)
-        ) : (
+        ) : ( */}
           <View style={{flex: 1}}>
             <StatusBars hidden={true} />
             <AppIntroSlider
@@ -105,24 +115,24 @@ class Onboarding extends React.Component {
               activeDotStyle={styles.activeDotStyle}
             />
           </View>
-        )}
+        {/* )} */}
       </>
     );
   }
 }
 
-const mapStateToProps = state => ({
-  isOnboardingDone: state.onBoarding.val,
-});
+// const mapStateToProps = state => ({
+//   isOnboardingDone: state.common.boarding,
+// });
 
 const mapDispatchToProps = dispatch => 
   bindActionCreators(
     {
-      onBoardingDone,
+      onBoardingDoneAction,
     },
     dispatch,
   );
 
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Onboarding);
+export default connect(null, mapDispatchToProps)(Onboarding);

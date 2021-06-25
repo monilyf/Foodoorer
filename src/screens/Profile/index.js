@@ -1,5 +1,5 @@
 import React, {useState, Component} from 'react';
-import {View, SafeAreaView, TouchableOpacity} from 'react-native';
+import {View, SafeAreaView, TouchableOpacity,Image} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   StatusBars,
@@ -16,6 +16,9 @@ import styles from './style';
 import Routes from '../../router/routes';
 import {CommonActions} from '@react-navigation/routers';
 import {validation} from '../../utils/ValidationUtils';
+import ImagePicker from 'react-native-image-crop-picker';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
 class Profile extends Component {
   constructor(props) {
@@ -88,6 +91,9 @@ class Profile extends Component {
   };
 
   render() {
+    console.log('====================================');
+    console.log('------render profile ',this.props.profile);
+    console.log('====================================');
     return (
       <SafeAreaView>
         <StatusBars
@@ -97,12 +103,31 @@ class Profile extends Component {
         />
         <View style={styles.container}>
           <View style={styles.profileHeader}>
+   
+          <TouchableOpacity
+            activeOpacity={0.8}
+            onPress={ () => { this.openActionSheet() }}
+           
+          >
+            <Image
+              source={require('../../assets/images/facebook.png')}
+              style={styles.ProfileImgSty}
+              resizeMode="cover"
+            />
+            <View style={styles.CAbViewSty}>
+              <Icon name="camera" size={12} color={Color.PRIMARY_DARK}/>
+            </View>
+
+
+          </TouchableOpacity>
+
+ 
             <View>
               <Label bolder large color={Color.PRIMARY_DARK}>
-                Steve Smith
+               {this.props.profile.name.charAt(0).toUpperCase() + this.props.profile.name.slice(1)}
               </Label>
               <Label color={Color.DARK_GRAY} small>
-                stevesmith@gmail.com
+                {this.props.profile.email}
               </Label>
             </View>
             <View style={{alignSelf: 'center'}}>
@@ -250,4 +275,23 @@ class Profile extends Component {
     );
   }
 }
-export default Profile;
+// export default Profile;
+const mapStateToProps = (state) =>{
+  console.log('====================================');
+  console.log('------state profile ',state);
+  console.log('====================================');
+  return{
+    profile:state.signIn.user
+  }
+}
+
+// const mapDispatchToProps = dispatch => 
+//   bindActionCreators(
+//     {
+//       loginUserAction,
+//     },
+//     dispatch
+//   )
+
+
+export default connect(mapStateToProps,null)(Profile);

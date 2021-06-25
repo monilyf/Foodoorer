@@ -1,15 +1,10 @@
-// import {FETCH_USER} from '../../Constants/action-types';
-//  export const getUser = (user) => ({
-//      type: FETCH_USER,
-//      user,
-// })
-
-import {FETCH_USER} from '../../Constants/action-types';
-
+import * as types from '../../constants/action-types';
 
 export const loginUserAction = (param, props) => {
+    console.log('loginUserAction',param,props)
+    
     return {
-        type: FETCH_USER,
+        type: types.LOGIN_USER,
         payload: { param, props }
     }
 }

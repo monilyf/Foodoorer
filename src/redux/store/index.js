@@ -1,7 +1,7 @@
 import {createStore,applyMiddleware} from 'redux';
 import rootReducer from '../reducers';
 import createSagaMiddleware from 'redux-saga';
-import rootSaga from '../saga';
+import rootSaga from '../saga/index';
 import {persistStore, persistReducer} from 'redux-persist';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -11,7 +11,7 @@ const persistConfig = {
     storage: AsyncStorage,
     // blacklist: ['cart']
 };
-
+console.log('Storeeeeeeeeeeee')
 const persistedReducer = persistReducer(persistConfig,rootReducer);
 
 

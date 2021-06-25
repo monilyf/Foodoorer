@@ -10,7 +10,7 @@ import {
 } from '../../component';
 import Color from '../../utils/Color';
 import styles from './style';
-import {restaurants} from '../../redux/Constants/data'
+import {restaurants} from '../../redux/constants/data'
 import Routes from '../../router/routes';
 import CommonStyle from '../../utils/CommonStyle';
 import Icon from 'react-native-vector-icons/Feather';

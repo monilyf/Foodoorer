@@ -1,4 +1,4 @@
-import {types} from '../../Constants/action-types';
+import * as types from '../../constants/action-types';
 
 let initialState = { 
     signUpResponse : {}
@@ -10,10 +10,10 @@ const signUpReducer = (state = initialState, action) => {
         // case types.CREATE_USER:
         //     return {...state,signUpResponse:action.payload}
         
-        case types.CREATE_USER_SUCCESS:
+        case types.REGISTER_USER_SUCCESS:
             return {...state,signUpResponse:action.payload}
 
-        case types.CREATE_USER_FAILURE:
+        case types.REGISTER_USER_FAILURE:
             return {...state,signUpResponse:action.payload}
 
         default:

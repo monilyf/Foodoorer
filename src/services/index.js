@@ -1,48 +1,52 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import apiMethods from '../utils/Constants'
-// import NetInfo from "@react-native-community/netinfo";
 import NetInfo from "@react-native-community/netinfo";
 import { axiosInstance } from './serviceInstance';
+import { notifyMsg } from '../utils/CommonFunctions';
 
 const logout = (props) => {
-    AsyncStorage.clear();
-    // props.navigation.navigate('Auth')
+
 }
+console.log('service index')
 const errorResponse = (err) => {
+    console.log(err)
+    debugger
     let errorRes = {};
     errorRes.isSucess = false;
-    errorRes.message = "Failed, Something went wrong!";
-    errorRes.error = err;
+    errorRes.error = err.response.data;
     return errorRes;
 }
-const successResponse = (response, props) => {
-    var successRes = {};
-    if (response?.isTokenExpired) {
-        successRes.isSucess = false;
-        logout(props);
-        return successRes;
-    }
+const successResponse = (response) => {
+
+    let successRes = {};
+    // if (response?.isTokenExpired) {
+    //     successRes.isSucess = false;
+    //     logout(props);
+    //     return successRes;
+    // }
     successRes.isSucess = true;
-    successRes.Result = response;
-    return successRes
+    successRes.Result = response.data;
+    return successRes;
 }
 
-export const callService = (url, method = "", params = {}, props = {}, cbError, cbSuccess) => {
+export const callService = ({ url, method = "", params = {}, props = {} }) => {
     return NetInfo.fetch().then(state => {
         if (state.isConnected) {
             switch (method) {
                 case apiMethods.apiMethods.POST:
                     return axiosInstance.post(url, params)
                         .then(response => {
-                            return successResponse(response, props)
+                            debugger
+                            return successResponse(response)
                         })
                         .catch(error => {
+                            debugger
                             return errorResponse(error);
                         });
                 case apiMethods.apiMethods.PUT:
                     return axiosInstance.put(url, params)
                         .then(response => {
-                            return successResponse(response, props)
+                            return successResponse(response)
                         })
                         .catch(error => {
                             return errorResponse(error);
@@ -50,7 +54,7 @@ export const callService = (url, method = "", params = {}, props = {}, cbError, 
                 case apiMethods.apiMethods.DELETE:
                     return axiosInstance.delete(url, params)
                         .then(response => {
-                            return successResponse(response, props)
+                            return successResponse(response)
                         })
                         .catch(error => {
                             return errorResponse(error);
@@ -58,18 +62,14 @@ export const callService = (url, method = "", params = {}, props = {}, cbError, 
                 default:
                     return axiosInstance.get(url)
                         .then(response => {
-                            return successResponse(response, props)
+                            return successResponse(response)
                         })
                         .catch(error => {
                             return errorResponse(error);
                         });
             }
         } else {
-            cbError(
-                {
-                    status: 422,
-                    message: 'Internet connection not available.'
-                })
+            notifyMsg({ message: "No internet connection!", success: false });
             return errorResponse({});
         }
     });

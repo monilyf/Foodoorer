@@ -1,4 +1,4 @@
-import {cartAction} from '../../Constants/action-types';
+import {cartAction} from '../../constants/action-types';
 import {put,call} from 'redux-saga/effects';
 import axios from 'axios';
 

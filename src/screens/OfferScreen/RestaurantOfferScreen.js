@@ -9,7 +9,7 @@ import {
   TodayOfferCard,
   AllOfferCard,
 } from '../../component';
-import {restaurants, offers} from '../../redux/Constants/data';
+import {restaurants, offers} from '../../redux/constants/data';
 import Routes from '../../router/routes';
 import Color from '../../utils/Color'
 

@@ -28,12 +28,12 @@
 // // }
 
 
-// import * as types from '../../constants/action-types';
+// import * as types from '../constants/action-types';
 
 // import { put, call } from 'redux-saga/effects';
-// import { SignUpService } from './services';
+// import { SignUpService } from '../../';
 // import AsyncStorage from '@react-native-async-storage/async-storage';
-// import Routes from '../../../router/routes';
+// import Routes from '../../router/routes';
 
 // import Snackbar from 'react-native-snackbar';
 // import { Alert } from 'react-native';
@@ -46,7 +46,7 @@
 //         console.log('\n\n', props, "propsss\n\n")
 //         const result = yield call(SignUpService, action);
 //         if (result?.isSucess)
-//             yield put({ type: types.CREATE_USER_SUCCESS, payload: result.Result.data.data })
+//             yield put({ type: types.REGISTER_USER_SUCCESS, payload: result.Result.data.data })
 //         console.log("SignUp token", result.Result.data.data.token)
 //         console.log("token------", result)
 //         AsyncStorage.setItem("token", result.Result.data.data.token)
@@ -58,7 +58,7 @@
 //     catch (e) {
 //         console.log("user failure")
 //         // yield call(Alert.alert, "Faliure", "SignUp Unsuccessfully ")
-//         yield put({ type: types.CREATE_USER_FAILURE, payload: e.message });
+//         yield put({ type: types.REGISTER_USER_FAILURE, payload: e.message });
 //         Snackbar.show({
 //             test: "SignUp Failed ",
 //             duration: Snackbar.LENGTH_LONG

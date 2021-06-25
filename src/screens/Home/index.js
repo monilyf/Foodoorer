@@ -25,7 +25,7 @@ import {
   restaurants,
   category_Item,
   popular_Item,
-} from '../../redux/Constants/data';
+} from '../../redux/constants/data';
 import ThemeUtils from '../../utils/ThemeUtils';
 import Icon from 'react-native-vector-icons/Feather';
 import { connect } from 'react-redux';

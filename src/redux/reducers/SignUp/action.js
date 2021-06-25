@@ -10,7 +10,10 @@
 
 
 
-import {types} from '../../Constants/action-types';
+import * as types from '../../constants/action-types';
+
+
+
 
 export const registerUserAction = (user, props) => {
     return {

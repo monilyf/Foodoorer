@@ -1,4 +1,4 @@
-import {SET_ONBOARDING, SET_ONBOARDING_SUCCESS,SET_ONBOARDING_FAILURE} from '../../Constants/action-types';
+import {SET_ONBOARDING_SUCCESS,SET_ONBOARDING_FAILURE} from '../../constants/action-types';
 
 const initialState = {
   val: '',

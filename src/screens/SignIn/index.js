@@ -77,7 +77,7 @@ export class SignIn extends Component {
       this.props.navigation.push(Routes.SignIn);
     }*/
 
-    const {email,password} = this.state;
+ 
     let param = {
       email: this.state.email,
       password: this.state.password,

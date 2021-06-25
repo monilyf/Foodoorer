@@ -1,5 +1,5 @@
 
-import {cartAction} from '../../Constants/action-types';
+import {cartAction} from '../../constants/action-types';
 
 const initialState = {
   cartItemId:[],

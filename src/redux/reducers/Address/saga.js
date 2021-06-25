@@ -1,4 +1,4 @@
-import {addressActions} from '../../Constants/action-types';
+import {addressActions} from '../../constants/action-types';
 import {put,call} from 'redux-saga/effects';
 
 export function* selectedAddresss(action){

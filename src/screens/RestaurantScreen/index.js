@@ -25,7 +25,7 @@ import LinearGradient from 'react-native-linear-gradient';
 
 import Color from '../../utils/Color';
 import styles from './style';
-import { recommended_items, combo_meals, restaurants_image_slider } from '../../redux/Constants/data';
+import { recommended_items, combo_meals, restaurants_image_slider } from '../../redux/constants/data';
 import CommonStyle from '../../utils/CommonStyle';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Icon1 from 'react-native-vector-icons/Entypo';

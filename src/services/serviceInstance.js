@@ -7,13 +7,17 @@ let axiosInstance = axios.create({
 });
 
 axiosInstance.defaults.headers.post['content-type'] = 'application/json';
-store.subscribe(listener);
 
-function listener() {
-    if (store.getState() !== undefined) {
-        axiosInstance.defaults.headers.common['Authorization'] = `${store.getState().token}`;
-    }
-}
+axiosInstance.defaults.headers.common['Authorization'] = `${global.userToken}`;
+
+// store.subscribe(listener);
+
+// add default token in authenticate apis
+// function listener() {
+    // if (store.getState() !== undefined) {
+        // axiosInstance.defaults.headers.common['Authorization'] = `${store.getState().token}`;
+    // }
+// }
 export {
     axiosInstance
 };

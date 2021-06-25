@@ -31,7 +31,8 @@ export class CartScreen extends Component {
       // cartItemDetails:null,
       cartData:this.props.cartItemsList,
       isPaymentDoneModal:false,
-      showToast:false
+      showToast:false,
+      totalPrice: 0,
     };
   }
 
@@ -69,8 +70,10 @@ export class CartScreen extends Component {
       let temps = temp[indexc];
       temps.count +=1;
       temp[indexc]=temps;
-      this.setState({totalItems:this.state.totalItems+1,totalPrice:this.state.totalPrice+(temps.price),cartData:temp})
-      console.log(temps,"count data....................");
+      console.log('temps.price-----------',temps.price)
+
+      this.setState({totalItems:this.state.totalItems+1,totalPrice:this.state.totalPrice+(temps.price*temps.count),cartData:temp})
+      console.log(temps,"count data....................,",this.state.totalPrice,this.state.totalItems);
     }
   }
 
@@ -83,7 +86,7 @@ export class CartScreen extends Component {
 
       temps.count = temps.count-1;
       temp[indexc]=temps;
-      this.setState({totalItems:this.state.totalItems-1,totalPrice:this.state.totalPrice-(temps.price),cartData:temp})
+      this.setState({totalItems:this.state.totalItems-1,totalPrice:this.state.totalPrice>0?this.state.totalPrice-(temps.price*temps.count):this.state.totalPrice,cartData:temp})
       console.log(temps,"count data....................");
     }
   }
@@ -202,7 +205,7 @@ export class CartScreen extends Component {
                   Item Total
                 </Label>
                 <Label xsmall color={Color.PRIMARY_DARK}>
-                  ₹226.50
+                  ₹{this.state.totalPrice}
                 </Label>
               </View>
               <View

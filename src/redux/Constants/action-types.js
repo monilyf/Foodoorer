@@ -3,7 +3,7 @@ export const SET_ONBOARDING = 'SET_ONBOARDING';
 export const SET_ONBOARDING_FAILURE = 'SET_ONBOARDING_FAILURE';
 export const SET_ONBOARDING_SUCCESS = 'SET_ONBOARDING_SUCCESS';
 
-// cart action
+// cart action types
 export const cartAction = {
   ADD_CART: 'ADD_CART',
   ADD_DETAILS_CART: 'ADD_DETAILS_CART',
@@ -13,20 +13,22 @@ export const cartAction = {
   CART_FAILURE_ADD: 'CART_FAILURE_ADD',
 };
 
-// login action
+// login action types
+export const LOGIN_USER = 'LOGIN_USER';
+export const LOGIN_USER_SUCCESS = 'LOGIN_USER_SUCCESS';
+export const LOGIN_USER_FAILURE = 'LOGIN_USER_FAILURE';
 
-export const FETCH_USER = 'FETCH_USER';
-export const FETCH_USER_SUCCESS = 'FETCH_USER_SUCCESS';
-export const FETCH_USER_FAILURE = 'FETCH_USER_FAILURE';
+export const BOARDING_DONE = 'BOARDING_DONE';
+export const LOGOUT = 'LOGOUT';
 
-// signup action
-export const types = {
-  CREATE_USER: 'CREATE_USER',
-  CREATE_USER_SUCCESS: 'CREATE_USER_SUCCESS',
-  CREATE_USER_FAILURE: 'CREATE_USER_FAILURE',
-};
+// signup action types
 
-// Address action
+export const REGISTER_USER= 'REGISTER_USER';
+export const REGISTER_USER_SUCCESS= 'REGISTER_USER_SUCCESS';
+export const REGISTER_USER_FAILURE= 'REGISTER_USER_FAILURE';
+
+
+// Address action types
 export const addressActions = {
   SELECT_ADDRESS: 'SELECT_ADDRESS',
   SELECT_ADDRESS_SUCCESS: 'SELECT_ADDRESS_SUCCESS',

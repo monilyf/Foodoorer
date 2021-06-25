@@ -1,4 +1,4 @@
-import {addressActions} from '../../Constants/action-types';
+import {addressActions} from '../../constants/action-types';
 
 const initialState = {
   address: '',

@@ -5,6 +5,7 @@ import Routes from './routes';
 import Authenticated from './Authenticated';
 import NotAuthenticated from './NotAuthenticated';
 import SplashScreen from '../screens/SplashScreen';
+import Onboarding from '../screens/Onboarding';
 
 const Stack = createStackNavigator();
 
@@ -17,10 +18,9 @@ class RootNavigator extends Component {
           initialRouteName={Routes.Splash}>
           <Stack.Screen name={Routes.Splash} component={SplashScreen} />
           <Stack.Screen name={Routes.Authenticated} component={Authenticated} />
-          <Stack.Screen
-            name={Routes.NotAuthenticated}
-            component={NotAuthenticated}
-          />
+          <Stack.Screen name={Routes.NotAuthenticated} component={NotAuthenticated} />
+           <Stack.Screen name={Routes.Onboarding} component={Onboarding} options={{headerShown: false}}/>
+
         </Stack.Navigator>
       </NavigationContainer>
     );

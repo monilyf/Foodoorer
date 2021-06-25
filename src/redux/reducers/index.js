@@ -4,10 +4,12 @@ import signUpReducer from './SignUp/reducer';
 import onBoardingReducer from './OnBoarding/reducer';
 import cartReducer from './Cart/reducer';
 import addressReducer from './Address/reducer';
+import commonReducer from './Common/reducer';
 
 
 
 const rootReducer = combineReducers({
+    common: commonReducer,
     signUp:signUpReducer,
     signIn:signInReducer,
     onBoarding:onBoardingReducer,

@@ -1,4 +1,4 @@
-import { cartAction } from "../../Constants/action-types";
+import { cartAction } from "../../constants/action-types";
 
 export const add_itemId_cart  = (val) =>({
     type:cartAction.ADD_CART,

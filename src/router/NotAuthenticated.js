@@ -12,11 +12,11 @@ const Stack = createStackNavigator();
 const NonAuthenticated = () => {
   return (
     <Stack.Navigator>
-      <Stack.Screen
+      {/* <Stack.Screen
         name={Routes.Onboarding}
         component={Onboarding}
         options={{headerShown: false}}
-      />
+      /> */}
       <Stack.Screen
         name={Routes.SignIn}
         component={SignIn}
