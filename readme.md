@@ -1,0 +1,1 @@
+This is a Foodoorer project made in react-native.
