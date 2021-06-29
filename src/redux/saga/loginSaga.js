@@ -22,9 +22,9 @@ console.log('loginSaga-------',action)
         console.log('login saga-',result);
         console.log('====================================');
         if (result.isSucess) {
-            debugger;
+        
             let message = result.Result.message;
-            yield put({ type: types.LOGIN_USER_SUCCESS, payload: result.Result.result });
+            yield put({ type: types.LOGIN_USER_SUCCESS, payload: result.Result.data });
             setTimeout(() => {
                 notifyMsg({ message: message });
                 resetNavigation(props.navigation, Routes.Authenticated);

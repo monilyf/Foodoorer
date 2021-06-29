@@ -19,6 +19,8 @@ import {validation} from '../../utils/ValidationUtils';
 import ImagePicker from 'react-native-image-crop-picker';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { logOutAction } from '../../redux/reducers/Common/action';
+import { resetNavigation } from '../../utils/CommonFunctions';
 
 class Profile extends Component {
   constructor(props) {
@@ -76,14 +78,16 @@ class Profile extends Component {
         return false;
     }
 }
-
   removeAuthentication = async () => {
     try {
       console.log('logout');
-      // await AsyncStorage.clear();
-      this.removeItemValue('token')
-      // this.removeItemValue('OnBoarding')
-      this.props.navigation.dispatch(this.resetStack);
+      this.props.logOutAction();
+      resetNavigation(this.props.navigation, Routes.NotAuthenticated)
+
+     
+    //  this.removeItemValue('token')
+     
+      // this.props.navigation.dispatch(this.resetStack);
       // this.props.navigation.push(Routes.SignIn);
     } catch (e) {
       console.log(e);
@@ -124,7 +128,7 @@ class Profile extends Component {
  
             <View>
               <Label bolder large color={Color.PRIMARY_DARK}>
-               {this.props.profile.name.charAt(0).toUpperCase() + this.props.profile.name.slice(1)}
+               {/* {this.props.profile.name.charAt(0).toUpperCase() + this.props.profile.name.slice(1)} */}
               </Label>
               <Label color={Color.DARK_GRAY} small>
                 {this.props.profile.email}
@@ -285,13 +289,13 @@ const mapStateToProps = (state) =>{
   }
 }
 
-// const mapDispatchToProps = dispatch => 
-//   bindActionCreators(
-//     {
-//       loginUserAction,
-//     },
-//     dispatch
-//   )
+const mapDispatchToProps = dispatch => 
+  bindActionCreators(
+    {
+      logOutAction,
+    },
+    dispatch
+  )
 
 
-export default connect(mapStateToProps,null)(Profile);
+export default connect(mapStateToProps,mapDispatchToProps)(Profile);

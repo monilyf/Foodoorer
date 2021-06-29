@@ -13,6 +13,7 @@ const signInReducer = (state = initialState, action) => {
       return {
         ...state,
         user: action.payload,
+        token:action.payload.token
 
       };
     case types.LOGIN_USER_FAILURE:
