@@ -1,68 +1,44 @@
-// // import {types} from '../../Constants/action-types';
-// // import {put,call} from 'redux-saga/effects';
-// // import axios from 'axios';
 
-// // export function* createUsers(action){
-// //     try{
-// //         const apiConfig = {
-// //             method:'POST',
-// //             url:'http://foodooerdashboard.project-demo.info/api/register',
-// //             data:{
-// //                 name:action.payload.name,
-// //                 email:action.payload.email,
-// //                 password:action.payload.password,
-// //                 password_confirmation:action.payload.confirmPassword,
-// //                 contact_no:action.payload.phone,
-// //             },
-// //         };
-
-// //         const response = yield call(axios, apiConfig);
-// //         console.log('api response--',response.data);
-// //         yield put({type:types.CREATE_USER_SUCCESS,payload:response});
-// //     }
-// //     catch(e){
-// //         console.log(e);
-// //         yield put({type:types.CREATE_USER_FAILURE, payload:e.message});
-// //     }
-    
-// // }
+import * as types from '../Constants/action-types';
+import { put, call } from 'redux-saga/effects';
+import Routes from '../../router/routes';
+import { callService } from '../../services';
+import apiUrl from '../../services/serverEndPoints';
+import { notifyMsg, resetNavigation } from '../../utils/CommonFunctions';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
-// import * as types from '../constants/action-types';
+export function* registerSagaUser(action) {
+    // debugger;
+    // console.log('SignUpSaga-------', action)
+    let { props } = action.payload;
 
-// import { put, call } from 'redux-saga/effects';
-// import { SignUpService } from '../../';
-// import AsyncStorage from '@react-native-async-storage/async-storage';
-// import Routes from '../../router/routes';
+    // yield put({ type: types.LOADING_START, payload: true });
+    try {
+        const result = yield call(callService, {
+            url: apiUrl.register,
+            method: 'POST',
+            params: action.payload.param,
+            props: props,
+        });
 
-// import Snackbar from 'react-native-snackbar';
-// import { Alert } from 'react-native';
-
-
-// export function* registerUser(action) {
-//     try {
-
-//         let { props } = action
-//         console.log('\n\n', props, "propsss\n\n")
-//         const result = yield call(SignUpService, action);
-//         if (result?.isSucess)
-//             yield put({ type: types.REGISTER_USER_SUCCESS, payload: result.Result.data.data })
-//         console.log("SignUp token", result.Result.data.data.token)
-//         console.log("token------", result)
-//         AsyncStorage.setItem("token", result.Result.data.data.token)
-//         // AsyncStorage.setItem("userdata", JSON.stringify(result.Result.data.data))
-//         setTimeout(() => {
-//             props.navigation.navigate(Routes.Authenticated)
-//         }, 2000)
-//     }
-//     catch (e) {
-//         console.log("user failure")
-//         // yield call(Alert.alert, "Faliure", "SignUp Unsuccessfully ")
-//         yield put({ type: types.REGISTER_USER_FAILURE, payload: e.message });
-//         Snackbar.show({
-//             test: "SignUp Failed ",
-//             duration: Snackbar.LENGTH_LONG
-//         })
-//         // AsyncStorage.removeItem("token")
-//     }
-// }
+        if (result.isSucess) {
+            debugger;
+            let message = result.Result.message;
+            yield put({ type: types.REGISTER_USER_SUCCESS, payload: result.Result });
+            setTimeout(() => {
+                notifyMsg({ message: message });
+                resetNavigation(props.navigation, Routes.Authenticated);
+            }, 1000);
+        } else {
+            yield put({ type: types.REGISTER_USER_FAILURE });
+            setTimeout(() => {
+                notifyMsg({ message: result?.error?.message, success: false });
+            }, 100);
+        }
+    } catch (error) {
+        console.log(error);
+        notifyMsg({ message: 'Failed ! try again', success: false });
+        yield put({ type: types.REGISTER_USER_FAILURE });
+    }
+}

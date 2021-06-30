@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import {
   SafeAreaView,
   View,
@@ -15,17 +15,17 @@ import {
   StatusBars,
 } from '../../component';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {PasswordValidate, validation} from '../../utils/ValidationUtils';
+import { PasswordValidate, validation } from '../../utils/ValidationUtils';
 import Routes from '../../router/routes';
 import CommonStyle from '../../utils/CommonStyle';
 import * as Animatable from 'react-native-animatable';
-import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { bindActionCreators } from 'redux';
-import {createUser} from '../../redux/reducers/SignUp/action'
+import { createUser } from '../../redux/reducers/SignUp/action'
 import { connect } from 'react-redux';
-import {onBoardingDone} from '../../redux/reducers/OnBoarding/action'
-import {CommonActions} from '@react-navigation/routers';
-import {registerUserAction} from '../../redux/reducers/SignUp/action';
+import { onBoardingDone } from '../../redux/reducers/OnBoarding/action'
+import { CommonActions } from '@react-navigation/routers';
+import { registerUserAction } from '../../redux/reducers/SignUp/action';
 
 export class SignUp extends Component {
   constructor(props) {
@@ -89,56 +89,74 @@ export class SignUp extends Component {
       isValid = true;
     }
     if (isValid) {
-      let register_data = {
-        name: this.state.name,
-        email: this.state.email,
-        phone: this.state.phone,
-        password: this.state.password,
-        confirmPassword: this.state.confirmPassword,
-      };
+      // let register_data = {
+      //   name: this.state.name,
+      //   email: this.state.email,
+      //   phone: this.state.phone,
+      //   password: this.state.password,
+      //   confirmPassword: this.state.confirmPassword,
+      // };
       // AsyncStorage.setItem('register_data', JSON.stringify(register_data));
 
       // console.log('async storage register_data:', register_data);
       // this.props.navigation.navigate(Routes.SignIn);
-      
+
       this.signUpUserRequest();
     }
   };
 
-  signUpUserRequest = async() => {
-    console.log('signUpUserRequest')
-    const {name,email,phone,password,confirmPassword} = this.state;
-    // console.log('store register_data',name,email,password,phone);
-    // this.props.createUser(register_data);
-    let param={
+  signUpUserRequest = async () => {
+    // console.log('signUpUserRequest')
+    // // const { name, email, phone, password, confirmPassword } = this.state;
+    // // console.log('store register_data',name,email,password,phone);
+    // // this.props.createUser(register_data);
+    // this.setState({ visibility: true }, () => {
+    //   // console.log('~~~~~~~~~~~~~~~~~~~');
+    //   let user = {
+    //     name: this.state.name,
+    //     email: this.state.email,
+    //     contact_no: this.state.phone,
+    //     password: this.state.password,
+    // password_confirmation: this.state.confirmPassword
+    //   }
+    //   this.props.registerUserAction(param, this.props)
+    //   // this.props.navigation.dispatch(this.resetToAuth);
+    this.setState({ visibility: true }, () => {
+      // console.log('~~~~~~~~~~~~~~~~~~~');
+      let param = {
         name: this.state.name,
         email: this.state.email,
-        phoneNo: this.state.phone,
+        contact_no: this.state.phone,
         password: this.state.password,
-        confirmPassword: this.state.confirmPassword
-
-    }
-    this.props.registerUserAction(param,this.props)
-    // this.props.navigation.dispatch(this.resetToAuth);
+        password_confirmation: this.state.confirmPassword
+      };
+      debugger;
+      // console.log("SIGNUP UASER DATA------", param)
+      this.props.registerUserAction(
+        param,
+        this.props
+      );
+    });
 
   }
+
   resetToAuth = CommonActions.reset({
     index: 0,
-    routes: [{name: Routes.Authenticated}],
+    routes: [{ name: Routes.Authenticated }],
   });
 
   handlePasswordToggle = () => {
     this.state.isSecurePassword
-      ? this.setState({isSecurePassword: false, toggleIcon1: 'eye-closed'})
-      : this.setState({isSecurePassword: true, toggleIcon1: 'eye'});
+      ? this.setState({ isSecurePassword: false, toggleIcon1: 'eye-closed' })
+      : this.setState({ isSecurePassword: true, toggleIcon1: 'eye' });
   };
   handleConfirmPasswordToggle = () => {
     this.state.isSecureConfirmPassword
       ? this.setState({
-          isSecureConfirmPassword: false,
-          toggleIcon2: 'eye-closed',
-        })
-      : this.setState({isSecureConfirmPassword: true, toggleIcon2: 'eye'});
+        isSecureConfirmPassword: false,
+        toggleIcon2: 'eye-closed',
+      })
+      : this.setState({ isSecureConfirmPassword: true, toggleIcon2: 'eye' });
   };
 
   render() {
@@ -150,159 +168,159 @@ export class SignUp extends Component {
 
         <LinearGradient
           colors={[Color.GRADIENT3, Color.GRADIENT4]}
-          start={{x: 0, y: 1}}
-          end={{x: 1, y: 0}}
+          start={{ x: 0, y: 1 }}
+          end={{ x: 1, y: 0 }}
           style={CommonStyle.linearGradient}>
-         
-            <KeyboardAwareScrollView
-              style={{flex: 1}}
-              showsVerticalScrollIndicator={false}
-              resetScrollToCoords={{x: 0, y: 0}}
-              scrollEnabled={true}
-              enableResetScrollToCoords={false}
-              keyboardVerticalOffset={0}
-              enableOnAndroid={true}
-              keyboardShouldPersistTaps="always">
-              <View style={{marginTop: 20, alignItems: 'center'}}>
-                <Animatable.View animation="fadeInLeft" iterationDelay={400}>
-                  <Logo />
-                  <Label xxlarge align="center" bolder color={Color.WHITE}>
-                    Welcome to All
-                  </Label>
-                </Animatable.View>
-                <Animatable.View animation="fadeInUpBig" iterationDelay={400}>
-                  <View style={CommonStyle.boxContainer}>
-                    <View style={CommonStyle.tabScreen}>
-                      <TouchableOpacity
-                        onPress={() => {
-                          this.props.navigation.push(Routes.SignIn);
-                        }}>
-                        <Label
-                          large
-                          ph={30}
-                          bolder
-                          color={Color.INACTIVE_COLOR}>
-                          Sign In
-                        </Label>
-                      </TouchableOpacity>
+
+          <KeyboardAwareScrollView
+            style={{ flex: 1 }}
+            showsVerticalScrollIndicator={false}
+            resetScrollToCoords={{ x: 0, y: 0 }}
+            scrollEnabled={true}
+            enableResetScrollToCoords={false}
+            keyboardVerticalOffset={0}
+            enableOnAndroid={true}
+            keyboardShouldPersistTaps="always">
+            <View style={{ marginTop: 20, alignItems: 'center' }}>
+              <Animatable.View animation="fadeInLeft" iterationDelay={400}>
+                <Logo />
+                <Label xxlarge align="center" bolder color={Color.WHITE}>
+                  Welcome to All
+                </Label>
+              </Animatable.View>
+              <Animatable.View animation="fadeInUpBig" iterationDelay={400}>
+                <View style={CommonStyle.boxContainer}>
+                  <View style={CommonStyle.tabScreen}>
+                    <TouchableOpacity
+                      onPress={() => {
+                        this.props.navigation.push(Routes.SignIn);
+                      }}>
                       <Label
                         large
                         ph={30}
-                        border={4}
-                        pb={5}
-                        borderColor={Color.PRIMARY}
                         bolder
-                        color={Color.ACTIVE_COLOR}>
-                        Sign Up
+                        color={Color.INACTIVE_COLOR}>
+                        Sign In
                       </Label>
-                    </View>
-
-                    <View>
-                      <InputContainer
-                        iconName="person"
-                        placeholder="Enter name"
-                        iconColor={Color.PRIMARY_DARK}
-                        onChangeText={text => this.setState({name: text})}
-                      />
-                      {this.state.nameError != null ? (
-                        <Label small mt={5} mb={5} ms={21} color={Color.ERROR}>
-                          {this.state.nameError}
-                        </Label>
-                      ) : (
-                        <Label></Label>
-                      )}
-                      {/* <Error>{this.state.nameError}</Error> */}
-
-                      <InputContainer
-                        iconName="email"
-                        placeholder="Enter email"
-                        keyboardType="email-address"
-                        iconColor={Color.PRIMARY_DARK}
-                        onChangeText={text => this.setState({email: text})}
-                      />
-                      {this.state.emailError != null ? (
-                        <Label small mt={5} mb={5} ms={21} color={Color.ERROR}>
-                          {this.state.emailError}
-                        </Label>
-                      ) : (
-                        <Label></Label>
-                      )}
-
-                      <InputContainer
-                        iconName="phone-android"
-                        placeholder="Enter mobile "
-                        iconColor={Color.PRIMARY_DARK}
-                        keyboardType="phone-pad"
-                        onChangeText={text => this.setState({phone: text})}
-                      />
-                      {this.state.phoneError != null ? (
-                        <Label small mt={5} mb={5} ms={21} color={Color.ERROR}>
-                          {this.state.phoneError}
-                        </Label>
-                      ) : (
-                        <Label></Label>
-                      )}
-                    </View>
-
-                    <InputContainer
-                      iconName="lock"
-                      placeholder="Enter password"
-                      iconColor={Color.PRIMARY_DARK}
-                      onChangeText={text => this.setState({password: text})}
-                      extraIconName={this.state.toggleIcon1}
-                      secureText={this.state.isSecurePassword}
-                      onToggle={() => this.handlePasswordToggle()}
-                    />
-
-                    {this.state.passwordError != null ? (
-                      <Label small mt={5} mb={5} ms={21} color={Color.ERROR}>
-                        {this.state.passwordError}
-                      </Label>
-                    ) : (
-                      <Label></Label>
-                    )}
-
-                    <InputContainer
-                      iconName="lock"
-                      placeholder="Retype password"
-                      iconColor={Color.PRIMARY_DARK}
-                      onChangeText={text =>
-                        this.setState({confirmPassword: text})
-                      }
-                      extraIconName={this.state.toggleIcon2}
-                      secureText={this.state.isSecureConfirmPassword}
-                      onToggle={() => this.handleConfirmPasswordToggle()}
-                    />
-                    {this.state.confirmPasswordError != null ? (
-                      <Label small mt={5} mb={5} ms={21} color={Color.ERROR}>
-                        {this.state.confirmPasswordError}
-                      </Label>
-                    ) : (
-                      <Label></Label>
-                    )}
-
-                    <SubmitButton
-                      onPress={() => {
-                        this.handleOnSubmit();
-                      }}
-                      buttonText="Sign Up"
-                    />
+                    </TouchableOpacity>
+                    <Label
+                      large
+                      ph={30}
+                      border={4}
+                      pb={5}
+                      borderColor={Color.PRIMARY}
+                      bolder
+                      color={Color.ACTIVE_COLOR}>
+                      Sign Up
+                    </Label>
                   </View>
-                </Animatable.View>
-              </View>
-            </KeyboardAwareScrollView>
-     
+
+                  <View>
+                    <InputContainer
+                      iconName="person"
+                      placeholder="Enter name"
+                      iconColor={Color.PRIMARY_DARK}
+                      onChangeText={text => this.setState({ name: text })}
+                    />
+                    {this.state.nameError != null ? (
+                      <Label small mt={5} mb={5} ms={21} color={Color.ERROR}>
+                        {this.state.nameError}
+                      </Label>
+                    ) : (
+                      <Label></Label>
+                    )}
+                    {/* <Error>{this.state.nameError}</Error> */}
+
+                    <InputContainer
+                      iconName="email"
+                      placeholder="Enter email"
+                      keyboardType="email-address"
+                      iconColor={Color.PRIMARY_DARK}
+                      onChangeText={text => this.setState({ email: text })}
+                    />
+                    {this.state.emailError != null ? (
+                      <Label small mt={5} mb={5} ms={21} color={Color.ERROR}>
+                        {this.state.emailError}
+                      </Label>
+                    ) : (
+                      <Label></Label>
+                    )}
+
+                    <InputContainer
+                      iconName="phone-android"
+                      placeholder="Enter mobile "
+                      iconColor={Color.PRIMARY_DARK}
+                      keyboardType="phone-pad"
+                      onChangeText={text => this.setState({ phone: text })}
+                    />
+                    {this.state.phoneError != null ? (
+                      <Label small mt={5} mb={5} ms={21} color={Color.ERROR}>
+                        {this.state.phoneError}
+                      </Label>
+                    ) : (
+                      <Label></Label>
+                    )}
+                  </View>
+
+                  <InputContainer
+                    iconName="lock"
+                    placeholder="Enter password"
+                    iconColor={Color.PRIMARY_DARK}
+                    onChangeText={text => this.setState({ password: text })}
+                    extraIconName={this.state.toggleIcon1}
+                    secureText={this.state.isSecurePassword}
+                    onToggle={() => this.handlePasswordToggle()}
+                  />
+
+                  {this.state.passwordError != null ? (
+                    <Label small mt={5} mb={5} ms={21} color={Color.ERROR}>
+                      {this.state.passwordError}
+                    </Label>
+                  ) : (
+                    <Label></Label>
+                  )}
+
+                  <InputContainer
+                    iconName="lock"
+                    placeholder="Retype password"
+                    iconColor={Color.PRIMARY_DARK}
+                    onChangeText={text =>
+                      this.setState({ confirmPassword: text })
+                    }
+                    extraIconName={this.state.toggleIcon2}
+                    secureText={this.state.isSecureConfirmPassword}
+                    onToggle={() => this.handleConfirmPasswordToggle()}
+                  />
+                  {this.state.confirmPasswordError != null ? (
+                    <Label small mt={5} mb={5} ms={21} color={Color.ERROR}>
+                      {this.state.confirmPasswordError}
+                    </Label>
+                  ) : (
+                    <Label></Label>
+                  )}
+
+                  <SubmitButton
+                    onPress={() =>
+                      this.handleOnSubmit()
+                    }
+                    buttonText="Sign Up"
+                  />
+                </View>
+              </Animatable.View>
+            </View>
+          </KeyboardAwareScrollView>
+
         </LinearGradient>
       </SafeAreaView>
     );
   }
 }
 
-// const mapStateToProps = state =>({
-//   register:state.signUp.signUpResponse
-// })
+const mapStateToProps = state => ({
+  register: state.signUp
+})
 
-const mapDispatchToProps = (dispatch) => 
+const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       registerUserAction,
@@ -311,4 +329,4 @@ const mapDispatchToProps = (dispatch) =>
   );
 
 
-export default connect(null,mapDispatchToProps)(SignUp);
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp);

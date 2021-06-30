@@ -25,7 +25,7 @@ import LinearGradient from 'react-native-linear-gradient';
 
 import Color from '../../utils/Color';
 import styles from './style';
-import { recommended_items, combo_meals, restaurants_image_slider } from '../../redux/constants/data';
+import { recommended_items, combo_meals, restaurants_image_slider } from '../../redux/Constants/data';
 import CommonStyle from '../../utils/CommonStyle';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Icon1 from 'react-native-vector-icons/Entypo';
@@ -51,8 +51,8 @@ class RestaurantScreen extends Component {
       userCartItemsList: [],
       showDropDown: false,
       totalPrice: 0,
-      totalItems:0,
-      cartData:recommended_items
+      totalItems: 0,
+      cartData: recommended_items
       // selectedItem:{
       //   id:null,
       //   itemName:null,
@@ -78,44 +78,44 @@ class RestaurantScreen extends Component {
 
   addItem = (id) => {
     let temp = this.state.cartData;
-    let indexc=this.state.cartData.findIndex(item=>item.id == id);
-    console.log(indexc,'=============',temp,"counddddddddddddt data....................");
+    let indexc = this.state.cartData.findIndex(item => item.id == id);
+    console.log(indexc, '=============', temp, "counddddddddddddt data....................");
 
     if (temp.length > 0) {
       let temps = temp[indexc];
       temps.count = 1;
-      
-      temp[indexc]=temps;
-      this.setState({totalItems:this.state.totalItems+1,totalPrice:this.state.totalPrice+(temps.price),cartData:temp})
-      console.log(temps,"count data....................");
+
+      temp[indexc] = temps;
+      this.setState({ totalItems: this.state.totalItems + 1, totalPrice: this.state.totalPrice + (temps.price), cartData: temp })
+      console.log(temps, "count data....................");
     }
   }
 
   addItemQuantity = (id) => {
     let temp = this.state.cartData;
-    let indexc=this.state.cartData.findIndex(item=>item.id == id);
-    console.log(indexc,'=============',temp,"counddddddddddddt data....................");
+    let indexc = this.state.cartData.findIndex(item => item.id == id);
+    console.log(indexc, '=============', temp, "counddddddddddddt data....................");
 
     if (temp.length > 0) {
       let temps = temp[indexc];
-      temps.count +=1;
-      temp[indexc]=temps;
-      this.setState({totalItems:this.state.totalItems+1,totalPrice:this.state.totalPrice+(temps.price),cartData:temp})
-      console.log(temps,"count data....................");
+      temps.count += 1;
+      temp[indexc] = temps;
+      this.setState({ totalItems: this.state.totalItems + 1, totalPrice: this.state.totalPrice + (temps.price), cartData: temp })
+      console.log(temps, "count data....................");
     }
   }
 
 
-  removeItem=(id)=>{
+  removeItem = (id) => {
     let temp = this.state.cartData;
-    let indexc=this.state.cartData.findIndex(item=>item.id == id);
+    let indexc = this.state.cartData.findIndex(item => item.id == id);
     if (temp.length > 0) {
       let temps = temp[indexc];
 
-      temps.count = temps.count-1;
-      temp[indexc]=temps;
-      this.setState({totalItems:this.state.totalItems-1,totalPrice:this.state.totalPrice-(temps.price),cartData:temp})
-      console.log(temps,"count data....................");
+      temps.count = temps.count - 1;
+      temp[indexc] = temps;
+      this.setState({ totalItems: this.state.totalItems - 1, totalPrice: this.state.totalPrice - (temps.price), cartData: temp })
+      console.log(temps, "count data....................");
     }
   }
 
@@ -137,7 +137,7 @@ class RestaurantScreen extends Component {
         {/* this.state.userCartItems.map() */}
         {/* console.log('---------itemId------',item.id) */}
         {
-          item.count > 0 
+          item.count > 0
             ? (
               <ItemCountButton
                 itemCount={item.count}
@@ -183,9 +183,9 @@ class RestaurantScreen extends Component {
                   // this.props.add_item_details({...item,"quantity":this.state.itemCount})
 
                   this.setState({
-                  //   selectedId: item.id,
-                  //   userCartItemsIds: [...this.state.userCartItemsIds, item.id],
-                  //   userCartItemsList: [...this.state.userCartItemsList, { ...item, "quantity": this.state.itemCount }],
+                    //   selectedId: item.id,
+                    //   userCartItemsIds: [...this.state.userCartItemsIds, item.id],
+                    //   userCartItemsList: [...this.state.userCartItemsList, { ...item, "quantity": this.state.itemCount }],
                     //         selectedItem:{
                     // id:item.id,
                     // itemName:item.itemName,
@@ -445,12 +445,13 @@ class RestaurantScreen extends Component {
 }
 
 // export default RestaurantScreen;
-const mapStateToProps = state => ({
+const mapStateToProps = state => (
+  {
 
-  // isOnboardingDone: state.onBoarding.val,
-  cartItemsList: state.cart.cartItemDetails,
-  cartItemIds: state.cart.cartItemId
-});
+    // isOnboardingDone: state.onBoarding.val,
+    cartItemsList: state.cart.cartItemDetails,
+    cartItemIds: state.cart.cartItemId
+  });
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators(

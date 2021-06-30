@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import {
   FlatList,
   SafeAreaView,
@@ -25,19 +25,45 @@ import {
   restaurants,
   category_Item,
   popular_Item,
-} from '../../redux/constants/data';
+} from '../../redux/Constants/data';
 import ThemeUtils from '../../utils/ThemeUtils';
 import Icon from 'react-native-vector-icons/Feather';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { restaurantAction } from '../../redux/reducers/Restaurant/action'
+import apiUrl from '../../services/serverEndPoints';
+import { categoriesAction } from '../../redux/reducers/Categories/action'
 
 
 export class Home extends Component {
+
+
+
+
+
+  componentDidMount() {
+    // console.log('====================================');
+    // console.log('token--', this.props.signIn);
+    // console.log('====================================');
+    // if (this.props.signIn !== null) {
+    // debugger
+
+    this.props.categoriesAction()
+    setTimeout(() => {
+      this.props.restaurantAction()
+    }, 2000)
+    // }
+
+  }
+
+
+
   keyExtractor = (item, index) => item.id;
 
   constructor(props) {
     super(props);
-
     this.state = {
+      token: this.props.signIn,
       scrollItemHorizontal: true,
       visibilityText: 'View all',
     };
@@ -46,8 +72,9 @@ export class Home extends Component {
   renderTopCategories = item => {
     return (
       <CategoryCard
-        title={item.title}
-        image={item.image}
+
+        title={item.name}
+        image={apiUrl.categoriesImage + item.image}
         onPress={() => this.props.navigation.push(Routes.DetailedScreen, item)}
       />
     );
@@ -80,23 +107,25 @@ export class Home extends Component {
     );
   };
 
-   renderRestaurants = item => {
+  renderRestaurants = item => {
+    console.log("image", apiUrl.restaurantImage + item.image)
     return (
       <RestaurantCard
-      onPress={()=>props.navigation.push(Routes.RestaurantScreen)}
-        image={item.image}
-         area={item.area}
-         rating={item.rating}
+        onPress={() => props.navigation.push(Routes.RestaurantScreen)}
+        image={apiUrl.restaurantImage + item.image}
+        area={item.address + ',' + item.city}
+        // rating={item.rating}
         priceForOne={item.priceForOne}
-        title={item.title}
-        description={item.description}
-        discount={item.discount}
+        title={item.name}
+      // description={item.description}
+      // discount={item.discount}
       />
     );
   };
 
+
   render() {
-  console.log('-----`------home screen render ----------- state--',this.props.isOnboardingDone)
+    // console.log('-----`------home screen render ----------- state--', this.props.isOnboardingDone)
 
     return (
       <SafeAreaView>
@@ -108,29 +137,29 @@ export class Home extends Component {
         <View style={styles.container}>
           <Header iconName="location-outline" justifyContent="space-between">
             <TouchableOpacity
-            
-              onPress={()=>this.props.navigation.push(Routes.SearchScreen)}
+
+              onPress={() => this.props.navigation.push(Routes.SearchScreen)}
             >
-              <View   style={[
+              <View style={[
                 {
                   // paddingRight: 30,
                   // paddingVertical:7,
                   paddingHorizontal: 15,
-                  alignItems:'center',
-                  height:ThemeUtils.relativeHeight(6.5),
-                  width:ThemeUtils.relativeHeight(38),//40
+                  alignItems: 'center',
+                  height: ThemeUtils.relativeHeight(6.5),
+                  width: ThemeUtils.relativeHeight(38),//40
                   backgroundColor: Color.WHITE,
                   borderRadius: 6,
                   flexDirection: 'row',
-              justifyContent:'space-between'
+                  justifyContent: 'space-between'
                 },
                 CommonStyle.shadowStyle,
               ]}>
-                
+
                 <Label color={Color.DARK_GRAY} small>Search for meals or area</Label>
                 <Icon
                   name="search"
-                  style={{alignSelf: 'center' }}
+                  style={{ alignSelf: 'center' }}
                   size={20}
                 />
               </View>
@@ -146,8 +175,9 @@ export class Home extends Component {
               <FlatList
                 horizontal
                 showsHorizontalScrollIndicator={false}
-                data={category_Item}
-                renderItem={({item}) => this.renderTopCategories(item)}
+                // data={category_Item}
+                data={this.props.categories}
+                renderItem={({ item }) => this.renderTopCategories(item)}
                 keyExtractor={this.keyExtractor}
               />
             </View>
@@ -174,7 +204,7 @@ export class Home extends Component {
                 }}
                 showsHorizontalScrollIndicator={false}
                 data={popular_Item}
-                renderItem={({item}) => this.renderPopularItems(item)}
+                renderItem={({ item }) => this.renderPopularItems(item)}
                 keyExtractor={this.keyExtractor}
               />
             </View>
@@ -195,7 +225,7 @@ export class Home extends Component {
                 horizontal
                 showsHorizontalScrollIndicator={false}
                 data={restaurants}
-                renderItem={({item}) => this.renderNearbyDeals(item)}
+                renderItem={({ item }) => this.renderNearbyDeals(item)}
                 keyExtractor={this.keyExtractor}
               />
             </View>
@@ -205,13 +235,14 @@ export class Home extends Component {
               title="Nearby Restaurants"
             />
 
-            <View style={styles.listStyle,{marginLeft:0,paddingBottom:150}}>
+            <View style={styles.listStyle, { marginLeft: 0, paddingBottom: 150 }}>
               <FlatList
                 // horizontal
                 showsHorizontalScrollIndicator={false}
-                data={restaurants}
-                renderItem={({item}) => this.renderRestaurants(item)}
-                keyExtractor={this.keyExtractor}
+                data={this.props.restaurant}
+                // data={this.state.token}
+                renderItem={({ item }) => this.renderRestaurants(item)}
+              // keyExtractor={this.keyExtractor}
               />
             </View>
           </ScrollView>
@@ -221,11 +252,21 @@ export class Home extends Component {
   }
 }
 
-const mapStateToProps = state =>({
-  isOnboardingDone: state,
-  
- 
-})
 
-export default connect(mapStateToProps,null)(Home);
+const mapStateToProps = (state) => {
+  console.log("---categories Data  Home Screen----------", state.categories.categories)
+  return {
+    restaurant: state.restaurant.restaurant,
+    signIn: state.signIn.token,
+    categories: state.categories.categories
+  }
+}
+
+const mapDispatchToProps = dispatch =>
+  bindActionCreators({
+    restaurantAction,
+    categoriesAction
+  }, dispatch)
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
 // export default Home;

@@ -1,5 +1,5 @@
-import React, {useState, Component} from 'react';
-import {View, SafeAreaView, TouchableOpacity,Image} from 'react-native';
+import React, { useState, Component } from 'react';
+import { View, SafeAreaView, TouchableOpacity, Image } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   StatusBars,
@@ -7,19 +7,19 @@ import {
   InputContainer,
   SubmitButton,
   ProfileNavItem,
-  ModalView,ToastMessage
+  ModalView, ToastMessage
 } from '../../component';
 import Color from '../../utils/Color';
 import CommonStyle from '../../utils/CommonStyle';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import styles from './style';
 import Routes from '../../router/routes';
-import {CommonActions} from '@react-navigation/routers';
-import {validation} from '../../utils/ValidationUtils';
+import { CommonActions } from '@react-navigation/routers';
+import { validation } from '../../utils/ValidationUtils';
 import ImagePicker from 'react-native-image-crop-picker';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { logOutAction } from '../../redux/reducers/Common/action';
+import { logOutAction } from '../../redux/reducers/Common/action'
 import { resetNavigation } from '../../utils/CommonFunctions';
 
 class Profile extends Component {
@@ -32,7 +32,7 @@ class Profile extends Component {
       emailError: '',
       phone: '',
       phoneError: '',
-      showToast:false
+      showToast: false
     };
   }
   handleOnSubmit = () => {
@@ -58,45 +58,62 @@ class Profile extends Component {
     }
     if (isValid) {
       // update code herte to save changes
-      this.setState({modalVisible: !this.state.modalVisible});
+      this.setState({ modalVisible: !this.state.modalVisible });
       // this.props.navigation.push(Routes.Profile);
     }
   };
 
-  resetStack = CommonActions.reset({
-    index: 0,
-    routes: [{name: Routes.Splash}],
-  });
+  logOut = () => {
+    this.props.logOutAction()
+    resetNavigation(this.props.navigation, Routes.NotAuthenticated)
+  }
 
-  async removeItemValue(key) {
-    try {
-        await AsyncStorage.removeItem(key);
-        // await AsyncStorage.removeItem(key2);
-        return true;
-    }
-    catch(exception) {
-        return false;
-    }
-}
-  removeAuthentication = async () => {
-    try {
-      console.log('logout');
-      this.props.logOutAction();
-      resetNavigation(this.props.navigation, Routes.NotAuthenticated)
+  // resetStack = CommonActions.reset({
+  //   index: 0,
+  //   routes: [{ name: Routes.Splash }],
+  // });
 
-     
-    //  this.removeItemValue('token')
-     
-      // this.props.navigation.dispatch(this.resetStack);
-      // this.props.navigation.push(Routes.SignIn);
-    } catch (e) {
-      console.log(e);
-    }
-  };
+  // async removeItemValue(key) {
+  //   try {
+  //     await AsyncStorage.removeItem(key);
+  //     // await AsyncStorage.removeItem(key2);
+  //     return true;
+  //   }
+  //   catch (exception) {
+  //     return false;
+  //   }
+  // }
+
+  // removeAuthentication = async () => {
+  //   try {
+  //     console.log('logout');
+  //     // await AsyncStorage.clear();
+  //     await AsyncStorage.removeItem('token');
+  //     // this.removeItemValue('OnBoarding')
+  //     this.props.navigation.dispatch(this.resetStack);
+  //     // this.props.navigation.push(Routes.SignIn);
+  //   } catch (e) {
+  //     console.log(e);
+  //   }
+  // };
+
+  // const resetStack = CommonActions.reset({
+  //   index: 0,
+  //   routes: [{ name: Routes.SplashScreen }],
+  // });
+  // const removeAuthentication = async () => {
+  //   try {
+  //     console.log('logout');
+  //     await AsyncStorage.removeItem('token');
+  //     props.navigation.dispatch(resetStack);
+  //   } catch (e) {
+  //     console.log(e);
+  //   }
+  // };
 
   render() {
     console.log('====================================');
-    console.log('------render profile ',this.props.profile);
+    console.log('------render profile ', this.props.profile);
     console.log('====================================');
     return (
       <SafeAreaView>
@@ -107,37 +124,37 @@ class Profile extends Component {
         />
         <View style={styles.container}>
           <View style={styles.profileHeader}>
-   
-          <TouchableOpacity
-            activeOpacity={0.8}
-            onPress={ () => { this.openActionSheet() }}
-           
-          >
-            <Image
-              source={require('../../assets/images/facebook.png')}
-              style={styles.ProfileImgSty}
-              resizeMode="cover"
-            />
-            <View style={styles.CAbViewSty}>
-              <Icon name="camera" size={12} color={Color.PRIMARY_DARK}/>
-            </View>
+
+            <TouchableOpacity
+              activeOpacity={0.8}
+              onPress={() => { this.openActionSheet() }}
+
+            >
+              <Image
+                source={require('../../assets/images/facebook.png')}
+                style={styles.ProfileImgSty}
+                resizeMode="cover"
+              />
+              <View style={styles.CAbViewSty}>
+                <Icon name="camera" size={12} color={Color.PRIMARY_DARK} />
+              </View>
 
 
-          </TouchableOpacity>
+            </TouchableOpacity>
 
- 
+
             <View>
               <Label bolder large color={Color.PRIMARY_DARK}>
-               {/* {this.props.profile.name.charAt(0).toUpperCase() + this.props.profile.name.slice(1)} */}
+                {/* {this.props.profile.name.charAt(0).toUpperCase() + this.props.profile.name.slice(1)} */}
               </Label>
               <Label color={Color.DARK_GRAY} small>
                 {this.props.profile.email}
               </Label>
             </View>
-            <View style={{alignSelf: 'center'}}>
+            <View style={{ alignSelf: 'center' }}>
               <TouchableOpacity
                 onPress={() =>
-                  this.setState({modalVisible: !this.state.modalVisible})
+                  this.setState({ modalVisible: !this.state.modalVisible })
                 }>
                 <Label small color={Color.ERROR} align="right">
                   {' '}
@@ -170,22 +187,24 @@ class Profile extends Component {
 
             <View style={CommonStyle.endLine}></View>
             <ProfileNavItem
-              onPress={() =>   { 
-            this.setState({showToast:true})
-            setTimeout(()=>{
-            this.setState({showToast:false})},2000)
-            }}
+              onPress={() => {
+                this.setState({ showToast: true })
+                setTimeout(() => {
+                  this.setState({ showToast: false })
+                }, 2000)
+              }}
               iconPath={require('../../assets/icons/profile_screen_icon/favourite.png')}
               label="Favourites"
             />
 
             <View style={CommonStyle.endLine}></View>
             <ProfileNavItem
-             onPress={() =>   { 
-            this.setState({showToast:true})
-            setTimeout(()=>{
-            this.setState({showToast:false})},2000)
-            }}
+              onPress={() => {
+                this.setState({ showToast: true })
+                setTimeout(() => {
+                  this.setState({ showToast: false })
+                }, 2000)
+              }}
               iconPath={require('../../assets/icons/profile_screen_icon/help.png')}
               label="Help"
             />
@@ -193,17 +212,17 @@ class Profile extends Component {
             <View style={CommonStyle.endLine}></View>
             <ProfileNavItem
               onPress={() =>
-               this.removeAuthentication()
-               }
+                this.logOut()
+              }
               iconPath={require('../../assets/icons/profile_screen_icon/logout.png')}
               label="Logout"
             />
 
             <ModalView
-             
+
               visible={this.state.modalVisible}
               onRequestClose={() =>
-                this.setState({modalVisible: !this.state.modalVisible})
+                this.setState({ modalVisible: !this.state.modalVisible })
               }>
               <View style={CommonStyle.modalStyle}>
                 <View
@@ -216,12 +235,12 @@ class Profile extends Component {
                   </Label>
                   <TouchableOpacity
                     onPress={() =>
-                      this.setState({modalVisible: !this.state.modalVisible})
+                      this.setState({ modalVisible: !this.state.modalVisible })
                     }>
                     <Icon
                       name="close"
                       size={25}
-                      style={{alignSelf: 'center'}}
+                      style={{ alignSelf: 'center' }}
                       color={Color.PRIMARY_DARK}
                     />
                   </TouchableOpacity>
@@ -235,7 +254,7 @@ class Profile extends Component {
                   placeholder="9898656656"
                   iconColor={Color.PRIMARY_DARK}
                   keyboardType="phone-pad"
-                  onChangeText={text => this.setState({phone: text})}
+                  onChangeText={text => this.setState({ phone: text })}
                 />
                 {this.state.phoneError != null ? (
                   <Label small mt={5} mb={7} ms={21} color={Color.ERROR}>
@@ -253,7 +272,7 @@ class Profile extends Component {
                   placeholder="loremipsum@email.com"
                   keyboardType="email-address"
                   iconColor={Color.PRIMARY_DARK}
-                  onChangeText={text => this.setState({email: text})}
+                  onChangeText={text => this.setState({ email: text })}
                 />
                 {this.state.emailError != null ? (
                   <Label small mt={5} mb={5} ms={21} color={Color.ERROR}>
@@ -270,32 +289,35 @@ class Profile extends Component {
             </ModalView>
           </View>
         </View>
-        <View style={{alignSelf:'center'}}>
-              {this.state.showToast ? (
-                <ToastMessage text='Coming Soon!' />
-              ) : null}
-            </View>     
+        <View style={{ alignSelf: 'center' }}>
+          {this.state.showToast ? (
+            <ToastMessage text='Coming Soon!' />
+          ) : null}
+        </View>
       </SafeAreaView>
     );
   }
 }
 // export default Profile;
-const mapStateToProps = (state) =>{
-  console.log('====================================');
-  console.log('------state profile ',state);
-  console.log('====================================');
-  return{
-    profile:state.signIn.user
+const mapStateToProps = (state) => {
+
+  console.log('------state profile ', state);
+  console.log("=========State=====", state.signIn.user)
+  console.log("========state token ========", state.signIn.token)
+
+  return {
+    profile: state.signIn.user,
+    token: state.signIn.token
   }
 }
 
-const mapDispatchToProps = dispatch => 
+const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      logOutAction,
+      logOutAction
     },
     dispatch
   )
 
 
-export default connect(mapStateToProps,mapDispatchToProps)(Profile);
+export default connect(mapStateToProps, mapDispatchToProps)(Profile);

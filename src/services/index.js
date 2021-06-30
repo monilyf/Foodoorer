@@ -3,13 +3,15 @@ import apiMethods from '../utils/Constants'
 import NetInfo from "@react-native-community/netinfo";
 import { axiosInstance } from './serviceInstance';
 import { notifyMsg } from '../utils/CommonFunctions';
+import store from '../redux/store';
+
 
 const logout = (props) => {
 
 }
 console.log('service index')
 const errorResponse = (err) => {
-    console.log(err)
+    console.log(err.response, "=======jjjjjjj")
     debugger
     let errorRes = {};
     errorRes.isSucess = false;
@@ -17,7 +19,7 @@ const errorResponse = (err) => {
     return errorRes;
 }
 const successResponse = (response) => {
-
+    debugger
     let successRes = {};
     // if (response?.isTokenExpired) {
     //     successRes.isSucess = false;
@@ -60,11 +62,17 @@ export const callService = ({ url, method = "", params = {}, props = {} }) => {
                             return errorResponse(error);
                         });
                 default:
+                    console.log("default----")
+                    // console.log("******************", store.getState().signIn.token)
                     return axiosInstance.get(url)
                         .then(response => {
+                            debugger
+                            console.log("response")
                             return successResponse(response)
                         })
                         .catch(error => {
+                            debugger
+                            console.log("error--------")
                             return errorResponse(error);
                         });
             }

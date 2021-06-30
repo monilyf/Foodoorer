@@ -1,6 +1,6 @@
-import React, {useState} from 'react';
-import {View, Image, FlatList, ScrollView} from 'react-native';
-import {ContentHeader, Label} from '../../component';
+import React, { useState } from 'react';
+import { View, Image, FlatList, ScrollView } from 'react-native';
+import { ContentHeader, Label } from '../../component';
 import ThemeUtils from '../../utils/ThemeUtils';
 import CommonStyle from '../../utils/CommonStyle';
 import styles from './style';
@@ -9,16 +9,16 @@ import {
   TodayOfferCard,
   AllOfferCard,
 } from '../../component';
-import {restaurants, offers} from '../../redux/constants/data';
+import { restaurants, offers } from '../../redux/Constants/data';
 import Routes from '../../router/routes';
 import Color from '../../utils/Color'
 
 const discount_card_image = [
-  {id: 1, source: require('../../assets/images/discount2.png')},
-  {id: 2, source: require('../../assets/images/discount1.png')},
-  {id: 3, source: require('../../assets/images/discount2.png')},
-  {id: 4, source: require('../../assets/images/discount1.png')},
-  {id: 5, source: require('../../assets/images/discount2.png')},
+  { id: 1, source: require('../../assets/images/discount2.png') },
+  { id: 2, source: require('../../assets/images/discount1.png') },
+  { id: 3, source: require('../../assets/images/discount2.png') },
+  { id: 4, source: require('../../assets/images/discount1.png') },
+  { id: 5, source: require('../../assets/images/discount2.png') },
 ];
 
 // const free_delivery_item = [
@@ -54,7 +54,7 @@ class RestaurantOfferScreen extends React.Component {
   renderTodaysOffers = item => {
     return (
       <TodayOfferCard
-        onPress={() =>this.props.navigation.push(Routes.RestaurantScreen)}
+        onPress={() => this.props.navigation.push(Routes.RestaurantScreen)}
         image={item.image}
         title={item.title}
         time={item.time}
@@ -71,8 +71,8 @@ class RestaurantOfferScreen extends React.Component {
         onPress={() => this.props.navigation.push(Routes.RestaurantScreen)}
         style={{
           // backgroundColor:Color.ALICE_BLUE,
-            paddingRight: this.state.scrollItemHorizontal ? null : 110,
-          }}
+          paddingRight: this.state.scrollItemHorizontal ? null : 110,
+        }}
         title={item.title}
         image={item.image}
         rating={item.rating}
@@ -109,17 +109,17 @@ class RestaurantOfferScreen extends React.Component {
           horizontal
           showsHorizontalScrollIndicator={false}
           data={discount_card_image}
-          renderItem={({item}) => this.renderDiscountCard(item)}
+          renderItem={({ item }) => this.renderDiscountCard(item)}
           keyExtractor={item => item.id}
         />
 
-        <ContentHeader title="Today's Offers" style={{marginHorizontal: 0}} />
+        <ContentHeader title="Today's Offers" style={{ marginHorizontal: 0 }} />
 
         <FlatList
           horizontal
           showsHorizontalScrollIndicator={false}
           data={restaurants}
-          renderItem={({item}) => this.renderTodaysOffers(item)}
+          renderItem={({ item }) => this.renderTodaysOffers(item)}
           keyExtractor={item => item.id}
         />
 
@@ -134,30 +134,30 @@ class RestaurantOfferScreen extends React.Component {
                 : 'View all',
             })
           }
-          style={{marginHorizontal: 0}}
+          style={{ marginHorizontal: 0 }}
         />
-<ScrollView horizontal={this.state.scrollItemHorizontal}   showsHorizontalScrollIndicator={false}>
-        <FlatList
-          //  horizontal={this.state.scrollItemHorizontal}
-           contentContainerStyle={{alignSelf: 'flex-start'}}
-          // style={{
-          // // backgroundColor:Color.ALICE_BLUE,
-          //   paddingRight: this.state.scrollItemHorizontal ? null : 30,
-          // }}
-        
-          numColumns={this.state.scrollItemHorizontal?Math.ceil(offers.length / 2):1} 
-          data={offers}
-          renderItem={({item}) => this.renderFreeDelivery(item)}
-          keyExtractor={item => item.id}
-        />
+        <ScrollView horizontal={this.state.scrollItemHorizontal} showsHorizontalScrollIndicator={false}>
+          <FlatList
+            //  horizontal={this.state.scrollItemHorizontal}
+            contentContainerStyle={{ alignSelf: 'flex-start' }}
+            // style={{
+            // // backgroundColor:Color.ALICE_BLUE,
+            //   paddingRight: this.state.scrollItemHorizontal ? null : 30,
+            // }}
+
+            numColumns={this.state.scrollItemHorizontal ? Math.ceil(offers.length / 2) : 1}
+            data={offers}
+            renderItem={({ item }) => this.renderFreeDelivery(item)}
+            keyExtractor={item => item.id}
+          />
         </ScrollView>
-        <ContentHeader title="All offers" style={{marginHorizontal: 0}} />
+        <ContentHeader title="All offers" style={{ marginHorizontal: 0 }} />
 
         <FlatList
-         
+
           showsVerticalScrollIndicator={false}
           data={offers}
-          renderItem={({item}) => this.renderAllOfferCard(item)}
+          renderItem={({ item }) => this.renderAllOfferCard(item)}
           keyExtractor={item => item.id}
         />
       </View>

@@ -1,4 +1,4 @@
-import {SET_ONBOARDING_SUCCESS,SET_ONBOARDING_FAILURE} from '../../constants/action-types';
+import { SET_ONBOARDING_SUCCESS, SET_ONBOARDING_FAILURE } from '../../Constants/action-types';
 
 const initialState = {
   val: '',
@@ -16,15 +16,15 @@ const onBoardingReducer = (state = initialState, action) => {
         val: action.payload,
       };
 
-      case SET_ONBOARDING_FAILURE:
-        // console.log('onboardingReducer--SET_ONBOARDING_FAILURE=-=-=',action.payload) 
-      
-            return {
-              
-              ...state,
-              val: action.payload,
-            };
-          
+    case SET_ONBOARDING_FAILURE:
+      // console.log('onboardingReducer--SET_ONBOARDING_FAILURE=-=-=',action.payload) 
+
+      return {
+
+        ...state,
+        val: action.payload,
+      };
+
     default:
       // console.log('onboardingReducer--default=-=-=', state);
 

@@ -1,13 +1,13 @@
 import React from 'react';
-import { View,Image, TouchableOpacity } from 'react-native';
+import { View, Image, TouchableOpacity } from 'react-native';
 import Color from '../../../utils/Color';
 import ThemeUtils from '../../../utils/ThemeUtils';
 import Label from '../Label'
 
 const CategoryCard = (props) => {
-    return (
-      <TouchableOpacity onPress={props.onPress}>
-        <View style={{flexDirection: 'column', marginHorizontal: 5}}>
+  return (
+    <TouchableOpacity onPress={props.onPress}>
+      <View style={{ flexDirection: 'column', marginHorizontal: 5 }}>
         <Image
           style={{
             borderRadius: 6,
@@ -15,14 +15,14 @@ const CategoryCard = (props) => {
             width: ThemeUtils.relativeWidth(24),
           }}
           // resizeMode="contain"
-          source={props.image}
+          source={{ uri: props.image }}
         />
         <Label xsmall bolder mt={5} ms={30} color={Color.PRIMARY_DARK}>
           {props.title}
         </Label>
       </View>
-      </TouchableOpacity>
-    )
+    </TouchableOpacity>
+  )
 }
 
 export default CategoryCard

@@ -1,4 +1,4 @@
-import * as types from '../../constants/action-types';
+import * as types from '../../Constants/action-types';
 
 export const onBoardingDoneAction = (status) => {
   return {
@@ -8,6 +8,7 @@ export const onBoardingDoneAction = (status) => {
 }
 
 export const logOutAction = () => {
+  console.log('logout')
   return {
     type: types.LOGOUT
   }

@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {SafeAreaView, View, ScrollView,FlatList, Image, TextInput, Touchable} from 'react-native';
+import React, { Component } from 'react';
+import { SafeAreaView, View, ScrollView, FlatList, Image, TextInput, Touchable } from 'react-native';
 import {
   StatusBars,
   Header,
@@ -15,12 +15,12 @@ import styles from './style';
 import CommonStyle from '../../utils/CommonStyle';
 import ThemeUtils from '../../utils/ThemeUtils';
 import Icon from 'react-native-vector-icons/Feather';
-import {TouchableOpacity} from 'react-native-gesture-handler';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 import LinearGradient from 'react-native-linear-gradient';
 import Routes from '../../router/routes';
 import route from '@react-navigation/routers'
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 export class CartScreen extends Component {
   constructor(props) {
@@ -29,94 +29,94 @@ export class CartScreen extends Component {
     this.state = {
       // itemCount: 1,
       // cartItemDetails:null,
-      cartData:this.props.cartItemsList,
-      isPaymentDoneModal:false,
-      showToast:false,
+      cartData: this.props.cartItemsList,
+      isPaymentDoneModal: false,
+      showToast: false,
       totalPrice: 0,
     };
   }
 
-//  payemntDoneModal = (state)=>{
-//    return(
-    
-//    )
-// //  }
+  //  payemntDoneModal = (state)=>{
+  //    return(
+
+  //    )
+  // //  }
   // componentDidMount(){
   //   const { cartItemDetails } = this.props.route.params;
   //   this.setState({cartItemDetails:cartItemDetails})
   // }
-  
+
   addItem = (id) => {
     let temp = this.state.cartData;
-    let indexc=this.state.cartData.findIndex(item=>item.id == id);
-    console.log(indexc,'=============',temp,"counddddddddddddt data....................");
+    let indexc = this.state.cartData.findIndex(item => item.id == id);
+    console.log(indexc, '=============', temp, "counddddddddddddt data....................");
 
     if (temp.length > 0) {
       let temps = temp[indexc];
       temps.count = 1;
-      
-      temp[indexc]=temps;
-      this.setState({totalItems:this.state.totalItems+1,totalPrice:this.state.totalPrice+(temps.price),cartData:temp})
-      console.log(temps,"count data....................");
+
+      temp[indexc] = temps;
+      this.setState({ totalItems: this.state.totalItems + 1, totalPrice: this.state.totalPrice + (temps.price), cartData: temp })
+      console.log(temps, "count data....................");
     }
   }
 
   addItemQuantity = (id) => {
     let temp = this.state.cartData;
-    let indexc=this.state.cartData.findIndex(item=>item.id == id);
-    console.log(indexc,'=============',temp,"counddddddddddddt data....................");
+    let indexc = this.state.cartData.findIndex(item => item.id == id);
+    console.log(indexc, '=============', temp, "counddddddddddddt data....................");
 
     if (temp.length > 0) {
       let temps = temp[indexc];
-      temps.count +=1;
-      temp[indexc]=temps;
-      console.log('temps.price-----------',temps.price)
+      temps.count += 1;
+      temp[indexc] = temps;
+      console.log('temps.price-----------', temps.price)
 
-      this.setState({totalItems:this.state.totalItems+1,totalPrice:this.state.totalPrice+(temps.price*temps.count),cartData:temp})
-      console.log(temps,"count data....................,",this.state.totalPrice,this.state.totalItems);
+      this.setState({ totalItems: this.state.totalItems + 1, totalPrice: this.state.totalPrice + (temps.price * temps.count), cartData: temp })
+      console.log(temps, "count data....................,", this.state.totalPrice, this.state.totalItems);
     }
   }
 
 
-  removeItem=(id)=>{
+  removeItem = (id) => {
     let temp = this.state.cartData;
-    let indexc=this.state.cartData.findIndex(item=>item.id == id);
+    let indexc = this.state.cartData.findIndex(item => item.id == id);
     if (temp.length > 0) {
       let temps = temp[indexc];
 
-      temps.count = temps.count-1;
-      temp[indexc]=temps;
-      this.setState({totalItems:this.state.totalItems-1,totalPrice:this.state.totalPrice>0?this.state.totalPrice-(temps.price*temps.count):this.state.totalPrice,cartData:temp})
-      console.log(temps,"count data....................");
+      temps.count = temps.count - 1;
+      temp[indexc] = temps;
+      this.setState({ totalItems: this.state.totalItems - 1, totalPrice: this.state.totalPrice > 0 ? this.state.totalPrice - (temps.price * temps.count) : this.state.totalPrice, cartData: temp })
+      console.log(temps, "count data....................");
     }
   }
 
 
-  renderCartItem =({item})=>{
+  renderCartItem = ({ item }) => {
     console.log('------------ cart', this.props.cartItemsList);
-    
-    return(
+
+    return (
       // <>
-      item.count>0?
-      <CartItem
-      foodItemName={item.itemName}
-      price={item.price}
-      itemCount={item.count}
-      onPressPlus={() =>
-        // this.setState({itemCount: this.state.itemCount + 1})
-        this.addItemQuantity(item.id)
-      }
-      onPressMinus={() => {
-        this.removeItem(item.id)
-        // if (this.state.itemCount > 1) {
-        //   this.setState({itemCount: this.state.itemCount - 1});
-        // } else {
-        //   this.setState({itemCount: this.state.itemCount});
-        // } //set logic here
-      }}
-      
-    />
-    : <View></View>
+      item.count > 0 ?
+        <CartItem
+          foodItemName={item.itemName}
+          price={item.price}
+          itemCount={item.count}
+          onPressPlus={() =>
+            // this.setState({itemCount: this.state.itemCount + 1})
+            this.addItemQuantity(item.id)
+          }
+          onPressMinus={() => {
+            this.removeItem(item.id)
+            // if (this.state.itemCount > 1) {
+            //   this.setState({itemCount: this.state.itemCount - 1});
+            // } else {
+            //   this.setState({itemCount: this.state.itemCount});
+            // } //set logic here
+          }}
+
+        />
+        : <View></View>
       // </>
     )
   }
@@ -129,7 +129,7 @@ export class CartScreen extends Component {
     // console.log('hello from params=====-=-=-=-=-',one,two)
     // this.setState({cartItemDetails:cartItemDetails})
     // console.log('-----------this.props.cartItemId------',this.props.cartItemId)
-    console.log('-----------this.props.cartItemList------',this.props.cartItemsList)
+    console.log('-----------this.props.cartItemList------', this.props.cartItemsList)
     return (
       <SafeAreaView >
         <StatusBars
@@ -141,7 +141,7 @@ export class CartScreen extends Component {
           iconName="chevron-back-outline" justifyContent='space-between'
           onPress={() => this.props.navigation.goBack()}>
           {/* <Search style={CommonStyle.shadowStyle}/> */}
-          <View style={{flexDirection: 'row', marginRight: 50}}>
+          <View style={{ flexDirection: 'row', marginRight: 50 }}>
             <Image
               resizeMode="contain"
               style={{
@@ -151,7 +151,7 @@ export class CartScreen extends Component {
               }}
               source={require('../../assets/images/mcD_logo.png')}
             />
-            <View style={{marginStart: 15,alignContent:'center'}}>
+            <View style={{ marginStart: 15, alignContent: 'center' }}>
               <Label bolder>McDonald's</Label>
               <Label xsmall color={Color.DARK_GRAY}>
                 SG highway, Ahmedabad
@@ -161,13 +161,13 @@ export class CartScreen extends Component {
         </Header>
         <ScrollView showsVerticalScrollIndicator={false}>
           <View style={styles.container}>
-          <FlatList
-                showsVerticalScrollIndicator={false}
-                data={this.props.cartItemsList}
-                extraData={this.state.selectedItem}
-                renderItem={this.renderCartItem}
-                keyExtractor={item => item.id}
-              />
+            <FlatList
+              showsVerticalScrollIndicator={false}
+              data={this.props.cartItemsList}
+              extraData={this.state.selectedItem}
+              renderItem={this.renderCartItem}
+              keyExtractor={item => item.id}
+            />
             {/* <CartItem
               foodItemName="Creamy nachos"
               price="₹157.00"
@@ -191,7 +191,7 @@ export class CartScreen extends Component {
 
             {/* --------------------Bill Component Strat (can make it as separate BillComponent)---------------- */}
 
-            <View style={{marginTop: 20}}>
+            <View style={{ marginTop: 20 }}>
               <Label bolder mb={4}>
                 Bill Details
               </Label>
@@ -250,7 +250,7 @@ export class CartScreen extends Component {
               <View
                 style={[
                   CommonStyle.endLine,
-                  {marginHorizontal: 5, marginTop: 15},
+                  { marginHorizontal: 5, marginTop: 15 },
                 ]}></View>
               <View
                 style={{
@@ -268,7 +268,7 @@ export class CartScreen extends Component {
               <View
                 style={[
                   CommonStyle.endLine,
-                  {marginHorizontal: 5, marginTop: 15},
+                  { marginHorizontal: 5, marginTop: 15 },
                 ]}></View>
             </View>
             {/* --------------------Bill Component End---------------- */}
@@ -298,24 +298,24 @@ export class CartScreen extends Component {
                     padding: 0,
                     paddingVertical: 1,
                     // paddingHorizontal: 40,
-                    paddingLeft:10,
-                    width:ThemeUtils.relativeHeight(25),
+                    paddingLeft: 10,
+                    width: ThemeUtils.relativeHeight(25),
                   }}
                 />
               </OfferTag>
               {/* </View> */}
               <TouchableOpacity
-                style={{alignSelf: 'center'}}
-                onPress={() => {alert('Code Applied')}}>
+                style={{ alignSelf: 'center' }}
+                onPress={() => { alert('Code Applied') }}>
                 <LinearGradient
                   colors={[Color.GRADIENT3, Color.GRADIENT4]}
-                  start={{x: 0, y: 1}}
-                  end={{x: 1, y: 0}}
+                  start={{ x: 0, y: 1 }}
+                  end={{ x: 1, y: 0 }}
                   style={{
                     borderRadius: 6,
                     // alignItems:'center',
                     // paddingHorizontal: 40,
-                  width:ThemeUtils.relativeHeight(16),
+                    width: ThemeUtils.relativeHeight(16),
 
                     paddingVertical: 6,
 
@@ -326,10 +326,10 @@ export class CartScreen extends Component {
                 </LinearGradient>
               </TouchableOpacity>
             </View>
-            <TouchableOpacity  onPress={() => this.props.navigation.push(Routes.CouponAppliedScreen)}>
+            <TouchableOpacity onPress={() => this.props.navigation.push(Routes.CouponAppliedScreen)}>
               <Label xsmall bolder mt={4}>
-              Select a promo code
-            </Label>
+                Select a promo code
+              </Label>
             </TouchableOpacity>
             {/* </ScrollView> */}
           </View>
@@ -362,20 +362,20 @@ export class CartScreen extends Component {
               17, Sukomal Flats, Ramdev nagar, Satellite...
             </Label>
 
-            <SubmitButton buttonText="MAKE PAYMENT" 
-                        style={{width: ThemeUtils.relativeHeight(47)}}
+            <SubmitButton buttonText="MAKE PAYMENT"
+              style={{ width: ThemeUtils.relativeHeight(47) }}
 
-            onPress={()=>{
-              this.props.navigation.push(Routes.PaymentOptions)
-            // this.payemntDoneModal(this.setState({isPaymentDoneModal:true}))
-            }}/>
+              onPress={() => {
+                this.props.navigation.push(Routes.PaymentOptions)
+                // this.payemntDoneModal(this.setState({isPaymentDoneModal:true}))
+              }} />
             <Label></Label>
             <Label></Label>
             <Label></Label>
 
-            
+
           </View>
-          
+
         </ScrollView>
         <HomeNavigator />
       </SafeAreaView>
@@ -387,8 +387,8 @@ export class CartScreen extends Component {
 const mapStateToProps = state => ({
 
   // isOnboardingDone: state.onBoarding.val,
-  cartItemsList:state.cart.cartItemDetails,
-  // cartItemId:state.cart.cartItemId
+  cartItemsList: state.cart.cartItemDetails,
+  // cartItemId: state.cart.cartItemId
 });
 
 // const mapDispatchToProps = dispatch => 

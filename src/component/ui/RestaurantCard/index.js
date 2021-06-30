@@ -5,13 +5,13 @@ import Label from '../Label';
 import styles from './style';
 
 const RestaurantCard = (props) => {
-    return (
-   <TouchableOpacity onPress={props.onPress}>
-          <View
+  return (
+    <TouchableOpacity onPress={props.onPress}>
+      <View
         style={styles.container}>
         <Image
           style={styles.imageContainer}
-          source={props.image}
+          source={{ uri: props.image }}
           resizeMode='cover'
         />
         <View style={styles.discount}>
@@ -19,31 +19,31 @@ const RestaurantCard = (props) => {
         </View>
         <View
           style={styles.detailsContaier}>
-         <View style={{flexDirection:'row',justifyContent:'space-between'}}>
-         <Label color={Color.PRIMARY_DARK} bolder>
-            {props.title}
-          </Label>
-          <View style={styles.rating}>
-          <Label color={Color.WHITE} bolder ph={4} pb={1.4} xsmall>{props.rating}</Label>
-        </View>
-         </View>
+          <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+            <Label color={Color.PRIMARY_DARK} bolder>
+              {props.title}
+            </Label>
+            <View style={styles.rating}>
+              <Label color={Color.WHITE} bolder ph={4} pb={1.4} xsmall>{props.rating}</Label>
+            </View>
+          </View>
           <Label xsmall bolder color={Color.DARK_GRAY}>
             {props.description}
           </Label>
-         
-        
-         <View style={styles.area_Price}>
-         <Label small  color={Color.PRIMARY_DARK}>
-            {props.area}
-          </Label>
-          <Label small  ms={15} color={Color.PRIMARY_DARK}>
-            {props.priceForOne}
-          </Label>
-         </View>
+
+
+          <View style={styles.area_Price}>
+            <Label small color={Color.PRIMARY_DARK}>
+              {props.area}
+            </Label>
+            <Label small ms={15} color={Color.PRIMARY_DARK}>
+              {props.priceForOne}
+            </Label>
+          </View>
         </View>
       </View>
-   </TouchableOpacity>
-    )
+    </TouchableOpacity>
+  )
 }
 
 export default RestaurantCard

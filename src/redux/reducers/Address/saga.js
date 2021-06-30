@@ -1,14 +1,13 @@
-import {addressActions} from '../../constants/action-types';
-import {put,call} from 'redux-saga/effects';
+import { addressActions } from '../../Constants/action-types';
+import { put, call } from 'redux-saga/effects';
 
-export function* selectedAddresss(action){
-    try{
-        console.log('-----------------saga payload--',action.payload)
-        yield put({type:addressActions.SELECT_ADDRESS_SUCCESS,payload:action.payload});
+export function* selectedAddresss(action) {
+    try {
+        yield put({ type: addressActions.SELECT_ADDRESS_SUCCESS, payload: action.payload });
     }
-    catch(e){
+    catch (e) {
         console.log(e);
-        yield put({type:addressActions.SELECT_ADDRESS_FAILURE, payload:e.message});
+        yield put({ type: addressActions.SELECT_ADDRESS_FAILURE, payload: e.message });
     }
-    
+
 }
